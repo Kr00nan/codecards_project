@@ -1,5 +1,4 @@
 class Api::DecksController < ApplicationController
-   before_action :set_user
    before_action :set_deck, only: [:show, :destroy]
   
    def index
@@ -31,10 +30,6 @@ class Api::DecksController < ApplicationController
 
   def deck_params
     params.require(:deck).permit(:title, :public)
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 
 end
