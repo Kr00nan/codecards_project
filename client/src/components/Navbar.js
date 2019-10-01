@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import Searchbar from './Searchbar';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Menu, } from 'semantic-ui-react'
-import { Link, withRouter, } from 'react-router-dom'
+import {  Menu, Dropdown,  } from 'semantic-ui-react';
+import { Link, withRouter, } from 'react-router-dom';
 
 class Navbar extends React.Component {
   
@@ -39,9 +40,12 @@ class Navbar extends React.Component {
     }
   }
   
+  
+  
   render() {
     return (
-      <div>
+      <div> 
+            <Searchbar position='center' /> 
         <Menu pointing secondary>
           <Link to='/'>
             <Menu.Item
@@ -68,5 +72,15 @@ export class ConnectedNavbar extends React.Component {
     )
   }
 }
+
+// const DropdownExampleSelection = () => (
+//   <Dropdown
+//     placeholder='Logout'
+//     fluid
+//     selection
+//     options={Logout}
+//   />
+// )
+
 
 export default withRouter(ConnectedNavbar);
