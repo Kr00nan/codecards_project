@@ -94,7 +94,6 @@ class Deck extends React.Component  {
 
     </Card> */
   
-    
        )
      }
    }
