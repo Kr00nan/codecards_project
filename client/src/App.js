@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
-import FlashCards from './components/FlashCards';
+import Deck from './components/Deck';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
 
@@ -19,7 +19,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/decks/:deck_id/cards" component={FlashCards} />
+          <Route exact path="/decks/:id" component={Deck} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
