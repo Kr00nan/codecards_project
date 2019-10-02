@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Card, } from 'semantic-ui-react';
-import FlashCard from './FlashCard';
 
 class FlashCards extends React.Component {
   state = { cards: [], }
@@ -22,8 +21,8 @@ class FlashCards extends React.Component {
       <>
         <Card.Group itemsPerRow={4}>
           {
-            this.state.cards.map( card => 
-                <FlashCard key={card.id} {...card} />
+            this.state.cards.map( card =>
+              <Card key={card.id} color="yellow" image={card.question} />
             )
           }
         </Card.Group>
