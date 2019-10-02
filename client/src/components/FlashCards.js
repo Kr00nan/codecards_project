@@ -23,7 +23,7 @@ class FlashCards extends React.Component {
         <Card.Group itemsPerRow={4}>
           {
             this.state.cards.map( card => 
-                <FlashCard {...card} />
+                <FlashCard key={card.id} {...card} />
             )
           }
         </Card.Group>
