@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Image, } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 
 
@@ -25,6 +26,9 @@ class FlashCard extends React.Component {
     const { question, answer } = this.state.card
     return (
       <>
+        <Link to='/decks/1'>Back to deck</Link>
+        <br />
+        <br />
         <Flippy
           flipOnHover={false} // default false
           flipOnClick={true} // default false

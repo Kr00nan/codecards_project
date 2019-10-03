@@ -26,6 +26,7 @@ class Deck extends React.Component  {
     const { deck, } = this.state
     return(
       <>
+      
         <Header as="h1" textAlign="center">
           {deck.title}
         </Header>
