@@ -37,7 +37,7 @@ class Deck extends React.Component  {
                 color="grey" 
                 image={card.question} 
                 as={Link}
-                to="/flashcard" // route subject to change
+                to={`/decks/${deck.id}/cards/${card.id}`} // route subject to change
               />
             )
           }
