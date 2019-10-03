@@ -30,9 +30,7 @@ const Home = () => (
             <div class="image"></div>
             <div class="content">
               <div class="header">JavaScript</div>
-              <div class="ui bottom attached button">
-                START
-                      </div>
+              <Link to='/decks/4'>START</Link>
             </div>
           </div>
           <br />
@@ -42,9 +40,7 @@ const Home = () => (
             <div class="image"></div>
             <div class="content">
               <div class="header">CSS</div>
-              <div class="ui bottom attached button">
-                START
-                      </div>
+              <Link to='/decks/2'>START</Link>
             </div>
           </div>
           <br />
@@ -54,9 +50,7 @@ const Home = () => (
             <div class="image"></div>
             <div class="content">
               <div class="header">RUBY</div>
-              <div class="ui bottom attached button">
-                START
-                      </div>
+              <Link to='/decks/3'>START</Link>
             </div>
           </div>
         </Grid>
