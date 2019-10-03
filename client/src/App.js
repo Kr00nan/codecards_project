@@ -22,8 +22,8 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/decks/:id" component={Deck} />
-          <Route exact path="/decks/:deck_id/cards/:id" component={FlashCard} />
+          <ProtectedRoute exact path="/decks/:id" component={Deck} />
+          <ProtectedRoute exact path="/decks/:deck_id/cards/:id" component={FlashCard} />
           <ProtectedRoute exact path="/my_profile" component={Profile} />
           <ProtectedRoute exact path="/users/:id" component={User} />
           <Route component={NoMatch} />
