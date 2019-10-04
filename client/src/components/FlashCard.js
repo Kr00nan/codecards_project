@@ -11,7 +11,6 @@ class FlashCard extends React.Component {
 
   componentDidMount() {
     const {deck_id, id} = this.props.match.params;
-    // const id = this.props;
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
       .then(res => {
         this.setState({ card: res.data, })
@@ -23,26 +22,26 @@ class FlashCard extends React.Component {
 
 
   render() {
-    const { question, answer } = this.state.card
+    const { question, answer, extra, } = this.state.card
     return (
       <>
         <Link to='/decks/1'>Back to deck</Link>
         <br />
         <br />
         <Flippy
-          flipOnHover={false} // default false
-          flipOnClick={true} // default false
-          flipDirection="horizontal" // horizontal or vertical
-          ref={(r) => this.flippy = r} // to use toggle method like this.flippy.toggle()
-        // if you pass isFlipped prop component will be controlled component.
-        // and other props, which will go to div
-        style={{ width: '500px', borderRadius: '5px' }}
+          flipOnClick={true}
+          flipDirection="horizontal"
+          ref={(r) => this.flippy = r}
+          style={{ width: '500px', borderRadius: '5px' }}
         >
           <FrontSide>
-            <Image src={question} />
+            {question}
           </FrontSide>
           <BackSide>
-            <Image src={answer} />
+            {answer}
+            <br />
+            <br />
+            {extra}
           </BackSide>
         </Flippy>
       </>

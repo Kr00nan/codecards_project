@@ -36,10 +36,11 @@ class Deck extends React.Component  {
               <Card 
                 key={card.id} 
                 color="grey" 
-                image={card.question} 
                 as={Link}
                 to={`/decks/${deck.id}/cards/${card.id}`} // route subject to change
-              />
+              >
+                {card.question} 
+              </Card>
             )
           }
         </Card.Group>
