@@ -23,30 +23,43 @@ class Deck extends React.Component  {
   }
  
   render() {
-    const { deck, } = this.state
+    const { deck, cards } = this.state
     return(
       <>
-      
         <Header as="h1" textAlign="center">
           {deck.title}
         </Header>
-        <Card.Group itemsPerRow={4}>
-          {
-            this.state.cards.map( card =>
-              <Card 
-                key={card.id} 
-                color="grey" 
-                as={Link}
-                to={`/decks/${deck.id}/cards/${card.id}`} // route subject to change
-              >
-                {card.question} 
-              </Card>
-            )
-          }
-        </Card.Group>
+        { cards.length === 0 ? 
+          <div>This deck has no cards yet</div> 
+        :
+          <Card.Group itemsPerRow={4}>
+            {
+              cards.map( card =>
+                <Card 
+                  key={card.id} 
+                  color="grey" 
+                  as={Link}
+                  to={`/decks/${deck.id}/cards/${card.id}`}
+                  style={styles.card}
+                >
+                  {card.question} 
+                </Card>
+              )
+            }
+          </Card.Group>
+        }
       </>
     )
   }
+}
+
+const styles = {
+  card: {
+    padding: '16.625px', 
+    borderRadius: '16.625px', 
+    height: '332.5px',
+    fontSize: '16.625px',
+  },
 }
 
 export default Deck

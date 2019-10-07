@@ -1,12 +1,13 @@
 class Api::DecksController < ApplicationController
-   before_action :set_deck, only: [:show, :destroy]
+  before_action :authenticate_user!
+  before_action :set_deck, only: [:show, :destroy]
   
-   def index
-    render json: Deck.all
-   end
+  def index
+    render json: current_user.decks.all
+  end
 
   def create
-    deck = Deck.new(deck_params)
+    deck = current_user.decks.new(deck_params)
     if deck.save
       render json: deck
     else
@@ -23,7 +24,7 @@ class Api::DecksController < ApplicationController
     render json: { message: 'Deck has been deleted :(' }
   end
 
-  private 
+  private
   def set_deck 
     @deck = Deck.find(params[:id])
   end

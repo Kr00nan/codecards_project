@@ -12,6 +12,13 @@ class Navbar extends React.Component {
     if (user) {
       return (
         <Menu.Menu position='right'>
+          <Link to='/my_decks'>
+            <Menu.Item 
+              id='my_decks'
+              name='my decks'
+              active={location.pathname === '/my_decks'}
+            />
+          </Link>
           <Menu.Item>
             <Dropdown text={user.email}>
               <Dropdown.Menu>

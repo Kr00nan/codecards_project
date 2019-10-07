@@ -542,12 +542,12 @@ d2 = Deck.create(title: "CSS", public: true,)
   )d2.cards.create( 
     question: " What does a CSS3 animation do?",
     answer: " It gradually change one style to another.",
-    extra: " div {
+    extra: 'div {
       animation: myfirst 5s; }
       @keyframes myfirst { from {background: red;}
       to {background: yellow;} }
       /* This is the standard syntax, but remember to also include vendor prefixes for each browser.
-      You can change as many properties you want and you can specify when the change will happen in percent, or you can use the keywords "from" and "to" (which represents 0% and 100%). */ ",
+      You can change as many properties you want and you can specify when the change will happen in percent, or you can use the keywords "from" and "to" (which represents 0% and 100%). */ ',
 
   )d2.cards.create( 
     question: " You’d like to use a gradient as the background of a div. How do you do this?",
@@ -590,15 +590,14 @@ d2 = Deck.create(title: "CSS", public: true,)
 
   )d2.cards.create( 
     question: " You can name specific and generic font families in CSS. What are the 5 generic families?",
-    answer: " Sans Serif
+    answer: 'Sans Serif
     No small projecting features called "serifs" at the end of strokes.
     Serif
     With “serifs”.
     Fonts written in a conjoined and/or flowing manner.
     Monospace
     Letters and characters each occupy the same amount of horizontal space.
-    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.",
-    extra: "  ",
+    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.',
 
   )d2.cards.create( 
     question: " What are the three methods of implementing CSS?",
@@ -726,12 +725,12 @@ d2 = Deck.create(title: "CSS", public: true,)
   )d2.cards.create( 
     question: " You’d like to change the font of a headline to Times New Roman. How do you do this? ",
     answer: "  You can use the font-family property to specify the font of an element. ",
-    extra: " p
+    extra: ' p
     {
     font-family: "Times New Roman" ,Georgia,Serif;
     }
     Good to know:
-    The font-family property can hold several font names as a "fallback" system. If the browser does not support the first font, it tries the next font. ",
+    The font-family property can hold several font names as a "fallback" system. If the browser does not support the first font, it tries the next font. ',
 
   )d2.cards.create( 
     question: "  You’d like to increase the distance between words. How do you do this? ",
@@ -784,11 +783,11 @@ d2 = Deck.create(title: "CSS", public: true,)
   )d2.cards.create( 
     question: "  You want to hide an element and make it invisible on your site. How do you do this? ",
     answer: "  By using the visibility property with a hidden value. ",
-    extra: " h2
+    extra: ' h2
     {
     visibility: hidden; }
     Tip:
-    Even invisible elements take up space on the page. Use the "display" property to create invisible elements that do not take up space. ",
+    Even invisible elements take up space on the page. Use the "display" property to create invisible elements that do not take up space. ',
 
   )d2.cards.create( 
     question: "  You don’t want an image to float next to your text. How do you fix this? ",
@@ -823,13 +822,11 @@ d2 = Deck.create(title: "CSS", public: true,)
     extra: " p
     {
     border: 5px solid red; } ",
-  )
 
   )d2.cards.create( 
     question: "  How do you place an image as the background of a div with CSS? ",
     answer: "  By using the background image property. ",
     extra: "  By using the background image property. ",
-  )
   
   )d2.cards.create( 
     question: " How do you make an element transparent with CSS? ",
