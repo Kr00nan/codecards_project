@@ -1,7 +1,7 @@
 import React from 'react';
 import Searchbar from './Searchbar';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import {  Menu, Dropdown,  } from 'semantic-ui-react';
+import {  Menu, Dropdown, } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
 
 class Navbar extends React.Component {
@@ -12,10 +12,23 @@ class Navbar extends React.Component {
     if (user) {
       return (
         <Menu.Menu position='right'>
-          <Menu.Item
-            name='logout'
-            onClick={ () => handleLogout(this.props.history) }
-          />
+          <Link to='/my_decks'>
+            <Menu.Item 
+              id='my_decks'
+              name='my decks'
+              active={location.pathname === '/my_decks'}
+            />
+          </Link>
+          <Menu.Item>
+            <Dropdown text={user.email}>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to='/my_profile'>Profile</Dropdown.Item>
+                <Dropdown.Item onClick={ () => handleLogout(this.props.history) } >
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
         </Menu.Menu>
       )
     } else {
@@ -41,12 +54,11 @@ class Navbar extends React.Component {
   }
   
   
-  
   render() {
     return (
-      <div> 
-            <Searchbar position='center' /> 
+      <nav> 
         <Menu pointing secondary>
+          <Searchbar position='center' /> 
           <Link to='/'>
             <Menu.Item
               name='home'
@@ -56,7 +68,7 @@ class Navbar extends React.Component {
           </Link>
             { this.rightNavItems() }
         </Menu>
-      </div>
+      </nav>
     )
   }
 }
@@ -72,15 +84,5 @@ export class ConnectedNavbar extends React.Component {
     )
   }
 }
-
-// const DropdownExampleSelection = () => (
-//   <Dropdown
-//     placeholder='Logout'
-//     fluid
-//     selection
-//     options={Logout}
-//   />
-// )
-
 
 export default withRouter(ConnectedNavbar);
