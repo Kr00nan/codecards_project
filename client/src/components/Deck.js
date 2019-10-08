@@ -1,16 +1,18 @@
 import React from 'react';
 import axios from 'axios'
-import { Header, Card, } from 'semantic-ui-react'
+import { Header, Card, Button, Form, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
+import { AuthConsumer, } from '../providers/AuthProvider'
 
 class Deck extends React.Component  {
-  state = { deck: {}, cards: [], }
+  state = { deck: {}, cards: [], showEdit: false, editDeck: {}, }
 
   componentDidMount() {
     const { id, } = this.props.match.params
     axios.get(`/api/decks/${id}`)
       .then(res => {
         this.setState({ deck: res.data, })
+        this.setState({ editDeck: res.data, })
       })
 
     axios.get(`/api/decks/${id}/cards`)
@@ -21,14 +23,74 @@ class Deck extends React.Component  {
         console.log(err)
       })
   }
+
+  toggleEditDeck = () => this.setState({ showEdit: !this.state.showEdit, })
+
+  handleTitleChange = (e) => this.setState({ editDeck: { ...this.state.editDeck, title: e.target.value, }, })
+
+  handlePublicChange = () => {
+    const { editDeck, } = this.state
+    this.setState({ editDeck: { ...editDeck, public: !editDeck.public, }, })
+  }
+
+  handleUpdate = (e) => {
+    e.preventDefault()
+    axios.put(`/api/decks/${this.state.deck.id}`, this.state.editDeck)
+      .then( res => {
+        this.setState({ deck: res.data, })
+        this.toggleEditDeck()
+      })
+  }
+
+  handleDelete = () => {
+    axios.delete(`/api/decks/${this.state.deck.id}`)
+      .then( this.props.history.push('/my_decks') )
+  }
  
+  editForm = () => {
+    const { editDeck, } = this.state
+    return (
+      <Form onSubmit={this.handleUpdate}>
+        <Form.Input 
+          width={4}
+          label="Deck Name"
+          placeholder="Deck Name"
+          name="title"
+          value={editDeck.title}
+          onChange={this.handleTitleChange}
+        />
+        <Form.Checkbox
+          label="Public"
+          checked={editDeck.public}
+          onChange={this.handlePublicChange}
+        />
+        <Form.Button>Save Changes</Form.Button>
+      </Form>
+    )
+  }
+
   render() {
-    const { deck, cards } = this.state
+    const { deck, cards, showEdit, } = this.state
     return(
       <>
-        <Header as="h1" textAlign="center">
-          {deck.title}
-        </Header>
+        <br />
+        { showEdit ?
+          <>
+            {this.editForm()}
+            <br />
+            <Button color="red" onClick={this.handleDelete}>Delete Deck</Button>
+          </>
+        :
+          <Header as="h1" textAlign="center">{deck.title}</Header>
+        }
+        <br />
+        <br />
+        { this.props.auth.user.id === deck.user_id &&
+          <Button onClick={this.toggleEditDeck}>
+            {showEdit ? "Close Edit" : "Edit Deck"}
+          </Button>
+        }
+        <hr />
         { cards.length === 0 ? 
           <div>This deck has no cards yet</div> 
         :
@@ -53,6 +115,14 @@ class Deck extends React.Component  {
   }
 }
 
+const ConnectedDeck = (props) => (
+  <AuthConsumer>
+    { auth =>
+      <Deck { ...props } auth={auth} />
+    }
+  </AuthConsumer>
+)
+
 const styles = {
   card: {
     padding: '16.625px', 
@@ -62,4 +132,4 @@ const styles = {
   },
 }
 
-export default Deck
+export default ConnectedDeck
