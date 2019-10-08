@@ -561,7 +561,7 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: " What does a CSS3 animation do?",
     answer: " It gradually change one style to another.",
-    extra: " div {
+    extra: 'div {
       animation: myfirst 5s; }
       @keyframes myfirst { from {background: red;}
       to {background: yellow;} }
@@ -624,9 +624,7 @@ d2 = Deck.create(title: "CSS", public: true,)
     Fonts written in a conjoined and/or flowing manner.
     Monospace
     Letters and characters each occupy the same amount of horizontal space.
-    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.",
-    extra: "  ",
-  )
+    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.',
 
   d2.cards.create( 
     question: " What are the three methods of implementing CSS?",
@@ -836,15 +834,13 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: "  You want to hide an element and make it invisible on your site. How do you do this? ",
     answer: "  By using the visibility property with a hidden value. ",
-    extra: " <h2
+    extra: ' h2
     {
     visibility: hidden; } />
     Tip:
-    Even invisible elements take up space on the page. 
-    Use the 'display' property to create invisible elements that do not take up space. ",
-  )
-  
-  d2.cards.create( 
+    Even invisible elements take up space on the page. Use the 'display' property to create invisible elements that do not take up space. ',
+
+  )d2.cards.create( 
     question: "  You don’t want an image to float next to your text. How do you fix this? ",
     answer: "  By using the clear property you can specify which side(s) of an element other 
     floating elements are not allowed on. ",
@@ -879,14 +875,12 @@ d2 = Deck.create(title: "CSS", public: true,)
     answer: "  By using the border property. ",
     extra: " <p
     {
-    border: 5px solid red; } /> ",
-  )
+    border: 5px solid red; } ",
 
   d2.cards.create( 
     question: "  How do you place an image as the background of a div with CSS? ",
     answer: "  By using the background image property. ",
     extra: "  By using the background image property. ",
-  )
   
   d2.cards.create( 
     question: " How do you make an element transparent with CSS? ",
@@ -901,11 +895,200 @@ d2 = Deck.create(title: "CSS", public: true,)
   )
 
 
-# d3 = Deck.create(title: "RUBY", public: true,)
-#   d3.cards.create( 
-#     question: "  ",
-#     answer: "",
-#   )
+d3 = Deck.create(title: "RUBY", public: true,)
+  d3.cards.create( 
+    question: "",d3.cards.create( 
+      question: "How do you define instance variables?",
+      answer: "Instance variables are defined using a single @ symbol.",
+    )d3.cards.create( 
+      question: "How do you define global variables?",
+      answer: "Global variables are defined using a single $ symbol.",
+    )d3.cards.create( 
+      question: "What is an array?",
+      answer: "Arrays are ordered, integer-indexed collections",
+    )d3.cards.create( 
+      question: "What does the shuffle method do to an array?",
+      answer: "It returns a new array with elements of self shuffled.",
+    )d3.cards.create( 
+      question: "What is a loop?",
+      answer: "It’s a statement which allows code to be executed repeatedly until a certain condition is met.",
+    )d3.cards.create( 
+      question: "Which error will this script throw?
+      def add_one(number) puts number+1 add_one(number+1)
+      end
+      add_one 3",
+      answer: "We get a stack overflow! Since we are calling the method again infinitely.",
+    )d3.cards.create( 
+      question: "What does this expression evaluate to?
+      false || true",
+      answer: "True! Since ruby will pick the next value when the first is false or nil.",
+    )d3.cards.create( 
+      question: "What is a String?",
+      answer: "It’s a sequence of characters! Also one of simplest data types in ruby.",
+    )d3.cards.create( 
+      question: "What is a Gemfile?",
+      answer: "It's a file declaring all the libraries used by your project.",
+    )d3.cards.create( 
+      question: "You’re getting a TypeError. Catch the bug!
+      main_menu = { chips: 2, fish: 6, pizza: 10.2 }
+      main_menu.merge! { gelato: 4, fruit_salad: 3, cookie_dough: 3.5 }",
+      answer: "The ruby interpreter thinks the hash passed as an argument is a block.
+      
+      Solution:
+      Store the argument in a variable or enclose it between parenthesis.
+      main_menu = { chips: 2, fish: 6, pizza: 10.2 }
+  
+      dessert_menu = { gelato: 4, fruit_salad: 3, cookie_dough: 3.5 }
+      main_menu.merge(dessert_menu)
+      => {:chips=>2, :fish=>6, :pizza=>10.2, :gelato=>4, :fruit_salad=>3, :cookie_dough=>3.5}",
+    )d3.cards.create( 
+      question: "How do you access a constant that's inside a class?",
+      answer: "By using the :: operator!",
+    )d3.cards.create( 
+      question: "What does this expression return?",
+      answer: "Returns 'woah' since first_variable is nil.",
+    )d3.cards.create( 
+      question: "What is nil?",
+      answer: "It represents nothing.",
+    )d3.cards.create( 
+      question: "What's the difference between puts and print ?",
+      answer: "Puts appends a line break at the end of the sentence, print doesn't.",
+    )d3.cards.create( 
+      question: "What is puts?",
+      answer: "It outputs any given argument to the console, followed by a line break. Always returns nil.",
+    )d3.cards.create( 
+      question: "What does the keyword extend do?",
+      answer: "Takes in a module as an argument and adds all the instance methods to self.",
+    )d3.cards.create( 
+      question: "What does the initialize method do?",
+      answer: "The initialize method is called every time a new instance of that class is created.",
+    )d3.cards.create( 
+      question: "What is a hash?",
+      answer: "Hashes are dictionary-like collections made of key-value pairs.",
+    )d3.cards.create( 
+      question: "What does the method attr_reader do?",
+      answer: "Defines a reader method for each argument passed.",
+    )d3.cards.create( 
+      question: "What is “Monkey Patching”?",
+      answer: "What is “Monkey Patching”?",
+    )d3.cards.create( 
+      question: "What is the function of the misterious splat argument?",
+      answer: "It allows multiple elements to be passed and collected into to an array.",
+    )d3.cards.create( 
+      question: "In a method, how do you declare a default value for an argument?",
+      answer: "By assigning a value when the argument is declared.",
+    )d3.cards.create( 
+      question: "What's the bug in this code?
+      def 1_day_after Time.now + 86400
+      end",
+      answer: "A method's name can't start with a number.",
+    )d3.cards.create( 
+      question: "What does the keyword rescue do?",
+      answer: "It handles an exception and executes another piece of code rather than stopping it.",
+    )d3.cards.create( 
+      question: "What does the keyword super do?",
+      answer: "It invokes the method with the same name from the parent class.",
+    )d3.cards.create( 
+      question: "What does the keyword self represent?",
+      answer: "The keyword self represents the current object.",
+    )d3.cards.create( 
+      question: "Who designed Ruby?",
+      answer: "Yukihiro Matsumoto",
+    )d3.cards.create( 
+      question: "Which architectural pattern does Rails use?",
+      answer: "MVC, which stands for
+      MVC, which stands for
+      Model
+      View
+      Controller",
+    )d3.cards.create( 
+      question: "What's the name of Rails's query interface?",
+      answer: "It’s called ActiveRecord. All generated models inherit from it.",
+    )d3.cards.create( 
+      question: "How do you undefine a method?",
+      answer: " Using the undef method!",
+    )d3.cards.create( 
+      question: "What is a gem?",
+      answer: "Gems are packages or libraries of code that are ready to be used in multiple projects.",
+    )d3.cards.create( 
+      question: "What is iteration?",
+      answer: "It’s the process of repeating an action in order to achieve an ideal result.",
+    )d3.cards.create( 
+      question: "Name 2 types of ruby operators, and 1 operator of each type.",
+      answer: " Comparison
+      [==, !=, >, <, >=, <=, <=>, ===, .eql?, .equal?]
+      Assignment
+      [=, +=, -=, *=, /=, **=, %=]
+      Bitwise
+      [&, |, ^, ~, <<, >>]
+      Logical
+      [and, or, &&, ||, !, not]
+      Arithmetic",
+    )d3.cards.create( 
+      question: "Name 3 Ruby keywords.",
+      answer: " Any 3 from this array:
+      [alias, and, BEGIN, begin, break, case, class, def,defined?, do, else, elsif, END, end, ensure,
+         false, for, if, in, module, next, nil, not, or, redo, rescue, retry, return, self,
+          super, then, true, undef, unless, until, when, while, yield]",
+    )d3.cards.create( 
+      question: "How do you define a block of code?",
+      answer: "There’s 2 ways of doing it:
+      # first way, using ‘do’ and ‘end’
+      [1,2,3,4,5].inject do |a,b| a+b
+      end
+      # second way, using brackets
+      [1,2,3,4,5].inject { |a,b| a + b }",
+    )d3.cards.create( 
+      question: "How are constants typed in by convention?
+      #Here’s some options:
+      A lowercased
+      B UPPERCASED C CamelCased D snake_cased",
+      answer: "It’s “B”. Constants should be typed in UPPERCASE.",
+    )d3.cards.create( 
+      question: "Are ranges classes?",
+      answer: "Yes!",
+    )d3.cards.create( 
+      question: "List 2 different ways of creating an Array.",
+      answer: "You can create them on the fly or by creating an instance ",
+    )d3.cards.create( 
+      question: "What does the each method do?",
+      answer: "It calls a block of code once for each element in self.",
+    )d3.cards.create( 
+      question: "What does the map method do?",
+      answer: "It iterates over each element of self and returns a new array with the values returned by the block.",
+    )d3.cards.create( 
+      question: "What happens when you call [-1] on an Array?",
+      answer: "You get the last element!",
+    )d3.cards.create( 
+      question: "What does the << (shovel operator) do?",
+      answer: "It pushes a given object to the end of the array.",
+    )d3.cards.create( 
+      question: "What does the include? method do?",
+      answer: "It returns true if the argument is present as one of the elements of self.",
+    )d3.cards.create( 
+      question: "What happens if you call each or map on an array without a block?",
+      answer: "You get an enumerator object!",
+    )d3.cards.create( 
+      question: "How do you define class variables?",
+      answer: "By prepending @@ to the variable’s name.",
+    )d3.cards.create( 
+      question: "What's the name of the most basic class in Ruby?",
+      answer: "BasicObject is the parent class of all classes. As an explicitly blank class, it has almost not methods at all.",
+    )d3.cards.create( 
+      question: "What is RSpec?",
+      answer: "It’s Ruby’s most popular testing-framework.",
+    )d3.cards.create( 
+      question: "What is RVM?",
+      answer: "RVM stands for Ruby Version Manager. It’s a CLI tool that allows you to install and manage multiple Ruby environments.",
+    )d3.cards.create( 
+      question: "What is metaprogramming?",
+      answer: "It’s code that can write code! It’s usually considered dangerous but it’s commonly employed to minimize the amount of code written for a solution.",
+    )d3.cards.create( 
+      question: "What is inheritance?",
+      answer: "Inheritance is when the behaviour of a class is based on the behaviour of another class.",
+    )
+    
+  )
 
 d4 = Deck.create(title: "JS", public: true,)
   d4.cards.create( 
@@ -1209,289 +1392,4 @@ d4 = Deck.create(title: "JS", public: true,)
       this.type = type;
     }; ",
   )
-
-  d4.cards.create( 
-    question: " What does the keyword document represent
-    in client-side JavaScript? ",
-    answer: " It represents the HTML documnet.
-    '$(documnet).ready(function()){
-      $('h1#hidden-header').fadeIn():
-      };'
-    ",
-    extra: " Good to know:
-    It's good practice to wait for your HTML page to load before
-    having any scripts occuring. ",
-  )
-
-  d4.cards.create( 
-    question: " What does \n represent inside of a string? ",
-    answer: " It represents the end of a line commonly called a 'line-break'. ",
-    extra: " var devJoke = '2011: There's a jQuery plugin for that
-    \n 2014:There's an npm module for that'
-    >console.log(devJoke);
-    '2011: There's a jQuery plugin for that'
-    '2014: There's an npm module for that'
-    ",
-  )
-
-  d4.cards.create( 
-    question: " What are semi-colons for? ",
-    answer: " They're used to seperate statements
-    that are made in the same line.
-    Like line-breaks do for strings! ",
-    extra: " var i = 0; i++
-    //is the same as
-    var i =0
-    i++ ",
-  )
-
-  d4.cards.create( 
-    question: " The second argumnet on a for loop is ____. ",
-    answer: " The condition that breaks it! ",
-    extra: " for(var bitesOfPizza = 10; bitesOfPizza > 0; bitesOfPizza--){
-      //om nom nom nom
-    }; ",
-  )
-
-  d4.cards.create( 
-    question: " Inside a for loop, the first argument
-    corresponds to _____. ",
-    answer: " The initial counter!
-    //I will be our initial value, starting at 0
-    // It's a good practice to declare the
-    // variable outside of the loop ",
-    extra: " var i;
-    for(i = 0: < 2; i+2){
-      console.log('Value of i is' +i);
-    } ",
-  )
-
-  d4.cards.create( 
-    question: " What will this operation evaluate to?
-    var a = 1
-    var b = -1
-    var c = 0
-    var d = 1
-    
-    (a+b)>(c-b) == a+b+c+d 
-    ",
-    answer: " It evaluates to false. ",
-    extra: " var a = 1
-    var b = -1
-    var c = 0
-    var d = 1
-    (1-1)>(0+1)==1-1+0+1
-    0>1 == 1
-    false == 1 ",
-  )
-
-  d4.cards.create( 
-    question: " What's the difference between
-    an event and a slector in jQuery? ",
-    answer: " Selectors query for elements on the HTML.
-    Events handle interactions between the user and the site. ",
-    extra: " // selecting the second paragraphs
-    var paragraphWithIdSecond = 
-    $('p#second');
-    
-    //events are called on jQuery objects
-    paragraphWithIdSecond.click(function(){
-      console.log('second paragraph clicked!')
-    }); 
-    ",
-  )
-
-  d4.cards.create( 
-    question: " Guess what gets printed out.
-    
-    if(1){
-      console.log('First rule of Rails club is')
-    };
-    if(0){
-      console.log('...hang on, meeting postponed,
-      Jim needs to update his gems...for a while');
-      };
-       ",
-    answer: " Only 'First rule of Rails club is'
-    gets printed out since 0 is interpreted as false and 1
-    is interpreted as true.  ",
-    extra: "  ",
-  )
-
-  d4.cards.create( 
-    question: " What is a boolean? ",
-    answer: " A boolean is a representation
-    of 2 values which can be either true or false. ",
-    extra: " Array.prototype.empty = function(){
-      return this.length == 0;
-    }; ",
-  )
-
-  d4.cards.create( 
-    question: " What will this expression return?
-    
-    >{}+{}
-    ",
-    answer: " You get NaN! Which is correct,
-    but not what you expected, right?
-    All programming langauges have odd quirks to them. ",
-    extra: "  ",
-  )
-
-  d4.cards.create( 
-    question: " What are switch statements? ",
-    answer: " They're like a big chain of if/else/elsif statements. 
-    var country = 'USA';
-    
-    switch(country){
-      case'Canada':
-        console.log('Hello eh!');
-      case 'Spain':
-        console.log('Hola!');
-      case 'Germany':
-        console.log('Guten Tag!')
-    } ",
-    extra: " /* It's usually not good practice to write switch statements,
-    most of the times there will be a way to decompose
-    it into something less complex. */ ",
-  )
-
-  d4.cards.create( 
-    question: " What is CoffeeScript? ",
-    answer: " It's a language that compiles to JavaScript.
-    It's becoming increasingly popular because of it's clean syntax. ",
-    extra: " // JavaScript
-    var cube = function(x){
-      return x*sqaure(x);
-    };
-    //CoffeeScript
-    cube = (x)-> x*square x ",
-  )
-
-  d4.cards.create( 
-    question: " Is string interpolation possible in JavaScript? ",
-    answer: " No! We concatenate strings in JavaScript.
-    
-    >'I am concatenating this string " + " " + " by adding more strings to it'
-    'I am concatenating this by adding more strings to it' ",
-    extra: " Good to know:
-    String interpolation is possible in CoffeeScript. ",
-  )
-
-  d4.cards.create( 
-    question: " How do you escape characters inside of a string? ",
-    answer: " By prepending a backlash \ to the character.
-    
-    var escaped = 
-     And he said:\"Get your hands off of my bike!\" 
-    ",
-    extra: " Good to know:
-    People tend to escape double quotes from strings
-    as they denote the beginning or end of one ",
-  )
-
-  d4.cards.create( 
-    question: " How do you write comments? ",
-    answer: " By prepending 2 forward-slashes //
-    // this line won't be executed as code
-    //or this one
-    console.log('
-    drink every time a pm refers to any site made after 2013 as an 'HTML5 app'
-    ');
-     ",
-    extra: " Good to know:
-    You can make multi linbe comments just like it's
-    done in CSS, with /* at the beginning of the
-    comment at */ at the end of it.
-     ",
-  )
-
-  d4.cards.create( 
-    question: " What's the value of a and b?
-    
-    a=b;
-    
-    //Here are some choices!
-    //1: a = 20 b = 10
-    //2: a = 10 b = 20
-    //3: a = 20 b = 20
-    //4: a = 10 b =10
-    ",
-    answer: " Option number 3:
-    a = 20; b = 20 ",
-    extra: " Good to know:
-    This happens because b has a value of 20
-    and we give the value of b - still
-    20 - to a, which used to have a value of 10 but is now 20
-     ",
-  )
-
-  d4.cards.create( 
-    question: " What is an AJAX request? ",
-    answer: " AJAX stands for Asynchronus JavaScript
-    and XML. It's a request that happens in the background 
-    without interfereing with the display and behavior
-    of the current page. 
-    ",
-    extra: "  ",
-  )
-
-  d4.cards.create( 
-    question: " What does JSON stand for? ",
-    answer: " JavaScript Object Notation.
-    JSON is used worldwide since most programming
-    languages offer JSON parser on their standard library.
-     ",
-    extra: "  ",
-  )
-
-  d4.cards.create( 
-    question: " How do you increment a variable by just one? ",
-    answer: " By using the ++ operator! ",
-    extra: " var counter = 0;
-    
-    while(counter < 5){
-      console.log('Counter's value =' + '' + counter);
-      counter++;
-    };
-    ",
-  )
-
-  d4.cards.create( 
-    question: " What does the *= operator do? ",
-    answer: " It assigns the current value multiplied by the argument. ",
-    extra: " var capybaraNumber =4;
-    var currentDayOfTheMonth = 1;
-    
-    while(currentDayoftHEmonth <= 3;
-    console.log('There will be ' + capybarasNumber + 
-    'capbaras after' + currentDayOfTheMonth + 'day(s)');
-    currentDayOfTheMonth +=1;
-    
-    'There will be 20 cabybaras after 1 day(s)'
-    'There will be 100 capybaras after 2 day(s)'
-    'There will be 500 capybaras after 3 day(s)'
-    ",
-  )
-
-  d4.cards.create( 
-    question: " What is 'Duck Typing?' ",
-    answer: " Duck Typing is about focusing on 
-    how an object behaves on a specific context
-    rather than ensuring they're from a specific type. ",
-    extra: " Good to know:
-    The name of the concept refers to the duck test:
-    If it looks like a duck, swims like a duck, then it 
-    is probably a duck. ",
-  )
-
-  d4.cards.create( 
-    question: " What is refactoring? ",
-    answer: " It's the process or re-writing/
-    re-structuring code in order to enhance
-    redability or performance.
-    Refactoring should not alter the behavior of the code. ",
-    extra: "  ",
-  )
-
-puts "seeded"
+  
