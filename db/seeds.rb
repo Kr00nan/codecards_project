@@ -569,7 +569,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       You can change as many properties you want and you can specify when the change will happen in percent, 
       or you can use the keywords 'from' and 'to' (which represents 0% and 100%). */ ",
   )
-
   d2.cards.create( 
     question: " You’d like to use a gradient as the background of a div. How do you do this?",
     answer: " You can assign a linear or radial gradient value to it’s background property as such:",
@@ -581,7 +580,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       You can include the direction of the gradient and multiple color stops: 
       background: linear-gradient(direction, color-stop1, color-stop2, ...); ",
   )
-
   d2.cards.create( 
     question: " How do you include comments in CSS?",
     answer: " By placing the comment inside an opening /* and closing */",
@@ -591,21 +589,18 @@ d2 = Deck.create(title: "CSS", public: true,)
       width: 90%; max-width: 1170px; margin: auto;
       } ",
   )
-
   d2.cards.create( 
     question: " What does the following CSS do?
       p {font-family: Verdana, Arial, Helvetica;}",
     answer: " The CSS sets the font for the p element. If available in the browser, Verdana is used. If Verdana is not available, Arial is used. If Arial is not an option, Helvetica is utilized.",
     extra: "  ",
   )
-
   d2.cards.create( 
     question: " What is grouping?",
     answer: " When more than one selector shares the same declaration and are grouped together via a comma-separated list.",
     extra: " h1, h2, h3 {background: red;}
     /* This allows you to reduce the size of the CSS (every bit and byte is important) and sometimes make it more readable. */ ",
   )
-
   d2.cards.create( 
     question: " What is the difference between an ID selector and a CLASS?",
     answer: " An ID selector identifies and sets style to only one occurrence of an element, while a CLASS can be attached to any number of elements.",
@@ -614,7 +609,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       .class {
       color: blue; } ",
   )
-
   d2.cards.create( 
     question: " You can name specific and generic font families in CSS. What are the 5 generic families?",
     answer: " Sans Serif
@@ -626,7 +620,6 @@ d2 = Deck.create(title: "CSS", public: true,)
     Letters and characters each occupy the same amount of horizontal space.
     Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.",
   )
-
   d2.cards.create( 
     question: " What are the three methods of implementing CSS?",
     answer: " Inline, Embedded, and External.
@@ -636,7 +629,6 @@ d2 = Deck.create(title: "CSS", public: true,)
     External styles are styles that are written in a separate document and then attached to various Web documents.",
     extra: "  ",
   )
-
   d2.cards.create( 
     question: " You’d like to justify the text inside of a paragraph. How do you do this?",
     answer: " You can use the text-align property with a justify value.",
@@ -647,7 +639,6 @@ d2 = Deck.create(title: "CSS", public: true,)
     right: Aligns the text to the right. center: Centers the text.
     inherit: Inherits this property from its parent element. ",    
   )
-
   d2.cards.create( 
     question: "  You’d like to use a texture as background and 
     need a small image to repeat iself over a large area. 
@@ -663,7 +654,6 @@ d2 = Deck.create(title: "CSS", public: true,)
     repeat-x: The background image will be repeated only horizontally.
     repeat-y: The background image will be repeated only vertically. ",
   )
-
   d2.cards.create( 
     question: "  You’d like to rotate a div and all of its content 9 degrees. What’s the best way to do this? ",
     answer: "  You can use the transform property to apply a 2D or 3D transformation to an element. This property allows you to rotate, scale, move and skew elements. ",
@@ -671,7 +661,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       -ms-transform: rotate(9deg); -webkit-transform: rotate(9deg); transform: rotate(9deg);
       } ",
   )
-  
   d2.cards.create( 
     question: "  You don’t want any elements to float beside a paragraph. What’s the easiest way to to do this? ",
     answer: "  You can use the clear property to define which sides of an element other floating elements are not allowed on. ",
@@ -679,7 +668,6 @@ d2 = Deck.create(title: "CSS", public: true,)
   }
   p.clear { clear:both; } />",
   )
-
   d2.cards.create( 
     question: "  How can you set a dashed border? ",
     answer: "  You can use the border property border-style with a dashed value. ",
@@ -687,7 +675,7 @@ d2 = Deck.create(title: "CSS", public: true,)
     {
     border-width:5px; border-style:dashed; border-color:#ff0000; } />",
   )
-  
+
   d2.cards.create( 
     question: "  How do you select all visited links? ",
     answer: "  Link element followed by :visited. ",
@@ -835,11 +823,10 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: "  You want to hide an element and make it invisible on your site. How do you do this? ",
     answer: "  By using the visibility property with a hidden value. ",
-    extra: ' h2
+    extra: "h2
     {
     visibility: hidden; } />
-    Tip:
-    Even invisible elements take up space on the page. Use the "display" property to create invisible elements that do not take up space. ',
+    Tip: Even invisible elements take up space on the page. Use the 'display' property to create invisible elements that do not take up space.",
   )
   
   d2.cards.create( 
@@ -884,7 +871,7 @@ d2 = Deck.create(title: "CSS", public: true,)
     answer: "  By using the background image property. ",
     extra: "  By using the background image property. ",
   )
-  
+
   d2.cards.create( 
     question: " How do you make an element transparent with CSS? ",
     answer: "  Use the opacity property to describe the transparency-level ",
@@ -1140,8 +1127,7 @@ d3 = Deck.create(title: "RUBY", public: true,)
       answer: "Inheritance is when the behaviour of a class is based on the behaviour of another class.",
     )
 
-
-d4 = Deck.create(title: "JS", public: true,)
+  d4 = Deck.create(title: "JS", public: true,)
   d4.cards.create( 
     question: " What is the difference between '==' and '==='? ",
     answer: " '==' checks equality only, '===' checks for equality as well as the type. ",
@@ -1292,7 +1278,6 @@ d4 = Deck.create(title: "JS", public: true,)
     (clothes, detergent){
       var soapyClothes = 
       detergent.clean(clothes);
-
         console.log(soapyCloathes);
         console.log(detergent);
         console.log(clothes);
