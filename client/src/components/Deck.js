@@ -97,6 +97,7 @@ class Deck extends React.Component {
 
   render() {
     const { deck, cards, showForm, question, answer, showEdit, } = this.state
+    const { auth, admin_authenticated, } = this.props
     return(
       <>
         <br />
@@ -111,7 +112,7 @@ class Deck extends React.Component {
         }
         <br />
         <br />
-        { this.props.auth.user.id === deck.user_id &&
+        { (auth.user.id === deck.user_id || admin_authenticated) &&
           <Button onClick={this.toggleEditDeck}>
             {showEdit ? "Close Edit" : "Edit Deck"}
           </Button>
@@ -136,7 +137,9 @@ class Deck extends React.Component {
             }
           </Card.Group>
         }
-        <Button onClick={this.toggleForm}>Add Card</Button>
+        { (auth.user.id === deck.user_id || admin_authenticated) &&
+          <Button onClick={this.toggleForm}>Add Card</Button>
+        }
         {showForm &&
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
@@ -164,7 +167,11 @@ class Deck extends React.Component {
 const ConnectedDeck = (props) => (
   <AuthConsumer>
     { auth =>
-      <Deck { ...props } auth={auth} />
+      <Deck 
+        { ...props } 
+        auth={auth} 
+        admin_authenticated={auth.user.admin === true} 
+      />
     }
   </AuthConsumer>
 )
