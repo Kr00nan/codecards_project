@@ -569,7 +569,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       You can change as many properties you want and you can specify when the change will happen in percent, 
       or you can use the keywords 'from' and 'to' (which represents 0% and 100%). */ ",
   )
-
   d2.cards.create( 
     question: " You’d like to use a gradient as the background of a div. How do you do this?",
     answer: " You can assign a linear or radial gradient value to it’s background property as such:",
@@ -581,7 +580,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       You can include the direction of the gradient and multiple color stops: 
       background: linear-gradient(direction, color-stop1, color-stop2, ...); ",
   )
-
   d2.cards.create( 
     question: " How do you include comments in CSS?",
     answer: " By placing the comment inside an opening /* and closing */",
@@ -591,21 +589,18 @@ d2 = Deck.create(title: "CSS", public: true,)
       width: 90%; max-width: 1170px; margin: auto;
       } ",
   )
-
   d2.cards.create( 
     question: " What does the following CSS do?
       p {font-family: Verdana, Arial, Helvetica;}",
     answer: " The CSS sets the font for the p element. If available in the browser, Verdana is used. If Verdana is not available, Arial is used. If Arial is not an option, Helvetica is utilized.",
     extra: "  ",
   )
-
   d2.cards.create( 
     question: " What is grouping?",
     answer: " When more than one selector shares the same declaration and are grouped together via a comma-separated list.",
     extra: " h1, h2, h3 {background: red;}
     /* This allows you to reduce the size of the CSS (every bit and byte is important) and sometimes make it more readable. */ ",
   )
-
   d2.cards.create( 
     question: " What is the difference between an ID selector and a CLASS?",
     answer: " An ID selector identifies and sets style to only one occurrence of an element, while a CLASS can be attached to any number of elements.",
@@ -614,7 +609,6 @@ d2 = Deck.create(title: "CSS", public: true,)
       .class {
       color: blue; } ",
   )
-
   d2.cards.create( 
     question: " You can name specific and generic font families in CSS. What are the 5 generic families?",
     answer: " Sans Serif
@@ -1241,7 +1235,6 @@ d4 = Deck.create(title: "JS", public: true,)
     (clothes, detergent){
       var soapyClothes = 
       detergent.clean(clothes);
-
         console.log(soapyCloathes);
         console.log(detergent);
         console.log(clothes);
@@ -1392,4 +1385,3 @@ d4 = Deck.create(title: "JS", public: true,)
       this.type = type;
     }; ",
   )
-  
