@@ -561,7 +561,7 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: " What does a CSS3 animation do?",
     answer: " It gradually change one style to another.",
-    extra: 'div {
+    extra: "div {
       animation: myfirst 5s; }
       @keyframes myfirst { from {background: red;}
       to {background: yellow;} }
@@ -624,7 +624,8 @@ d2 = Deck.create(title: "CSS", public: true,)
     Fonts written in a conjoined and/or flowing manner.
     Monospace
     Letters and characters each occupy the same amount of horizontal space.
-    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.',
+    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.",
+  )
 
   d2.cards.create( 
     question: " What are the three methods of implementing CSS?",
@@ -838,9 +839,10 @@ d2 = Deck.create(title: "CSS", public: true,)
     {
     visibility: hidden; } />
     Tip:
-    Even invisible elements take up space on the page. Use the 'display' property to create invisible elements that do not take up space. ',
-
-  )d2.cards.create( 
+    Even invisible elements take up space on the page. Use the "display" property to create invisible elements that do not take up space. ',
+  )
+  
+  d2.cards.create( 
     question: "  You don’t want an image to float next to your text. How do you fix this? ",
     answer: "  By using the clear property you can specify which side(s) of an element other 
     floating elements are not allowed on. ",
@@ -856,8 +858,7 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: " How do you add a shadow to an element? ",
     answer: "  By using the box-shadow property. ",
-    extra: " <p
-    {
+    extra: ' <p 
     box-shadow: 10px 10px 5px #888888; }
     Useful values:
     h-shadow
@@ -867,7 +868,7 @@ d2 = Deck.create(title: "CSS", public: true,)
     blur
     Optional. The blur distance.
     color
-    The color of the shadow. /> ",
+    The color of the shadow. /> ',
   )
   
   d2.cards.create( 
@@ -876,11 +877,13 @@ d2 = Deck.create(title: "CSS", public: true,)
     extra: " <p
     {
     border: 5px solid red; } ",
+  )
 
   d2.cards.create( 
     question: "  How do you place an image as the background of a div with CSS? ",
     answer: "  By using the background image property. ",
     extra: "  By using the background image property. ",
+  )
   
   d2.cards.create( 
     question: " How do you make an element transparent with CSS? ",
@@ -896,39 +899,48 @@ d2 = Deck.create(title: "CSS", public: true,)
 
 
 d3 = Deck.create(title: "RUBY", public: true,)
+
   d3.cards.create( 
-    question: "",d3.cards.create( 
       question: "How do you define instance variables?",
       answer: "Instance variables are defined using a single @ symbol.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "How do you define global variables?",
       answer: "Global variables are defined using a single $ symbol.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is an array?",
       answer: "Arrays are ordered, integer-indexed collections",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the shuffle method do to an array?",
       answer: "It returns a new array with elements of self shuffled.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is a loop?",
       answer: "It’s a statement which allows code to be executed repeatedly until a certain condition is met.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "Which error will this script throw?
       def add_one(number) puts number+1 add_one(number+1)
       end
       add_one 3",
       answer: "We get a stack overflow! Since we are calling the method again infinitely.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does this expression evaluate to?
       false || true",
       answer: "True! Since ruby will pick the next value when the first is false or nil.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is a String?",
       answer: "It’s a sequence of characters! Also one of simplest data types in ruby.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is a Gemfile?",
       answer: "It's a file declaring all the libraries used by your project.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "You’re getting a TypeError. Catch the bug!
       main_menu = { chips: 2, fish: 6, pizza: 10.2 }
       main_menu.merge! { gelato: 4, fruit_salad: 3, cookie_dough: 3.5 }",
@@ -941,79 +953,102 @@ d3 = Deck.create(title: "RUBY", public: true,)
       dessert_menu = { gelato: 4, fruit_salad: 3, cookie_dough: 3.5 }
       main_menu.merge(dessert_menu)
       => {:chips=>2, :fish=>6, :pizza=>10.2, :gelato=>4, :fruit_salad=>3, :cookie_dough=>3.5}",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "How do you access a constant that's inside a class?",
       answer: "By using the :: operator!",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does this expression return?",
       answer: "Returns 'woah' since first_variable is nil.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is nil?",
       answer: "It represents nothing.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What's the difference between puts and print ?",
       answer: "Puts appends a line break at the end of the sentence, print doesn't.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is puts?",
       answer: "It outputs any given argument to the console, followed by a line break. Always returns nil.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the keyword extend do?",
       answer: "Takes in a module as an argument and adds all the instance methods to self.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the initialize method do?",
       answer: "The initialize method is called every time a new instance of that class is created.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is a hash?",
       answer: "Hashes are dictionary-like collections made of key-value pairs.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the method attr_reader do?",
       answer: "Defines a reader method for each argument passed.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is “Monkey Patching”?",
       answer: "What is “Monkey Patching”?",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is the function of the misterious splat argument?",
       answer: "It allows multiple elements to be passed and collected into to an array.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "In a method, how do you declare a default value for an argument?",
       answer: "By assigning a value when the argument is declared.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What's the bug in this code?
       def 1_day_after Time.now + 86400
       end",
       answer: "A method's name can't start with a number.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the keyword rescue do?",
       answer: "It handles an exception and executes another piece of code rather than stopping it.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the keyword super do?",
       answer: "It invokes the method with the same name from the parent class.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the keyword self represent?",
       answer: "The keyword self represents the current object.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "Who designed Ruby?",
       answer: "Yukihiro Matsumoto",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "Which architectural pattern does Rails use?",
       answer: "MVC, which stands for
       MVC, which stands for
       Model
       View
       Controller",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What's the name of Rails's query interface?",
       answer: "It’s called ActiveRecord. All generated models inherit from it.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "How do you undefine a method?",
       answer: " Using the undef method!",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is a gem?",
       answer: "Gems are packages or libraries of code that are ready to be used in multiple projects.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is iteration?",
       answer: "It’s the process of repeating an action in order to achieve an ideal result.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "Name 2 types of ruby operators, and 1 operator of each type.",
       answer: " Comparison
       [==, !=, >, <, >=, <=, <=>, ===, .eql?, .equal?]
@@ -1024,13 +1059,15 @@ d3 = Deck.create(title: "RUBY", public: true,)
       Logical
       [and, or, &&, ||, !, not]
       Arithmetic",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "Name 3 Ruby keywords.",
       answer: " Any 3 from this array:
       [alias, and, BEGIN, begin, break, case, class, def,defined?, do, else, elsif, END, end, ensure,
          false, for, if, in, module, next, nil, not, or, redo, rescue, retry, return, self,
           super, then, true, undef, unless, until, when, while, yield]",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "How do you define a block of code?",
       answer: "There’s 2 ways of doing it:
       # first way, using ‘do’ and ‘end’
@@ -1038,57 +1075,71 @@ d3 = Deck.create(title: "RUBY", public: true,)
       end
       # second way, using brackets
       [1,2,3,4,5].inject { |a,b| a + b }",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "How are constants typed in by convention?
       #Here’s some options:
       A lowercased
       B UPPERCASED C CamelCased D snake_cased",
       answer: "It’s “B”. Constants should be typed in UPPERCASE.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "Are ranges classes?",
       answer: "Yes!",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "List 2 different ways of creating an Array.",
       answer: "You can create them on the fly or by creating an instance ",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the each method do?",
       answer: "It calls a block of code once for each element in self.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the map method do?",
       answer: "It iterates over each element of self and returns a new array with the values returned by the block.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What happens when you call [-1] on an Array?",
       answer: "You get the last element!",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the << (shovel operator) do?",
       answer: "It pushes a given object to the end of the array.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What does the include? method do?",
       answer: "It returns true if the argument is present as one of the elements of self.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What happens if you call each or map on an array without a block?",
       answer: "You get an enumerator object!",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "How do you define class variables?",
       answer: "By prepending @@ to the variable’s name.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What's the name of the most basic class in Ruby?",
       answer: "BasicObject is the parent class of all classes. As an explicitly blank class, it has almost not methods at all.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is RSpec?",
       answer: "It’s Ruby’s most popular testing-framework.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is RVM?",
       answer: "RVM stands for Ruby Version Manager. It’s a CLI tool that allows you to install and manage multiple Ruby environments.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is metaprogramming?",
       answer: "It’s code that can write code! It’s usually considered dangerous but it’s commonly employed to minimize the amount of code written for a solution.",
-    )d3.cards.create( 
+    )
+    d3.cards.create( 
       question: "What is inheritance?",
       answer: "Inheritance is when the behaviour of a class is based on the behaviour of another class.",
     )
-    
-  )
+
 
 d4 = Deck.create(title: "JS", public: true,)
   d4.cards.create( 
@@ -1392,4 +1443,4 @@ d4 = Deck.create(title: "JS", public: true,)
       this.type = type;
     }; ",
   )
-  
+  puts "seeded"
