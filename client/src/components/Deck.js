@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios'
-import { Header, Card, } from 'semantic-ui-react'
-import { Link, } from 'react-router-dom'
+import { Button, Card, Image, Container} from 'semantic-ui-react'
+import { Link } from 'react-router-dom' 
+import CardImageA1 from "../images/Ruby_A1.png"
+import CardImageQ1 from "../images/Ruby_Q1.png"
+import Flippy, { FrontSide, BackSide } from 'react-flippy'
 
 class Deck extends React.Component  {
   state = { deck: {}, cards: [], }
