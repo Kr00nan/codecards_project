@@ -116,6 +116,7 @@ class Deck extends React.Component {
           <Button onClick={this.toggleEditDeck}>
             {showEdit ? "Close Edit" : "Edit Deck"}
           </Button>
+          <Button onClick={this.toggleForm}>Add Card</Button>
         }
         <hr />
         { cards.length === 0 ? 
@@ -136,9 +137,6 @@ class Deck extends React.Component {
               )
             }
           </Card.Group>
-        }
-        { (auth.user.id === deck.user_id || admin_authenticated) &&
-          <Button onClick={this.toggleForm}>Add Card</Button>
         }
         {showForm &&
           <Form onSubmit={this.handleSubmit}>
