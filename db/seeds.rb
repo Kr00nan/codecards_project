@@ -561,7 +561,7 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: " What does a CSS3 animation do?",
     answer: " It gradually change one style to another.",
-    extra: 'div {
+    extra: "div {
       animation: myfirst 5s; }
       @keyframes myfirst { from {background: red;}
       to {background: yellow;} }
@@ -618,8 +618,8 @@ d2 = Deck.create(title: "CSS", public: true,)
     Fonts written in a conjoined and/or flowing manner.
     Monospace
     Letters and characters each occupy the same amount of horizontal space.
-    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.',
-
+    Dynamic and different from standard fonts. Their style is often exaggerated and more typical of posters and quirky themes.",
+  )
   d2.cards.create( 
     question: " What are the three methods of implementing CSS?",
     answer: " Inline, Embedded, and External.
@@ -828,13 +828,14 @@ d2 = Deck.create(title: "CSS", public: true,)
   d2.cards.create( 
     question: "  You want to hide an element and make it invisible on your site. How do you do this? ",
     answer: "  By using the visibility property with a hidden value. ",
-    extra: ' h2
+    extra: "h2
     {
     visibility: hidden; } />
     Tip:
-    Even invisible elements take up space on the page. Use the 'display' property to create invisible elements that do not take up space. ',
+    Even invisible elements take up space on the page. Use the 'display' property to create invisible elements that do not take up space. ",
 
-  )d2.cards.create( 
+  )
+  d2.cards.create( 
     question: "  You don’t want an image to float next to your text. How do you fix this? ",
     answer: "  By using the clear property you can specify which side(s) of an element other 
     floating elements are not allowed on. ",
@@ -870,12 +871,12 @@ d2 = Deck.create(title: "CSS", public: true,)
     extra: " <p
     {
     border: 5px solid red; } ",
-
+  )
   d2.cards.create( 
     question: "  How do you place an image as the background of a div with CSS? ",
     answer: "  By using the background image property. ",
     extra: "  By using the background image property. ",
-  
+  )
   d2.cards.create( 
     question: " How do you make an element transparent with CSS? ",
     answer: "  Use the opacity property to describe the transparency-level ",
@@ -1188,6 +1189,7 @@ d3 = Deck.create(title: "RUBY", public: true,)
     end
     # second way, using brackets
     [1,2,3,4,5].inject { |a,b| a + b }",
+    extra: "",
   )
   d3.cards.create( 
     question: "How are constants typed in by convention?
@@ -1195,6 +1197,7 @@ d3 = Deck.create(title: "RUBY", public: true,)
     A lowercased
     B UPPERCASED C CamelCased D snake_cased",
     answer: "It’s “B”. Constants should be typed in UPPERCASE.",
+    extra: "",
   )
   d3.cards.create( 
     question: "Are ranges classes?",
@@ -1223,10 +1226,10 @@ d3 = Deck.create(title: "RUBY", public: true,)
   d3.cards.create( 
     question: "What does the map method do?",
     answer: "It iterates over each element of self and returns a new array with the values returned by the block.",
-    extra: '> numbers = [1,2,3,4,5,6,7]
+    extra: "> numbers = [1,2,3,4,5,6,7]
     > numbers.map do |n| n+2
     end
-    => [3, 4, 5, 6, 7, 8, 9]',
+    => [3, 4, 5, 6, 7, 8, 9]",
   )
   d3.cards.create( 
     question: "What happens when you call [-1] on an Array?",
@@ -1296,7 +1299,7 @@ d3 = Deck.create(title: "RUBY", public: true,)
     end",
   )
 
-d4 = Deck.create(title: "JS", public: true,)
+  d4 = Deck.create(title: "JS", public: true,)
   d4.cards.create( 
     question: " What is the difference between '==' and '==='? ",
     answer: " '==' checks equality only, '===' checks for equality as well as the type. ",
