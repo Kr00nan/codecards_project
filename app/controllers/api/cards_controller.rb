@@ -37,7 +37,7 @@ class Api::CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:cards).permit(:question, :answer)
+      params.require(:card).permit(:question, :answer)
     end
 
     def set_card
