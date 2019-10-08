@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Divider, Grid, Header, Button, } from 'semantic-ui-react';
+import { Container, Divider, Grid, Header, Image, } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => (
@@ -9,7 +9,10 @@ const Home = () => (
   <>
     <Container>
       <br />
-      <Header as="h3" color="violet" textAlign="center">Dev Point Labs Code Card</Header>
+      <br />
+    <Image src={require('../images/devpoint-labs logo1.jpg')} size='tiny' centered />
+      <br />
+      <Header as="h3" color="violet" textAlign="center" size="huge">Dev Point Labs Code Card</Header>
       <br />
       <br />
       <br />
