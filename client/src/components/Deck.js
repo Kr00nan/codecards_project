@@ -4,23 +4,49 @@ import { Header, Card, Button, Form, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 import { AuthConsumer, } from '../providers/AuthProvider'
 
-class Deck extends React.Component  {
-  state = { deck: {}, cards: [], showEdit: false, editDeck: {}, }
-
+class Deck extends React.Component {
+  state = { 
+    deck: {}, 
+    cards: [], 
+    showForm: false, 
+    question: '', 
+    answer: '', 
+    showEdit: false, 
+    editDeck: {}, 
+  }
+  
   componentDidMount() {
     const { id, } = this.props.match.params
     axios.get(`/api/decks/${id}`)
-      .then(res => {
-        this.setState({ deck: res.data, })
-        this.setState({ editDeck: res.data, })
-      })
-
+    .then(res => {
+      this.setState({ deck: res.data, })
+      this.setState({ editDeck: res.data, })
+    })
+    
     axios.get(`/api/decks/${id}/cards`)
-      .then( res => {
-        this.setState({ cards: res.data, })
-      })
-      .catch( err => {
-        console.log(err)
+    .then(res => {
+      this.setState({ cards: res.data, })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+  
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm, })
+  }
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { question, answer } = this.state;
+    axios.post(`/api/decks/${this.state.deck.id}/cards`, { question, answer })
+      .then(res => {
+        this.props.history.push(`/decks/${res.data.id}`)
       })
   }
 
@@ -70,7 +96,7 @@ class Deck extends React.Component  {
   }
 
   render() {
-    const { deck, cards, showEdit, } = this.state
+    const { deck, cards, showForm, question, answer, showEdit, } = this.state
     return(
       <>
         <br />
@@ -96,19 +122,39 @@ class Deck extends React.Component  {
         :
           <Card.Group itemsPerRow={4}>
             {
-              cards.map( card =>
-                <Card 
-                  key={card.id} 
-                  color="grey" 
+              cards.map(card =>
+                <Card
+                  key={card.id}
+                  color="grey"
                   as={Link}
                   to={`/decks/${deck.id}/cards/${card.id}`}
                   style={styles.card}
                 >
-                  {card.question} 
+                  {card.question}
                 </Card>
               )
             }
           </Card.Group>
+        }
+        <Button onClick={this.toggleForm}>Add Card</Button>
+        {showForm &&
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input
+              label="Question"
+              placeholder="Type question here..."
+              name="question"
+              value={question}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Answer"
+              placeholder="Type answer here..."
+              name="answer"
+              value={answer}
+              onChange={this.handleChange}
+            />
+            <Form.Button>Submit</Form.Button>
+          </Form>
         }
       </>
     )
@@ -125,8 +171,8 @@ const ConnectedDeck = (props) => (
 
 const styles = {
   card: {
-    padding: '16.625px', 
-    borderRadius: '16.625px', 
+    padding: '16.625px',
+    borderRadius: '16.625px',
     height: '332.5px',
     fontSize: '16.625px',
   },
