@@ -4,13 +4,21 @@ import { Card, Header, Button, Form, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 
 class MyDecks extends React.Component {
-  state = { decks: [], showForm: false, newDeck: { title: "", }}
+  state = { decks: [], showForm: false, newDeck: { title: "", }, }
 
   componentDidMount() {
     axios.get('/api/decks')
       .then( res => {
         this.setState({ decks: res.data, })
       })
+  }
+
+  componentDidUpdate() {
+    axios.get('/api/decks')
+    .then( res => {
+      if (res.data.length !== this.state.decks.length)
+        this.setState({ decks: res.data, })
+    })
   }
 
   toggleForm = () => {
@@ -37,18 +45,24 @@ class MyDecks extends React.Component {
         { decks.length === 0 ? 
           <div>You have no decks yet</div> 
         :
-          <Card.Group>
+          <Card.Group itemsPerRow={4}>
             { decks.map( deck => 
-              <Card key={deck.id} as={Link} to={`/decks/${deck.id}`}>
+              <Card 
+                key={deck.id} 
+                as={Link} 
+                to={`/decks/${deck.id}`}
+                style={styles.card}
+              >
                 <Card.Header>{deck.title}</Card.Header>
               </Card>
             )}
           </Card.Group>
         }
-        <Button onClick={this.toggleForm}>Create New Deck</Button>
+        <Button onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
         { showForm &&
           <Form onSubmit={this.handleSubmit}>
             <Form.Input 
+              width={4}
               label="Deck Name"
               placeholder="Deck Name"
               name="title"
@@ -61,6 +75,19 @@ class MyDecks extends React.Component {
       </>
     )
   }
+}
+
+const styles = {
+  card: {
+    padding: '16.625px', 
+    borderRadius: '16.625px', 
+    height: '332.5px',
+    fontSize: '30px',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
 }
 
 export default MyDecks
