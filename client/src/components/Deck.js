@@ -34,6 +34,7 @@ class Deck extends React.Component {
 
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm, })
+    this.setState({ question: '', answer: '' });
   }
 
   handleChange = (e) => {
@@ -66,7 +67,6 @@ class Deck extends React.Component {
     axios.put(`/api/decks/${deck.id}`, editDeck)
       .then(res => {
         this.setState({ deck: res.data, });
-        this.setState({ question: '', answer: '' });
         this.toggleEditDeck();
       })
   }
