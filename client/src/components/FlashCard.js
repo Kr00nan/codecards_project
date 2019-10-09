@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, } from 'semantic-ui-react';
+import { Icon, Button, } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
+
 class FlashCard extends React.Component {
   state = { card: {}, }
+  
+  
   componentDidMount() {
     this.getCard();
   }
@@ -13,6 +16,13 @@ class FlashCard extends React.Component {
       this.getCard();
     }
   }
+
+  handleDelete = () => {
+    const {deck_id, id} = this.props.match.params;
+    axios.delete(`/api/decks/${deck_id}/cards/${id}`)
+      .then( this.props.history.push(`/decks/${deck_id}`) )
+  }
+
   getCard = () => {
     const {deck_id, id} = this.props.match.params;
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
@@ -29,6 +39,7 @@ class FlashCard extends React.Component {
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
         <br />
+        <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
         <br />
         <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
           <Icon name="arrow left" size="huge" style={styles.left} />
