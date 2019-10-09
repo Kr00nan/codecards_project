@@ -3,7 +3,7 @@ class Api::CardsController < ApplicationController
   before_action :set_card, only: [:show, :update, :destroy]
   
   def index
-    render json: @deck.cards.all
+    render json: @deck.cards.order(:id)
   end
 
   def show
