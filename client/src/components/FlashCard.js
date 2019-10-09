@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { Icon, Button, } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
@@ -7,12 +7,12 @@ import axios from 'axios';
 class FlashCard extends React.Component {
   state = { card: {}, }
 
-
   componentDidMount() {
     this.getCard();
   }
+
   componentDidUpdate() {
-    if (this.props.match.params.id != this.state.card.id) {
+    if ( parseInt(this.props.match.params.id) !== this.state.card.id) {
       this.getCard();
     }
   }
@@ -35,6 +35,7 @@ class FlashCard extends React.Component {
         console.log(err)
       })
   }
+
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
     return (
@@ -68,6 +69,7 @@ class FlashCard extends React.Component {
     );
   };
 };
+
 const styles = {
   left: {
     position: "fixed",
@@ -88,4 +90,5 @@ const styles = {
     lineHeight: 'normal',
   },
 }
+
 export default FlashCard;
