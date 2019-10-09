@@ -1,11 +1,8 @@
 import React from 'react';
-import { Container, Divider, Grid, Header, Image, } from 'semantic-ui-react';
+import { Container, Grid, Header, Image, } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => (
-
-
-
   <>
     <Container>
       <br />
@@ -61,7 +58,6 @@ const Home = () => (
     </Container>
   </>
 );
-
 
 
 export default Home;

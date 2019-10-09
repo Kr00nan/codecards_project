@@ -13,8 +13,9 @@ class FlashCard extends React.Component {
 
     this.getCard();
   }
+
   componentDidUpdate() {
-    if (this.props.match.params.id != this.state.card.id) {
+    if ( parseInt(this.props.match.params.id) !== this.state.card.id) {
       this.getCard();
     }
   }
@@ -24,7 +25,9 @@ class FlashCard extends React.Component {
   handleDelete = () => {
     const { deck_id, id } = this.props.match.params;
     axios.delete(`/api/decks/${deck_id}/cards/${id}`)
-      .then(this.props.history.push(`/decks/${deck_id}`))
+      .then(res => {
+        this.props.history.push(`/decks/${deck_id}`);
+      })
   }
 
   getCard = () => {
@@ -111,6 +114,7 @@ class FlashCard extends React.Component {
     );
   };
 };
+
 const styles = {
   left: {
     position: "fixed",
@@ -131,4 +135,5 @@ const styles = {
     lineHeight: 'normal',
   },
 }
+
 export default FlashCard;

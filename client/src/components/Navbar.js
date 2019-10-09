@@ -1,7 +1,7 @@
 import React from 'react';
 import Searchbar from './Searchbar';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import {  Menu, Dropdown, Icon, Image} from 'semantic-ui-react';
+import {  Menu, Dropdown, Icon, } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
 
 class Navbar extends React.Component {
@@ -61,13 +61,13 @@ class Navbar extends React.Component {
     return (
       <nav> 
         <Menu pointing secondary>
-
           <Link to='/'>
-          <Icon name='home' 
-          size='big'
-              id='home'
-              active={this.props.location.pathname === '/'}
-            />
+          <Icon 
+            name='home' 
+            size='big'
+            id='home'
+            active={this.props.location.pathname && '/'}
+          />
           </Link>
             { this.rightNavItems() }
         </Menu>
