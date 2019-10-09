@@ -1,30 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Icon, Button, } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
 
 class FlashCard extends React.Component {
   state = { card: {}, }
-  
-  
+
+
   componentDidMount() {
     this.getCard();
   }
   componentDidUpdate() {
-    if ( parseInt(this.props.match.params.id) !== this.state.card.id ) {
+    if (this.props.match.params.id != this.state.card.id) {
       this.getCard();
     }
   }
 
   handleDelete = () => {
-    const {deck_id, id} = this.props.match.params;
+    const { deck_id, id } = this.props.match.params;
     axios.delete(`/api/decks/${deck_id}/cards/${id}`)
-      .then( this.props.history.push(`/decks/${deck_id}`) )
+      .then(res => {
+        this.props.history.push(`/decks/${deck_id}`);
+      })
   }
 
   getCard = () => {
-    const {deck_id, id} = this.props.match.params;
+    const { deck_id, id } = this.props.match.params;
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
       .then(res => {
         this.setState({ card: res.data, })
@@ -56,7 +58,7 @@ class FlashCard extends React.Component {
             {answer}
             <br />
             <br />
-            <div style={{fontSize: '18px',}}>{extra}</div>
+            <div style={{ fontSize: '18px', }}>{extra}</div>
           </BackSide>
         </Flippy>
         <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
@@ -78,8 +80,8 @@ const styles = {
     top: '50%'
   },
   card: {
-    padding: '25px', 
-    borderRadius: '25px', 
+    padding: '25px',
+    borderRadius: '25px',
     width: '400px',
     height: '500px',
     fontSize: '25px',
