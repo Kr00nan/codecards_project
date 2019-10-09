@@ -95,8 +95,37 @@ class Deck extends React.Component {
     )
   }
 
+  addCardCard = () => {
+    const { showForm, question, answer, } = this.state
+    return (
+      <Card style={styles.card}>
+        <Button onClick={this.toggleForm}>Add Card</Button>
+        {showForm &&
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Input
+                label="Question"
+                placeholder="Type question here..."
+                name="question"
+                value={question}
+                onChange={this.handleChange}
+              />
+              <Form.Input
+                label="Answer"
+                placeholder="Type answer here..."
+                name="answer"
+                value={answer}
+                onChange={this.handleChange}
+              />
+              <Form.Button>Submit</Form.Button>
+            </Form>
+          }
+      </Card>
+    )
+  }
+
   render() {
-    const { deck, cards, showForm, question, answer, showEdit, } = this.state
+    const { deck, cards, showEdit, } = this.state
+    const { auth, admin_authenticated, } = this.props
     return(
       <>
         <br />
@@ -110,19 +139,20 @@ class Deck extends React.Component {
           <Header as="h1" textAlign="center">{deck.title}</Header>
         }
         <br />
-        <br />
-        { this.props.auth.user.id === deck.user_id &&
+        { (auth.user.id === deck.user_id || admin_authenticated) &&
           <Button onClick={this.toggleEditDeck}>
             {showEdit ? "Close Edit" : "Edit Deck"}
           </Button>
+          
         }
         <hr />
-        { cards.length === 0 ? 
-          <div>This deck has no cards yet</div> 
-        :
-          <Card.Group itemsPerRow={4}>
-            {
-              cards.map(card =>
+        <Card.Group itemsPerRow={4}>
+          { (auth.user.id === deck.user_id || admin_authenticated) && this.addCardCard()}
+          { cards.length === 0 ? 
+            <div>This deck has no cards yet</div> 
+          : 
+            <>
+              { cards.map(card =>
                 <Card
                   key={card.id}
                   color="grey"
@@ -132,30 +162,10 @@ class Deck extends React.Component {
                 >
                   {card.question}
                 </Card>
-              )
-            }
-          </Card.Group>
-        }
-        <Button onClick={this.toggleForm}>Add Card</Button>
-        {showForm &&
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Input
-              label="Question"
-              placeholder="Type question here..."
-              name="question"
-              value={question}
-              onChange={this.handleChange}
-            />
-            <Form.Input
-              label="Answer"
-              placeholder="Type answer here..."
-              name="answer"
-              value={answer}
-              onChange={this.handleChange}
-            />
-            <Form.Button>Submit</Form.Button>
-          </Form>
-        }
+              )}
+            </>
+          }
+        </Card.Group>
       </>
     )
   }
@@ -164,7 +174,11 @@ class Deck extends React.Component {
 const ConnectedDeck = (props) => (
   <AuthConsumer>
     { auth =>
-      <Deck { ...props } auth={auth} />
+      <Deck 
+        { ...props } 
+        auth={auth} 
+        admin_authenticated={auth.user.admin === true} 
+      />
     }
   </AuthConsumer>
 )
