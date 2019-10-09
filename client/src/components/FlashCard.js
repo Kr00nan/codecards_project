@@ -12,7 +12,7 @@ class FlashCard extends React.Component {
     this.getCard();
   }
   componentDidUpdate() {
-    if ( this.props.match.params.id != this.state.card.id ) {
+    if ( parseInt(this.props.match.params.id) !== this.state.card.id ) {
       this.getCard();
     }
   }

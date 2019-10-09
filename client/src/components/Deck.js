@@ -101,24 +101,24 @@ class Deck extends React.Component {
       <Card style={styles.card}>
         <Button onClick={this.toggleForm}>Add Card</Button>
         {showForm &&
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Input
-                label="Question"
-                placeholder="Type question here..."
-                name="question"
-                value={question}
-                onChange={this.handleChange}
-              />
-              <Form.Input
-                label="Answer"
-                placeholder="Type answer here..."
-                name="answer"
-                value={answer}
-                onChange={this.handleChange}
-              />
-              <Form.Button>Submit</Form.Button>
-            </Form>
-          }
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input
+              label="Question"
+              placeholder="Type question here..."
+              name="question"
+              value={question}
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Answer"
+              placeholder="Type answer here..."
+              name="answer"
+              value={answer}
+              onChange={this.handleChange}
+            />
+            <Form.Button>Submit</Form.Button>
+          </Form>
+        }
       </Card>
     )
   }
