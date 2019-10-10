@@ -59,7 +59,7 @@ class FlashCard extends React.Component {
   }
 
   render() {
-    const { id, question, answer, showForm, extra, deck_id } = this.state.card
+    const { id, question, answer, extra, deck_id } = this.state.card
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
