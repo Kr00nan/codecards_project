@@ -6,7 +6,14 @@ import axios from 'axios';
 import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
-  state = { card: {}, showForm: false, question: "", owner_id: "", }
+  state = { 
+    card: {}, 
+    owner_id: "", 
+    showForm: false, 
+    question: "", 
+    answer: "", 
+    extra: "", 
+  }
 
   componentDidMount() {
     this.getCard();
@@ -34,11 +41,11 @@ class FlashCard extends React.Component {
     const { deck_id, id } = this.props.match.params;
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
       .then(res => {
-        this.setState({ card: res.data, question: res.data.question })
+        this.setState({ card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.answer })
       })
       .catch(err => {
         console.log(err)
-      })  
+      })
   }
 
   handleChange = (e) => {
@@ -48,8 +55,8 @@ class FlashCard extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { card: {deck_id, id,}, question} = this.state;
-    axios.put(`/api/decks/${deck_id}/cards/${id}`, { question })
+    const { card: { deck_id, id, }, question, answer, extra } = this.state;
+    axios.put(`/api/decks/${deck_id}/cards/${id}`, { question, answer, extra })
       .then(res => {
         this.setState({ card: res.data, })
         this.toggleShowForm()
@@ -67,9 +74,6 @@ class FlashCard extends React.Component {
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
         <br />
         <br />
-        <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
-          <Icon name="arrow left" size="huge" style={styles.left} />
-        </Link>
         <Flippy
           flipOnClick={true}
           flipDirection="horizontal"
@@ -85,6 +89,11 @@ class FlashCard extends React.Component {
             <div style={{ fontSize: '18px', }}>{extra}</div>
           </BackSide>
         </Flippy>
+
+        <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
+          <Icon name="arrow left" size="huge" style={styles.left} />
+        </Link>
+        
         <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
         </Link>
@@ -102,13 +111,30 @@ class FlashCard extends React.Component {
                 name="question"
                 value={this.state.question}
                 onChange={this.handleChange}
-                />    
-                <Form.Button>Submit</Form.Button>
+              />
+
+              <Form.Input
+                label="Answer"
+                name="answer"
+                value={this.state.answer}
+                onChange={this.handleChange}
+              />
+    
+              <Form.Input
+                label="Extra"
+                name="extra"
+                value={this.state.extra}
+                onChange={this.handleChange}
+              />
+
+              <Form.Button>Submit</Form.Button>
             </Form>
+
           )
-        : 
+        :
           ""
         }
+
       </>
     );
   };
@@ -128,7 +154,7 @@ const ConnectedFlashCard = (props) => (
 
 const styles = {
   left: {
-    position: "fixed",
+    position: "left",
     left: "0",
     top: "50%",
   },
@@ -144,6 +170,7 @@ const styles = {
     height: '500px',
     fontSize: '25px',
     lineHeight: 'normal',
+
   },
 }
 
