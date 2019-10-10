@@ -48,9 +48,10 @@ class MyDecks extends React.Component {
           <Card.Group itemsPerRow={4}>
             { decks.map( deck => 
               <Card 
-                key={deck.id} 
+                key={deck.id}
                 as={Link} 
                 to={`/decks/${deck.id}`}
+                color="grey"
                 style={styles.card}
               >
                 <Card.Header>{deck.title}</Card.Header>

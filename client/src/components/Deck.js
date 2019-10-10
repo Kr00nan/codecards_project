@@ -167,7 +167,6 @@ class Deck extends React.Component {
               {cards.map(card =>
                 <Card
                   key={card.id}
-                  color="grey"
                   as={Link}
                   to={`/decks/${deck.id}/cards/${card.id}`}
                   style={styles.card}

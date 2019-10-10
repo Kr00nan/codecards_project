@@ -11,6 +11,7 @@ import FlashCard from './components/FlashCard';
 import Profile from './components/Profile'
 import User from './components/User'
 import MyDecks from './components/MyDecks';
+import Browse from './components/Browse';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from 'semantic-ui-react';
 
@@ -23,6 +24,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <ProtectedRoute exact path="/browse" component={Browse} />
           <ProtectedRoute exact path="/decks/:id" component={Deck} />
           <ProtectedRoute exact path="/decks/:deck_id/cards/:id" component={FlashCard} />
           <ProtectedRoute exact path="/my_profile" component={Profile} />
