@@ -3,15 +3,22 @@ import { Link } from 'react-router-dom';
 import { Icon, Button, Form } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
-
+import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
-  state = { card: {}, showForm: false, showAnswer: false, question: "", answer: "", extra: "" }
-
+  state = { 
+    card: {}, 
+    owner_id: "", 
+    showForm: false, 
+    question: "", 
+    answer: "", 
+    extra: "", 
+  }
 
   componentDidMount() {
-
     this.getCard();
+    axios.get(`/api/decks/${this.props.match.params.deck_id}`)
+      .then(res => this.setState({ owner_id: res.data.user_id, }))
   }
 
   componentDidUpdate() {
@@ -55,20 +62,18 @@ class FlashCard extends React.Component {
         this.toggleShowForm()
       })
       .catch(err => {
-
+        console.log(err)
       })
   }
 
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
+    const { auth, admin_authenticated, } = this.props
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
         <br />
-        <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
         <br />
-
-        
         <Flippy
           flipOnClick={true}
           flipDirection="horizontal"
@@ -79,13 +84,9 @@ class FlashCard extends React.Component {
           </FrontSide>
           <BackSide style={styles.card}>
             {answer}
-
             <br />
             <br />
             <div style={{ fontSize: '18px', }}>{extra}</div>
-
-
-
           </BackSide>
         </Flippy>
 
@@ -96,28 +97,15 @@ class FlashCard extends React.Component {
         <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
         </Link>
-        <Button onClick={this.toggleShowForm}>
-          Edit Card
-        </Button>
-    
-        {this.state.showAnswer ?
-          (
-            <Form onSubmit={this.handleeSubmit}>
-
-              <Form.Button>Submit</Form.Button>
-            </Form>
-          )
-          :
-          ""
+        {(auth.user.id === this.state.owner_id || admin_authenticated) &&
+          <>
+            <Button onClick={this.toggleShowForm}>Edit Card</Button>
+            <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
+          </>
         }
-
-
-
-
         {this.state.showForm ?
           (
             <Form onSubmit={this.handleSubmit}>
-
               <Form.Input
                 label="Question"
                 name="question"
@@ -143,7 +131,7 @@ class FlashCard extends React.Component {
             </Form>
 
           )
-          :
+        :
           ""
         }
 
@@ -151,6 +139,18 @@ class FlashCard extends React.Component {
     );
   };
 };
+
+const ConnectedFlashCard = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <FlashCard 
+        {...props}
+        auth={auth}
+        admin_authenticated={auth.user.admin === true}
+      />
+    }
+  </AuthConsumer>
+)
 
 const styles = {
   left: {
@@ -174,4 +174,4 @@ const styles = {
   },
 }
 
-export default FlashCard;
+export default ConnectedFlashCard;
