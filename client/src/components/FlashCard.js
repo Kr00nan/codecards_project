@@ -6,14 +6,16 @@ import axios from 'axios';
 import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
-  state = { card: {}, showForm: false, question: "", }
+  state = { card: {}, showForm: false, question: "", owner_id: "", }
 
   componentDidMount() {
     this.getCard();
+    axios.get(`/api/decks/${this.props.match.params.deck_id}`)
+      .then(res => this.setState({ owner_id: res.data.user_id, }))
   }
 
   componentDidUpdate() {
-    if ( parseInt(this.props.match.params.id) !== this.state.card.id) {
+    if (parseInt(this.props.match.params.id) !== this.state.card.id) {
       this.getCard();
     }
   }
@@ -59,11 +61,11 @@ class FlashCard extends React.Component {
 
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
+    const { auth, admin_authenticated, } = this.props
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
         <br />
-        <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
         <br />
         <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
           <Icon name="arrow left" size="huge" style={styles.left} />
@@ -86,9 +88,12 @@ class FlashCard extends React.Component {
         <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
         </Link>
-        <Button onClick={this.toggleShowForm}>
-          Edit Card
-        </Button>
+        {(auth.user.id === this.state.owner_id || admin_authenticated) &&
+          <>
+            <Button onClick={this.toggleShowForm}>Edit Card</Button>
+            <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
+          </>
+        }
         {this.state.showForm ?
           (
             <Form onSubmit={this.handleSubmit}>
@@ -100,7 +105,6 @@ class FlashCard extends React.Component {
                 />    
                 <Form.Button>Submit</Form.Button>
             </Form>
-            
           )
         : 
           ""
