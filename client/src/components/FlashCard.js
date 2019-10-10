@@ -154,7 +154,7 @@ const ConnectedFlashCard = (props) => (
 
 const styles = {
   left: {
-    position: "left",
+    position: "fixed",
     left: "0",
     top: "50%",
   },
