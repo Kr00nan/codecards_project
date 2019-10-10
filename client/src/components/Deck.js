@@ -11,6 +11,7 @@ class Deck extends React.Component {
     showForm: false,
     question: '',
     answer: '',
+    extra: '',
     showEdit: false,
     editDeck: {},
   }
@@ -34,7 +35,7 @@ class Deck extends React.Component {
 
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm, })
-    this.setState({ question: '', answer: '' });
+    this.setState({ question: '', answer: '', extra: '' });
   }
 
   handleChange = (e) => {
@@ -44,8 +45,8 @@ class Deck extends React.Component {
 
   handleAddCard = (e) => {
     e.preventDefault()
-    const { question, answer, cards } = this.state;
-    axios.post(`/api/decks/${this.state.deck.id}/cards`, { question, answer })
+    const { question, answer, extra, cards } = this.state;
+    axios.post(`/api/decks/${this.state.deck.id}/cards`, { question, answer, extra })
       .then(res => {
         this.setState({ cards: [...cards, res.data] });
         this.toggleForm();
@@ -99,7 +100,7 @@ class Deck extends React.Component {
   }
 
   addCardForm = () => {
-    const { showForm, question, answer, } = this.state
+    const { showForm, question, answer, extra } = this.state
     return (
       <Card style={styles.card}>
         <Button onClick={this.toggleForm}>{showForm ? 'Nevermind' : 'Add Card'}</Button>
@@ -119,6 +120,13 @@ class Deck extends React.Component {
               name="answer"
               value={answer}
               required
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Extra Content"
+              placeholder="code snippets, examples, etc..."
+              name="extra"
+              value={extra}
               onChange={this.handleChange}
             />
             <Form.Button>Add Card</Form.Button>
