@@ -5,17 +5,19 @@ import axios from 'axios'
 import { Link, } from 'react-router-dom'
 
 class Browse extends React.Component {
-  state = { activeItem: 'decks', decks: [], }
+  state = { activeItem: 'decks', decks: [], cards: [], }
 
   componentDidMount() {
     axios.get('/api/public_decks')
       .then( res => this.setState({ decks: res.data, }))
+    axios.get('/api/public_cards')
+      .then( res => this.setState({ cards: res.data, }))
   }
 
   handleItemClick = (e, {name}) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem, decks, } = this.state
+    const { activeItem, decks, cards, } = this.state
     return (
       <>
         <Searchbar position='center' /> 
@@ -45,6 +47,16 @@ class Browse extends React.Component {
               </Card>
             )
           }
+          {(activeItem === 'cards') &&
+            cards.map( card =>
+              <Card 
+                key={card.id}
+                style={styles.card}
+              >
+                {card.question}
+              </Card>
+            )
+          }
         </Card.Group>
       </>
     )
@@ -61,6 +73,12 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     fontWeight: 'bold',
+  },
+  card: {
+    padding: '16.625px',
+    borderRadius: '16.625px',
+    height: '332.5px',
+    fontSize: '16.625px',
   },
 }
 
