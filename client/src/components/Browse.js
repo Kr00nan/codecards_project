@@ -3,6 +3,7 @@ import { Menu, Card, } from 'semantic-ui-react'
 import Searchbar from './Searchbar'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
+import Flippy, { FrontSide, BackSide, } from 'react-flippy'
 
 class Browse extends React.Component {
   state = { activeItem: 'decks', decks: [], cards: [], }
@@ -51,9 +52,15 @@ class Browse extends React.Component {
             cards.map( card =>
               <Card 
                 key={card.id}
-                style={styles.card}
+                style={{margin: '12px'}}
+                as={Flippy}
+                flipOnClick={true}
               >
-                {card.question}
+                <FrontSide style={styles.card}>{card.question}</FrontSide>
+                <BackSide style={styles.card}>
+                  {card.answer}
+                  <div style={{ fontSize: '12px', }}>{card.extra}</div>
+                </BackSide>
               </Card>
             )
           }
@@ -78,6 +85,7 @@ const styles = {
     padding: '16.625px',
     borderRadius: '16.625px',
     height: '332.5px',
+    width: '262px',
     fontSize: '16.625px',
   },
 }

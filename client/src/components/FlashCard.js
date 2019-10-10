@@ -41,7 +41,9 @@ class FlashCard extends React.Component {
     const { deck_id, id } = this.props.match.params;
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
       .then(res => {
-        this.setState({ card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.answer })
+        this.setState(
+          { card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.answer }
+        )
       })
       .catch(err => {
         console.log(err)
@@ -129,12 +131,10 @@ class FlashCard extends React.Component {
 
               <Form.Button>Submit</Form.Button>
             </Form>
-
           )
         :
           ""
         }
-
       </>
     );
   };
@@ -170,7 +170,6 @@ const styles = {
     height: '500px',
     fontSize: '25px',
     lineHeight: 'normal',
-
   },
 }
 
