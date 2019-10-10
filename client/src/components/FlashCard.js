@@ -6,11 +6,18 @@ import axios from 'axios';
 
 
 class FlashCard extends React.Component {
-  state = { card: {}, showForm: false, showAnswer: false, question: "", answer: "", extra: "" }
+  state = { card: [], showForm: false, showAnswer: false, question: "", answer: "", extra: "" }
 
 
   componentDidMount() {
-
+    const { id, } = this.props.match.params
+    axios.get(`/api/decks/${id}/cards`)
+    .then(res => {
+      this.setState({ cards: res.data, })
+    })
+    .catch(err => {
+      console.log(err)
+    })
     this.getCard();
   }
 
