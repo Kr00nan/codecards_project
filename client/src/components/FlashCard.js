@@ -12,12 +12,12 @@ class FlashCard extends React.Component {
   componentDidMount() {
     const { id, } = this.props.match.params
     axios.get(`/api/decks/${id}/cards`)
-    .then(res => {
-      this.setState({ cards: res.data, })
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      .then(res => {
+        this.setState({ cards: res.data, })
+      })
+      .catch(err => {
+        console.log(err)
+      })
     this.getCard();
   }
 
@@ -75,7 +75,7 @@ class FlashCard extends React.Component {
         <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
         <br />
 
-        
+
         <Flippy
           flipOnClick={true}
           flipDirection="horizontal"
@@ -99,14 +99,14 @@ class FlashCard extends React.Component {
         <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
           <Icon name="arrow left" size="huge" style={styles.left} />
         </Link>
-        
+
         <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
         </Link>
         <Button onClick={this.toggleShowForm}>
           Edit Card
         </Button>
-    
+
         {this.state.showAnswer ?
           (
             <Form onSubmit={this.handleeSubmit}>
@@ -138,7 +138,7 @@ class FlashCard extends React.Component {
                 value={this.state.answer}
                 onChange={this.handleChange}
               />
-    
+
               <Form.Input
                 label="Extra"
                 name="extra"
