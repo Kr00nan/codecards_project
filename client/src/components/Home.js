@@ -14,42 +14,42 @@ const Home = () => (
       <br />
       <br />
       <Grid centered columns='4' >
-        <Grid divided vertically>
+        <Grid divided vertical>
           <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div class="ui fluid card">
-            <div class="image"></div>
-            <div class="content">
-              <div class="header">HTML</div>
+          <div className="ui fluid card">
+            <div className="image"></div>
+            <div className="content">
+              <div className="header">HTML</div>
               <Link to='/decks/1'>START</Link>
             </div>
           </div>
           <br />
           <br />
           <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div class="ui fluid card">
-            <div class="image"></div>
-            <div class="content">
-              <div class="header">JavaScript</div>
+          <div className="ui fluid card">
+            <div className="image"></div>
+            <div className="content">
+              <div className="header">JavaScript</div>
               <Link to='/decks/4'>START</Link>
             </div>
           </div>
           <br />
           <br />
           <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div class="ui fluid card">
-            <div class="image"></div>
-            <div class="content">
-              <div class="header">CSS</div>
+          <div className="ui fluid card">
+            <div className="image"></div>
+            <div className="content">
+              <div className="header">CSS</div>
               <Link to='/decks/2'>START</Link>
             </div>
           </div>
           <br />
           <br />
           <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div class="ui fluid card">
-            <div class="image"></div>
-            <div class="content">
-              <div class="header">RUBY</div>
+          <div className="ui fluid card">
+            <div className="image"></div>
+            <div className="content">
+              <div className="header">RUBY</div>
               <Link to='/decks/3'>START</Link>
             </div>
           </div>
