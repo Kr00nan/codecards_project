@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 class FlashCard extends React.Component {
-  state = { card: [], showForm: false, showAnswer: false, question: "", answer: "", extra: "" }
+  state = { cards: [], card: [], showForm: false, showAnswer: false, question: "", answer: "", extra: "" }
 
 
   componentDidMount() {
@@ -68,6 +68,7 @@ class FlashCard extends React.Component {
 
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
+    const length = this.state.cards.length;
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
