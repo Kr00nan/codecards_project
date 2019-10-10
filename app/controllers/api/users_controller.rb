@@ -7,12 +7,30 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
+    user = User.find(params[:id])
+    user.email = params[:email] ? params[:email] : user.email
+    
+    # file = params[:file]
+    
+    # if file
+    #   begin
+    #     ext = File.extname(file.tempfile)
+    #     cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
+    #     user.image = cloud_image['secure_url']
+    #   rescue => e
+    #     render json: { errors: e }, status: 422
+    #   end
+    # end
+    
+    if user.save
+      render json: user
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity 
+      render json: { errors: user.errors.full_messages }, status: 422
     end
   end
+
+
+
 
   private 
     def set_user
@@ -20,6 +38,6 @@ class Api::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:admin)
+      params.require(:user).permit(:admin, :image, :email, )
     end
 end
