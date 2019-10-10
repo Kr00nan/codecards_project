@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 import { Icon, Button, Form } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
-
+import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
   state = { card: {}, showForm: false, question: "", }
 
-
   componentDidMount() {
-
     this.getCard();
   }
 
@@ -40,6 +38,7 @@ class FlashCard extends React.Component {
         console.log(err)
       })  
   }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value })
@@ -54,12 +53,12 @@ class FlashCard extends React.Component {
         this.toggleShowForm()
       })
       .catch(err => {
-
+        console.log(err)
       })
   }
 
   render() {
-    const { id, question, answer, showForm, extra, deck_id } = this.state.card
+    const { id, question, answer, extra, deck_id } = this.state.card
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
@@ -90,8 +89,6 @@ class FlashCard extends React.Component {
         <Button onClick={this.toggleShowForm}>
           Edit Card
         </Button>
-
-    
         {this.state.showForm ?
           (
             <Form onSubmit={this.handleSubmit}>
@@ -100,20 +97,30 @@ class FlashCard extends React.Component {
                 name="question"
                 value={this.state.question}
                 onChange={this.handleChange}
-
                 />    
                 <Form.Button>Submit</Form.Button>
             </Form>
             
           )
-          : 
-            ""
-          }
-      
+        : 
+          ""
+        }
       </>
     );
   };
 };
+
+const ConnectedFlashCard = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <FlashCard 
+        {...props}
+        auth={auth}
+        admin_authenticated={auth.admin === true}
+      />
+    }
+  </AuthConsumer>
+)
 
 const styles = {
   left: {
@@ -136,4 +143,4 @@ const styles = {
   },
 }
 
-export default FlashCard;
+export default ConnectedFlashCard;
