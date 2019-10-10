@@ -120,7 +120,7 @@ const ConnectedFlashCard = (props) => (
       <FlashCard 
         {...props}
         auth={auth}
-        admin_authenticated={auth.admin === true}
+        admin_authenticated={auth.user.admin === true}
       />
     }
   </AuthConsumer>
