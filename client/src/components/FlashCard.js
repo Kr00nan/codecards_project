@@ -14,7 +14,6 @@ class FlashCard extends React.Component {
     axios.get(`/api/decks/${deck_id}/cards`)
       .then(res => {
         this.setState({ cards: res.data, })
-        debugger
       })
       .catch(err => {
         console.log(err)
@@ -71,7 +70,8 @@ class FlashCard extends React.Component {
     const { id, question, answer, extra, deck_id } = this.state.card
     const cards = this.state.cards;
     const length = cards.length;
-    const position = cards.findIndex(this.state.card.id);
+    const position = cards.findIndex(element => element.id === id);
+
     
     return (
       <>
