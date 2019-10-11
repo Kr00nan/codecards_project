@@ -56,10 +56,18 @@ class Browse extends React.Component {
                 as={Flippy}
                 flipOnClick={true}
               >
-                <FrontSide style={styles.card}>{card.question}</FrontSide>
+                <FrontSide style={styles.card}>
+                  <div style={styles.qna}>Q</div>
+                  {card.question}
+                  <a href={`/decks/${card.deck_id}`} style={styles.title}>{card.title}</a>
+                </FrontSide>
                 <BackSide style={styles.card}>
+                  <div style={styles.qna}>A</div>
                   {card.answer}
+                  <br />
+                  <br />
                   <div style={{ fontSize: '12px', }}>{card.extra}</div>
+                  <a href={`/decks/${card.deck_id}`} style={styles.title}>{card.title}</a>
                 </BackSide>
               </Card>
             )
@@ -72,9 +80,8 @@ class Browse extends React.Component {
 
 const styles = {
   deck: {
-    padding: '16.625px', 
-    borderRadius: '16.625px', 
-    height: '332.5px',
+    borderRadius: '18px', 
+    height: '335px',
     fontSize: '30px',
     textAlign: 'center',
     display: 'flex',
@@ -82,12 +89,25 @@ const styles = {
     fontWeight: 'bold',
   },
   card: {
-    padding: '16.625px',
-    borderRadius: '16.625px',
-    height: '332.5px',
-    width: '262px',
-    fontSize: '16.625px',
+    margin: '6.5px',
+    padding: '25px',
+    borderRadius: '18px',
+    height: '335px',
+    width: '250px',
+    fontSize: '18px',
   },
+  title: {
+    position: 'absolute',
+    bottom: '18px',
+    right: '18px',
+    fontSize: '14px',
+  },
+  qna: {
+    position: 'absolute',
+    left: '12px',
+    top: '8px',
+    fontSize: '14px',
+  }
 }
 
 export default Browse

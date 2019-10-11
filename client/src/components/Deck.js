@@ -171,6 +171,7 @@ class Deck extends React.Component {
                   to={`/decks/${deck.id}/cards/${card.id}`}
                   style={styles.card}
                 >
+                  <div style={styles.qna}>Q</div>
                   {card.question}
                 </Card>
               )}
@@ -197,11 +198,18 @@ const ConnectedDeck = (props) => (
 
 const styles = {
   card: {
-    padding: '16.625px',
-    borderRadius: '16.625px',
-    height: '332.5px',
-    fontSize: '16.625px',
+    padding: '25px',
+    borderRadius: '18px',
+    height: '335px',
+    width: '250px',
+    fontSize: '18px',
   },
+  qna: {
+    position: 'absolute',
+    left: '12px',
+    top: '8px',
+    fontSize: '14px',
+  }
 }
 
 export default ConnectedDeck
