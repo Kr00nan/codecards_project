@@ -32,6 +32,10 @@ class Api::DecksController < ApplicationController
     render json: { message: 'Deck has been deleted :(' }
   end
 
+  def public_decks
+    render json: Deck.where(public: true)
+  end
+
   private
   def set_deck 
     @deck = Deck.find(params[:id])

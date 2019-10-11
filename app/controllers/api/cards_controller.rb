@@ -1,5 +1,5 @@
 class Api::CardsController < ApplicationController
-  before_action :set_deck
+  before_action :set_deck, except: :public_cards
   before_action :set_card, only: [:show, :update, :destroy]
   
   def index
@@ -29,6 +29,10 @@ class Api::CardsController < ApplicationController
 
   def destroy
     @card.destroy
+  end
+
+  def public_cards
+    render json: Card.public_cards
   end
 
   private

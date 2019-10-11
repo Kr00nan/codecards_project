@@ -41,7 +41,9 @@ class FlashCard extends React.Component {
     const { deck_id, id } = this.props.match.params;
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
       .then(res => {
-        this.setState({ card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.answer })
+        this.setState(
+          { card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.answer }
+        )
       })
       .catch(err => {
         console.log(err)
@@ -80,9 +82,11 @@ class FlashCard extends React.Component {
           ref={(r) => this.flippy = r}
         >
           <FrontSide style={styles.card}>
+            <div style={styles.qna}>Q</div>
             {question}
           </FrontSide>
           <BackSide style={styles.card}>
+            <div style={styles.qna}>A</div>
             {answer}
             <br />
             <br />
@@ -129,12 +133,10 @@ class FlashCard extends React.Component {
 
               <Form.Button>Submit</Form.Button>
             </Form>
-
           )
         :
           ""
         }
-
       </>
     );
   };
@@ -164,14 +166,19 @@ const styles = {
     top: '50%'
   },
   card: {
-    padding: '25px',
-    borderRadius: '25px',
-    width: '400px',
-    height: '500px',
-    fontSize: '25px',
+    padding: '37.5px',
+    borderRadius: '27px',
+    width: '375px',
+    height: '525px',
+    fontSize: '27px',
     lineHeight: 'normal',
-
   },
+  qna: {
+    position: 'absolute',
+    left: '18px',
+    top: '12px',
+    fontSize: '21px',
+  }
 }
 
 export default ConnectedFlashCard;

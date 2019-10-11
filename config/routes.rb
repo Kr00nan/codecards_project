@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :decks do
       resources :cards
     end
+    get 'public_decks', to: 'decks#public_decks'
+    get 'public_cards', to: 'cards#public_cards'
   end
 end

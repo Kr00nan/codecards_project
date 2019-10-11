@@ -1,5 +1,4 @@
 import React from 'react';
-import Searchbar from './Searchbar';
 import { AuthConsumer, } from "../providers/AuthProvider";
 import {  Menu, Dropdown, Icon, } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
@@ -12,7 +11,6 @@ class Navbar extends React.Component {
     if (user) {
       return (
         <Menu.Menu position='right'>
-          <Searchbar position='center' /> 
           <Link to='/my_decks'>
             <Menu.Item
               position='right'
@@ -20,6 +18,15 @@ class Navbar extends React.Component {
               id='my_decks'
               name='my decks'
               active={this.props.location.pathname === '/my_decks'}
+            />
+          </Link>
+          <Link to='/browse'>
+            <Menu.Item
+              position='right'
+              size='huge'
+              id='browse'
+              name='browse'
+              active={this.props.location.pathname === '/browse'}
             />
           </Link>
           <Menu.Item>

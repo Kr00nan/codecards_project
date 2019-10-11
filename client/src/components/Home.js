@@ -14,7 +14,7 @@ const Home = () => (
       <br />
       <br />
       <Grid centered columns='4' >
-        <Grid divided vertical>
+        <Grid divided='vertically'>
           <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
           <div className="ui fluid card">
             <div className="image"></div>
