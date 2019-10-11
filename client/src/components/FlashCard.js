@@ -42,7 +42,7 @@ class FlashCard extends React.Component {
     axios.get(`/api/decks/${deck_id}/cards/${id}`)
       .then(res => {
         this.setState(
-          { card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.answer }
+          { card: res.data, question: res.data.question, answer: res.data.answer, extra: res.data.extra }
         )
       })
       .catch(err => {
