@@ -10,10 +10,11 @@ class FlashCard extends React.Component {
 
 
   componentDidMount() {
-    const { id, } = this.props.match.params
-    axios.get(`/api/decks/${id}/cards`)
+    const { deck_id, } = this.props.match.params
+    axios.get(`/api/decks/${deck_id}/cards`)
       .then(res => {
         this.setState({ cards: res.data, })
+        debugger
       })
       .catch(err => {
         console.log(err)
@@ -68,7 +69,10 @@ class FlashCard extends React.Component {
 
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
-    const length = this.state.cards.length;
+    const cards = this.state.cards;
+    const length = cards.length;
+    const position = cards.findIndex(this.state.card.id);
+    
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
@@ -76,31 +80,25 @@ class FlashCard extends React.Component {
         <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
         <br />
 
-
         <Flippy
           flipOnClick={true}
           flipDirection="horizontal"
           ref={(r) => this.flippy = r}
         >
           <FrontSide style={styles.card}>
-            {question}
+            <p>The number of cards in this deck: {length}</p>
+            <p>I am {position} in this deck.</p>
+            <p>Question: {question}</p>
           </FrontSide>
           <BackSide style={styles.card}>
-            {answer}
-
-            <br />
-            <br />
+            <p>Answer: {answer}</p>
+            <hr />
             <div style={{ fontSize: '18px', }}>{extra}</div>
-
-
-
           </BackSide>
         </Flippy>
-
         <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
           <Icon name="arrow left" size="huge" style={styles.left} />
         </Link>
-
         <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
         </Link>
@@ -152,7 +150,7 @@ class FlashCard extends React.Component {
 
           )
           :
-          ""
+          null
         }
 
       </>
@@ -175,7 +173,7 @@ const styles = {
     padding: '25px',
     borderRadius: '25px',
     width: '400px',
-    height: '500px',
+    height: '600px',
     fontSize: '25px',
     lineHeight: 'normal',
 
