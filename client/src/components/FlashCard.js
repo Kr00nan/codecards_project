@@ -114,7 +114,7 @@ class FlashCard extends React.Component {
             </Form>
           )
           :
-          ""
+          null
         }
 
 
