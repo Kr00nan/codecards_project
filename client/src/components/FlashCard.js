@@ -6,19 +6,30 @@ import axios from 'axios';
 import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
-  state = { 
-    card: {}, 
-    owner_id: "", 
-    showForm: false, 
-    question: "", 
-    answer: "", 
-    extra: "", 
+  state = {
+    cards: [],
+    card: {},
+    owner_id: "",
+    showForm: false,
+    question: "",
+    answer: "",
+    extra: "",
   }
 
   componentDidMount() {
     this.getCard();
+    
     axios.get(`/api/decks/${this.props.match.params.deck_id}`)
       .then(res => this.setState({ owner_id: res.data.user_id, }))
+
+    const { deck_id, } = this.props.match.params
+    axios.get(`/api/decks/${deck_id}/cards`)
+      .then(res => {
+        this.setState({ cards: res.data, })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   componentDidUpdate() {
@@ -68,6 +79,22 @@ class FlashCard extends React.Component {
       })
   }
 
+  prevCard = () => {
+    const { id, deck_id } = this.state.card;
+    const cards = this.state.cards;
+    const position = cards.findIndex(element => element.id === id);
+    const pCard = cards[position - 1];
+    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
+  }
+
+  nextCard = () => {
+    const { id, deck_id } = this.state.card;
+    const cards = this.state.cards;
+    const position = cards.findIndex(element => element.id === id);
+    const pCard = cards[position + 1];
+    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
+  }
+
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
     const { auth, admin_authenticated, } = this.props
@@ -93,14 +120,14 @@ class FlashCard extends React.Component {
             <div style={{ fontSize: '18px', }}>{extra}</div>
           </BackSide>
         </Flippy>
-
-        <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
+        <Button onClick={this.prevCard}>Prev. Card</Button>
+        <Button onClick={this.nextCard}>Next Card</Button>
+        {/* <Link to={this.prevCard}>
           <Icon name="arrow left" size="huge" style={styles.left} />
-        </Link>
-        
-        <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
+        </Link> */}
+        {/* <Link to={`/decks/${deck_id}/cards/0`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
-        </Link>
+        </Link> */}
         {(auth.user.id === this.state.owner_id || admin_authenticated) &&
           <>
             <Button onClick={this.toggleShowForm}>Edit Card</Button>
@@ -123,7 +150,7 @@ class FlashCard extends React.Component {
                 value={this.state.answer}
                 onChange={this.handleChange}
               />
-    
+
               <Form.Input
                 label="Extra"
                 name="extra"
@@ -134,7 +161,7 @@ class FlashCard extends React.Component {
               <Form.Button>Submit</Form.Button>
             </Form>
           )
-        :
+          :
           ""
         }
       </>
@@ -145,7 +172,7 @@ class FlashCard extends React.Component {
 const ConnectedFlashCard = (props) => (
   <AuthConsumer>
     {auth =>
-      <FlashCard 
+      <FlashCard
         {...props}
         auth={auth}
         admin_authenticated={auth.user.admin === true}
