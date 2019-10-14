@@ -123,8 +123,8 @@ class FlashCard extends React.Component {
           </BackSide>
         </Flippy>
         
-        { (position === 0) ? <Button onClick={this.prevCard}>Prev. Card</Button> : null }
-        { (position === cards.length - 1) ? <Button onClick={this.nextCard}>Next Card</Button> : null }
+        { (position === 0) ? null : <Button onClick={this.prevCard}>Prev. Card</Button> }
+        { (position === cards.length - 1) ? null : <Button onClick={this.nextCard}>Next Card</Button> }
 
         {(auth.user.id === this.state.owner_id || admin_authenticated) &&
           <>
