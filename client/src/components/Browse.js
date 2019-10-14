@@ -66,7 +66,7 @@ class Browse extends React.Component {
                   {card.answer}
                   <br />
                   <br />
-                  <div style={{ fontSize: '12px', }}>{card.extra}</div>
+                  <pre style={{ fontSize: '12px', whiteSpace: 'pre-wrap'}}>{card.extra}</pre>
                   <a href={`/decks/${card.deck_id}`} style={styles.title}>{card.title}</a>
                 </BackSide>
               </Card>

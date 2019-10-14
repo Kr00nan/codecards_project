@@ -117,7 +117,7 @@ class FlashCard extends React.Component {
             {answer}
             <br />
             <br />
-            <div style={{ fontSize: '18px', }}>{extra}</div>
+            <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap'}}>{extra}</pre>
           </BackSide>
         </Flippy>
         <Button onClick={this.prevCard}>Prev. Card</Button>
@@ -151,7 +151,7 @@ class FlashCard extends React.Component {
                 onChange={this.handleChange}
               />
 
-              <Form.Input
+              <Form.TextArea
                 label="Extra"
                 name="extra"
                 value={this.state.extra}
