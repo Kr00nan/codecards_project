@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, Button, Form } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
 import { AuthConsumer, } from '../providers/AuthProvider';
@@ -18,7 +18,7 @@ class FlashCard extends React.Component {
 
   componentDidMount() {
     this.getCard();
-    
+
     axios.get(`/api/decks/${this.props.match.params.deck_id}`)
       .then(res => this.setState({ owner_id: res.data.user_id, }))
 
@@ -96,8 +96,10 @@ class FlashCard extends React.Component {
   }
 
   render() {
-    const { id, question, answer, extra, deck_id } = this.state.card
-    const { auth, admin_authenticated, } = this.props
+    const { id, question, answer, extra, deck_id } = this.state.card;
+    const { auth, admin_authenticated, } = this.props;
+    const cards = this.state.cards;
+    const position = cards.findIndex(card => card.id === id)
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
@@ -120,14 +122,10 @@ class FlashCard extends React.Component {
             <div style={{ fontSize: '18px', }}>{extra}</div>
           </BackSide>
         </Flippy>
-        <Button onClick={this.prevCard}>Prev. Card</Button>
-        <Button onClick={this.nextCard}>Next Card</Button>
-        {/* <Link to={this.prevCard}>
-          <Icon name="arrow left" size="huge" style={styles.left} />
-        </Link> */}
-        {/* <Link to={`/decks/${deck_id}/cards/0`}>
-          <Icon name="arrow right" size="huge" style={styles.right} />
-        </Link> */}
+        
+        { (position === 0) ? <Button onClick={this.prevCard}>Prev. Card</Button> : null }
+        { (position === cards.length - 1) ? <Button onClick={this.nextCard}>Next Card</Button> : null }
+
         {(auth.user.id === this.state.owner_id || admin_authenticated) &&
           <>
             <Button onClick={this.toggleShowForm}>Edit Card</Button>
