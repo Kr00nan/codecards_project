@@ -66,12 +66,27 @@ class FlashCard extends React.Component {
       })
   }
 
+  prevCard = () => {
+    const { id, deck_id } = this.state.card;
+    const cards = this.state.cards;
+    const position = cards.findIndex(element => element.id === id);
+    const pCard = cards[position - 1];
+    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
+  }
+
+  nextCard = () => {
+    const { id, deck_id } = this.state.card;
+    const cards = this.state.cards;
+    const position = cards.findIndex(element => element.id === id);
+    const pCard = cards[position + 1];
+    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`); 
+  }
+
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card
     const cards = this.state.cards;
     const length = cards.length;
     const position = cards.findIndex(element => element.id === id);
-
     
     return (
       <>
@@ -96,12 +111,14 @@ class FlashCard extends React.Component {
             <div style={{ fontSize: '18px', }}>{extra}</div>
           </BackSide>
         </Flippy>
-        <Link to={`/decks/${deck_id}/cards/${id - 1}`}>
+        <Button onClick={this.prevCard}>Prev. Card</Button>
+        <Button onClick={this.nextCard}>Next Card</Button>
+        {/* <Link to={this.prevCard}>
           <Icon name="arrow left" size="huge" style={styles.left} />
-        </Link>
-        <Link to={`/decks/${deck_id}/cards/${id + 1}`}>
+        </Link> */}
+        {/* <Link to={`/decks/${deck_id}/cards/0`}>
           <Icon name="arrow right" size="huge" style={styles.right} />
-        </Link>
+        </Link> */}
         <Button onClick={this.toggleShowForm}>
           Edit Card
         </Button>
