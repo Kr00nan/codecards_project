@@ -63,7 +63,6 @@ class Profile extends React.Component {
   }
 
   editView = () => {
-    const { auth: { user }, } = this.props;
     const { formValues: { email, password, } } = this.state;
     return (
       <>
