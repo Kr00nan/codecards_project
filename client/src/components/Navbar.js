@@ -49,6 +49,7 @@ class Navbar extends React.Component {
               id='login'
               name='login'
               active={location.pathname === '/login'}
+              style={styles.links}
             />
           </Link>
           <Link to='/register'>
@@ -56,6 +57,7 @@ class Navbar extends React.Component {
               id='register'
               name='register'
               active={location.pathname === '/register'}
+              style={styles.links}
             />
           </Link>
         </Menu.Menu>
@@ -63,11 +65,10 @@ class Navbar extends React.Component {
     }
   }
   
-  
   render() {
     return (
       <nav> 
-        <Menu pointing secondary>
+        <Menu pointing secondary style={styles.navBar}>
           <Link to='/'>
           <Icon 
             name='home' 
@@ -82,6 +83,18 @@ class Navbar extends React.Component {
     )
   }
 }
+
+const styles = {
+  navBar: {
+    backgroundColor: '#6E54A3',
+    padding: '10px 15px'
+  },
+  links: {
+    color: '#fff',
+    fontSize: '1.2rem',
+    letterSpacing: '3px'
+  }
+};
 
 export class ConnectedNavbar extends React.Component {
   render() {
