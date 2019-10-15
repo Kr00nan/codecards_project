@@ -1,13 +1,14 @@
 import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import {  Menu, Dropdown, Icon, } from 'semantic-ui-react';
+import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
+import beaker32 from '../images/beaker32.png';
 
 class Navbar extends React.Component {
-  
+
   rightNavItems = () => {
     const { auth: { user, handleLogout, }, location, } = this.props;
-    
+
     if (user) {
       return (
         <Menu.Menu position='right'>
@@ -33,7 +34,7 @@ class Navbar extends React.Component {
             <Dropdown text={user.email}>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to='/my_profile'>Profile</Dropdown.Item>
-                <Dropdown.Item onClick={ () => handleLogout(this.props.history) } >
+                <Dropdown.Item onClick={() => handleLogout(this.props.history)} >
                   Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -64,20 +65,18 @@ class Navbar extends React.Component {
       )
     }
   }
-  
+
   render() {
     return (
-      <nav> 
+      <nav>
         <Menu pointing secondary style={styles.navBar}>
-          <Link to='/'>
-          <Icon 
-            name='home' 
-            size='big'
-            id='home'
-            active={this.props.location.pathname && '/'}
-          />
-          </Link>
-            { this.rightNavItems() }
+            <Image
+              src={beaker32}
+              as='a'
+              // size='medium'
+              href={this.props.location.pathname && '/'}
+            />
+          {this.rightNavItems()}
         </Menu>
       </nav>
     )
@@ -99,9 +98,9 @@ const styles = {
 export class ConnectedNavbar extends React.Component {
   render() {
     return (
-      <AuthConsumer> 
-        { auth => 
-          <Navbar { ...this.props } auth={auth} />
+      <AuthConsumer>
+        {auth =>
+          <Navbar {...this.props} auth={auth} />
         }
       </AuthConsumer>
     )
