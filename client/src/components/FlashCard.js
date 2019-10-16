@@ -95,6 +95,15 @@ class FlashCard extends React.Component {
     this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
   }
 
+  makeFocusCard = (card_id) => {
+    axios.post('/api/review_cards', {card_id: card_id})
+      .then(res => {
+        if (res.data.message) {
+          console.log(res.data.message)
+        }
+      })
+  }
+
   render() {
     const { id, question, answer, extra, deck_id } = this.state.card;
     const { auth, admin_authenticated, } = this.props;
@@ -123,7 +132,7 @@ class FlashCard extends React.Component {
         
         { (position === 0) ? null : <Button onClick={this.prevCard}>Prev. Card</Button> }
         { (position === cards.length - 1) ? null : <Button onClick={this.nextCard}>Next Card</Button> }
-
+        <Button name='target' onClick={() => this.makeFocusCard(id)}>Add to Focus Deck</Button>
         {(auth.user.id === this.state.owner_id || admin_authenticated) &&
           <>
             <Button onClick={this.toggleShowForm}>Edit Card</Button>

@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :decks
+
+  has_many :review_cards, dependent: :destroy
+  has_many :cards, through: :review_cards
 end

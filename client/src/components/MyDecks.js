@@ -42,11 +42,11 @@ class MyDecks extends React.Component {
     return(
       <>
         <Header as="h1">My Decks</Header>
-        { decks.length === 0 ? 
-          <div>You have no decks yet</div> 
-        :
-          <Card.Group itemsPerRow={4}>
-            { decks.map( deck => 
+        <Card.Group itemsPerRow={4}>
+          { decks.length === 0 ? 
+            <div>You have no decks yet</div> 
+          :
+            decks.map( deck => 
               <Card 
                 key={deck.id}
                 as={Link} 
@@ -56,9 +56,17 @@ class MyDecks extends React.Component {
               >
                 <Card.Header>{deck.title}</Card.Header>
               </Card>
-            )}
-          </Card.Group>
-        }
+            )
+          }
+          <Card 
+            as={Link}
+            to={`/focus_deck`}
+            color="grey"
+            style={styles.card}
+          >
+            <Card.Header>Focus Deck</Card.Header>
+          </Card>
+        </Card.Group>
         <Button onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
         { showForm &&
           <Form onSubmit={this.handleSubmit}>
