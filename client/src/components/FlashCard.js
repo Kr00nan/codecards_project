@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Card } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
 import { AuthConsumer, } from '../providers/AuthProvider';
@@ -107,7 +107,7 @@ class FlashCard extends React.Component {
   }
 
   render() {
-    const { id, question, answer, extra, deck_id } = this.state.card;
+    const { card: { id, question, answer, extra, deck_id }, showForm } = this.state;
     const { auth, admin_authenticated, } = this.props;
     const cards = this.state.cards;
     const position = cards.findIndex(card => card.id === id)
@@ -116,61 +116,72 @@ class FlashCard extends React.Component {
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
         <br />
         <br />
-        <Flippy
-          flipOnClick={true}
-          flipDirection="horizontal"
-          ref={(r) => this.flippy = r}
-        >
-          <FrontSide style={styles.card}>
-            <div style={styles.qna}>Q</div>
-            {question}
-          </FrontSide>
-          <BackSide style={styles.card}>
-            <div style={styles.qna}>A</div>
-            {answer}
-            <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}>{extra}</pre>
-          </BackSide>
-        </Flippy>
+        <div style={{ width: '375px' }}>
+          <div>
+            <Flippy
+              flipOnClick={true}
+              flipDirection="horizontal"
+              ref={(r) => this.flippy = r}
+            >
+              <FrontSide style={styles.card}>
+                <div style={styles.qna}>Q</div>
+                {question}
+              </FrontSide>
+              <BackSide style={styles.card}>
+                <div style={styles.qna}>A</div>
+                {answer}
+                <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}>{extra}</pre>
+              </BackSide>
+            </Flippy>
+            <Card style={styles.btnSection}>
+              <Card.Content>
+                <div className='ui three buttons'>
+                  {(auth.user.id === this.state.owner_id || admin_authenticated) &&
+                    <>
+                      <Button onClick={this.toggleShowForm} style={styles.firstBtn}>{showForm ? 'Cancel' : 'Edit'}</Button>
+                      <Button onClick={this.handleDelete} color='red'>Delete</Button>
+                      <Button onClick={() => this.makeFocusCard(id)} color='yellow' style={styles.lastBtn}>Focus</Button>
+                    </>
+                  }
+                </div>
+              </Card.Content>
+            </Card>
 
-        {(position === 0) ? null : <Button onClick={this.navButton}>Prev. Card</Button>}
-        {(position === cards.length - 1) ? null : <Button onClick={this.navButton}>Next Card</Button>}
-        <Button name='target' onClick={() => this.makeFocusCard(id)}>Add to Focus Deck</Button>
-        {(auth.user.id === this.state.owner_id || admin_authenticated) &&
-          <>
-            <Button onClick={this.toggleShowForm}>Edit Card</Button>
-            <Button color="red" onClick={this.handleDelete}>Delete Card</Button>
-          </>
-        }
-        {this.state.showForm ?
-          (
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Input
-                label="Question"
-                name="question"
-                value={this.state.question}
-                onChange={this.handleChange}
-              />
+            {(position === 0) ? null : <Button onClick={this.prevCard}>Prev. Card</Button>}
+            {(position === cards.length - 1) ? null : <Button onClick={this.nextCard}>Next Card</Button>}
 
-              <Form.Input
-                label="Answer"
-                name="answer"
-                value={this.state.answer}
-                onChange={this.handleChange}
-              />
+            {showForm ?
+              (
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Input
+                    label="Question"
+                    name="question"
+                    value={this.state.question}
+                    onChange={this.handleChange}
+                  />
 
-              <Form.TextArea
-                label="Extra"
-                name="extra"
-                value={this.state.extra}
-                onChange={this.handleChange}
-              />
+                  <Form.Input
+                    label="Answer"
+                    name="answer"
+                    value={this.state.answer}
+                    onChange={this.handleChange}
+                  />
 
-              <Form.Button>Submit</Form.Button>
-            </Form>
-          )
-          :
-          ""
-        }
+                  <Form.TextArea
+                    label="Extra"
+                    name="extra"
+                    value={this.state.extra}
+                    onChange={this.handleChange}
+                  />
+
+                  <Form.Button>Submit</Form.Button>
+                </Form>
+              )
+              :
+              ""
+            }
+          </div>
+        </div>
       </>
     );
   };
@@ -201,9 +212,9 @@ const styles = {
   },
   card: {
     padding: '37.5px',
-    borderRadius: '27px',
+    borderRadius: '27px 27px 0px 0px',
     width: '375px',
-    height: '525px',
+    height: '425px',
     fontSize: '27px',
     lineHeight: 'normal',
   },
@@ -212,6 +223,19 @@ const styles = {
     left: '18px',
     top: '12px',
     fontSize: '21px',
+  },
+  btnSection: {
+    width: '375px',
+    height: '60px',
+    borderRadius: '0px 0px 27px 27px',
+    boxShadow: '0px 4px 7px lightgrey',
+    marginTop: '0px'
+  },
+  firstBtn: {
+    borderRadius: '0px 0px 0px 27px',
+  },
+  lastBtn: {
+    borderRadius: '0px 0px 27px 0px'
   }
 }
 
