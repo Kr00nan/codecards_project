@@ -66,9 +66,11 @@ class Study extends React.Component {
           )}
         </Menu>
         <div>
-          <h1>{activeDeck}</h1>
-          { (cards.length !== 0) &&
+          { cards.length === 0 ?
+            <p>Choose a deck</p>
+          :
             <>
+              <h1>{activeDeck}</h1>
               { started ?
                 <>
                   <h4>Card: 1 of {cards.length}</h4>
