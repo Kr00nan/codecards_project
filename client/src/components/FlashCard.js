@@ -98,6 +98,15 @@ class FlashCard extends React.Component {
     this.props.history.push(`/decks/${deck_id}/cards/${pointer.id}`);
   }
 
+  randomCard = () => {
+    // get cards array from state
+    const { cards } = this.state;
+    // create random index
+    const randomIndex = Math.floor(Math.random() * Math.floor(cards.length));
+    // send user to random card in deck
+    this.props.history.push(`/decks/${cards[randomIndex]['deck_id']}/cards/${cards[randomIndex]['id']}`);
+  }
+
   makeFocusCard = (card_id) => {
     axios.post('/api/review_cards', { card_id })
       .then(res => {
