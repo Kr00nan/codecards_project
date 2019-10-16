@@ -1,8 +1,8 @@
 import React from 'react';
+import axios from 'axios';
+import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import { Link } from 'react-router-dom';
 import { Button, Form, Card } from 'semantic-ui-react';
-import Flippy, { FrontSide, BackSide } from 'react-flippy';
-import axios from 'axios';
 import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {

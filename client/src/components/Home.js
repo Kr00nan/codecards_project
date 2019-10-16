@@ -1,4 +1,5 @@
 import React from 'react';
+import dpl_logo from '../images/dpl_logo.jpg';
 import { Container, Grid, Header, Image, } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ const Home = () => (
     <Container>
       <br />
       <br />
-    <Image src={require('../images/devpoint-labs logo1.jpg')} size='tiny' centered />
+    <Image src={dpl_logo} size='tiny' centered />
       <br />
       <Header as="h3" color="violet" textAlign="center" size="huge">Dev Point Labs Code Card</Header>
       <br />
