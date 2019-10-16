@@ -79,24 +79,26 @@ class FlashCard extends React.Component {
       })
   }
 
-  prevCard = () => {
+  navButton = (e) => {
     const { id, deck_id } = this.state.card;
     const cards = this.state.cards;
     const position = cards.findIndex(element => element.id === id);
-    const pCard = cards[position - 1];
-    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
-  }
-
-  nextCard = () => {
-    const { id, deck_id } = this.state.card;
-    const cards = this.state.cards;
-    const position = cards.findIndex(element => element.id === id);
-    const pCard = cards[position + 1];
-    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
+    let action;
+    switch (e.target.innerHTML) {
+      case 'Prev. Card':
+        action = cards[position - 1];
+        break;
+      case 'Next Card':
+        action = cards[position + 1];
+        break;
+      default:
+        action = cards[position];
+    }
+    this.props.history.push(`/decks/${deck_id}/cards/${action.id}`);
   }
 
   makeFocusCard = (card_id) => {
-    axios.post('/api/review_cards', { card_id: card_id })
+    axios.post('/api/review_cards', { card_id })
       .then(res => {
         if (res.data.message) {
           console.log(res.data.message)
