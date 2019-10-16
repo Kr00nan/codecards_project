@@ -10,8 +10,8 @@ class FocusDeck extends React.Component {
   }
 
   removeReviewCard = (id) => {
-      axios.delete(`/api/review_cards/${id}`)
-        .then(res => this.getCards())
+    axios.delete(`/api/review_cards/${id}`)
+      .then(res => this.getCards())
   }
 
   getCards = () => {

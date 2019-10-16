@@ -13,6 +13,7 @@ import User from './components/User'
 import MyDecks from './components/MyDecks';
 import Browse from './components/Browse';
 import FocusDeck from './components/FocusDeck';
+import Study from './components/Study';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from 'semantic-ui-react';
 
@@ -31,6 +32,7 @@ const App = () => (
           <ProtectedRoute exact path="/focus_deck" component={FocusDeck} />
           <ProtectedRoute exact path="/my_profile" component={Profile} />
           <ProtectedRoute exact path="/my_decks" component={MyDecks} />
+          <ProtectedRoute exact path="/study" component={Study} />
           <ProtectedRoute exact path="/users/:id" component={User} />
           <Route component={NoMatch} />
         </Switch>
