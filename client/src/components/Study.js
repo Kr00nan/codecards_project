@@ -3,7 +3,7 @@ import { Menu, Card, Button, } from 'semantic-ui-react'
 import axios from 'axios'
 
 class Study extends React.Component {
-  state = { decks: [], activeDeck: '', cards: [], started: false, showFront: true, }
+  state = { decks: [], activeDeck: '', cards: [], started: false, cardIndex: 0, showFront: true, }
 
   componentDidMount() {
     axios.get('/api/decks')
@@ -13,7 +13,7 @@ class Study extends React.Component {
   }
 
   handleDeckClick = (id, title) => {
-    this.setState({ activeDeck: title, started: false, showFront: true, })
+    this.setState({ activeDeck: title, started: false, showFront: true, cardIndex: 0, })
     if (id === 0) {
       axios.get('/api/review_cards')
         .then( res => this.setState({ cards: res.data, }) )
@@ -25,8 +25,15 @@ class Study extends React.Component {
 
   handleStartClick = () => this.setState({ started: !this.state.started, })
 
+  handleNextClick = () => {
+    const { cardIndex, cards, } = this.state 
+    if (cardIndex + 1 !== cards.length) {
+      this.setState({ showFront: true, cardIndex: cardIndex + 1, })
+    }
+  }
+
   render() {
-    const { decks, activeDeck, cards, started, showFront } = this.state
+    const { decks, activeDeck, cards, started, showFront, cardIndex, } = this.state
     return (
       <div style={{display: 'flex', flexDirection: 'horizontal'}}>
         <Menu as='div' vertical style={styles.side}>
@@ -73,14 +80,23 @@ class Study extends React.Component {
               <h1>{activeDeck}</h1>
               { started ?
                 <>
-                  <h4>Card: 1 of {cards.length}</h4>
-                  <Card>
-                    {showFront ? cards[0].question : cards[0].answer}
+                  <h4>Card: {cardIndex + 1} of {cards.length}</h4>
+                  <Card style={styles.card}>
+                    {showFront ? 
+                      <>
+                        Q: {cards[cardIndex].question}
+                      </>
+                    : 
+                      <>
+                        A: {cards[cardIndex].answer}
+                        <pre>{cards[cardIndex].extra}</pre>
+                      </>
+                    }
                   </Card>
                   { showFront ? 
                     <Button onClick={() => this.setState({ showFront: false, })}>Reveal Answer</Button>
                   :
-                    <Button>Next Question</Button>
+                    <Button onClick={this.handleNextClick}>Next Question</Button>
                   }
                 </>
               :
@@ -103,7 +119,15 @@ const styles = {
     height: '552px',
     borderRadius: '0',
     margin: '0px'
-  }
+  },
+  card: {
+    margin: '6.5px',
+    padding: '25px',
+    borderRadius: '18px',
+    height: '375px',
+    width: '525px',
+    fontSize: '18px',
+  },
 }
 
 export default Study
