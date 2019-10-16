@@ -79,24 +79,26 @@ class FlashCard extends React.Component {
       })
   }
 
-  prevCard = () => {
+  navButton = (e) => {
     const { id, deck_id } = this.state.card;
     const cards = this.state.cards;
     const position = cards.findIndex(element => element.id === id);
-    const pCard = cards[position - 1];
-    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
-  }
-
-  nextCard = () => {
-    const { id, deck_id } = this.state.card;
-    const cards = this.state.cards;
-    const position = cards.findIndex(element => element.id === id);
-    const pCard = cards[position + 1];
-    this.props.history.push(`/decks/${deck_id}/cards/${pCard.id}`);
+    let action;
+    switch (e.target.innerHTML) {
+      case 'Prev. Card':
+        action = cards[position - 1];
+        break;
+      case 'Next Card':
+        action = cards[position + 1];
+        break;
+      default:
+        action = cards[position];
+    }
+    this.props.history.push(`/decks/${deck_id}/cards/${action.id}`);
   }
 
   makeFocusCard = (card_id) => {
-    axios.post('/api/review_cards', {card_id: card_id})
+    axios.post('/api/review_cards', { card_id })
       .then(res => {
         if (res.data.message) {
           console.log(res.data.message)
@@ -126,12 +128,12 @@ class FlashCard extends React.Component {
           <BackSide style={styles.card}>
             <div style={styles.qna}>A</div>
             {answer}
-            <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap'}}>{extra}</pre>
+            <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}>{extra}</pre>
           </BackSide>
         </Flippy>
-        
-        { (position === 0) ? null : <Button onClick={this.prevCard}>Prev. Card</Button> }
-        { (position === cards.length - 1) ? null : <Button onClick={this.nextCard}>Next Card</Button> }
+
+        {(position === 0) ? null : <Button onClick={this.navButton}>Prev. Card</Button>}
+        {(position === cards.length - 1) ? null : <Button onClick={this.navButton}>Next Card</Button>}
         <Button name='target' onClick={() => this.makeFocusCard(id)}>Add to Focus Deck</Button>
         {(auth.user.id === this.state.owner_id || admin_authenticated) &&
           <>
