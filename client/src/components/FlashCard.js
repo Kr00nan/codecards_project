@@ -80,21 +80,22 @@ class FlashCard extends React.Component {
   }
 
   navButton = (e) => {
-    const { id, deck_id } = this.state.card;
-    const cards = this.state.cards;
-    const position = cards.findIndex(element => element.id === id);
-    let action;
+    const { card: { id, deck_id }, cards } = this.state;
+    let index = cards.findIndex(element => element.id === id);
+    let pointer;
     switch (e.target.innerHTML) {
       case 'Prev. Card':
-        action = cards[position - 1];
+        index === 0 ? index = cards.length - 1 : index--;
+        pointer = cards[index];
         break;
       case 'Next Card':
-        action = cards[position + 1];
+        index === cards.length - 1 ? index = 0 : index++;
+        pointer = cards[index];
         break;
       default:
-        action = cards[position];
+        pointer = cards[index];
     }
-    this.props.history.push(`/decks/${deck_id}/cards/${action.id}`);
+    this.props.history.push(`/decks/${deck_id}/cards/${pointer.id}`);
   }
 
   makeFocusCard = (card_id) => {
@@ -109,8 +110,7 @@ class FlashCard extends React.Component {
   render() {
     const { card: { id, question, answer, extra, deck_id }, showForm } = this.state;
     const { auth, admin_authenticated, } = this.props;
-    const cards = this.state.cards;
-    const position = cards.findIndex(card => card.id === id)
+
     return (
       <>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
@@ -120,7 +120,7 @@ class FlashCard extends React.Component {
           <div>
             <Flippy
               flipOnClick={true}
-              flipDirection="horizontal"
+              flipDirection="vertical"
               ref={(r) => this.flippy = r}
             >
               <FrontSide style={styles.card}>
@@ -147,8 +147,8 @@ class FlashCard extends React.Component {
               </Card.Content>
             </Card>
 
-            {(position === 0) ? null : <Button onClick={this.prevCard}>Prev. Card</Button>}
-            {(position === cards.length - 1) ? null : <Button onClick={this.nextCard}>Next Card</Button>}
+            <Button onClick={this.navButton}>Prev. Card</Button>
+            <Button onClick={this.navButton}>Next Card</Button>
 
             {showForm ?
               (
