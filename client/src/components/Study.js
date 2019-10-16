@@ -3,7 +3,7 @@ import { Menu, Card, Button, } from 'semantic-ui-react'
 import axios from 'axios'
 
 class Study extends React.Component {
-  state = { decks: [], activeDeck: '', cards: [], started: false, }
+  state = { decks: [], activeDeck: '', cards: [], started: false, showFront: true, }
 
   componentDidMount() {
     axios.get('/api/decks')
@@ -13,7 +13,7 @@ class Study extends React.Component {
   }
 
   handleDeckClick = (id, title) => {
-    this.setState({ activeDeck: title, started: false, })
+    this.setState({ activeDeck: title, started: false, showFront: true, })
     if (id === 0) {
       axios.get('/api/review_cards')
         .then( res => this.setState({ cards: res.data, }) )
@@ -26,7 +26,7 @@ class Study extends React.Component {
   handleStartClick = () => this.setState({ started: !this.state.started, })
 
   render() {
-    const { decks, activeDeck, cards, started, } = this.state
+    const { decks, activeDeck, cards, started, showFront } = this.state
     return (
       <div style={{display: 'flex', flexDirection: 'horizontal'}}>
         <Menu as='div' vertical style={styles.side}>
@@ -75,8 +75,13 @@ class Study extends React.Component {
                 <>
                   <h4>Card: 1 of {cards.length}</h4>
                   <Card>
-                    {cards[0].question}
+                    {showFront ? cards[0].question : cards[0].answer}
                   </Card>
+                  { showFront ? 
+                    <Button onClick={() => this.setState({ showFront: false, })}>Reveal Answer</Button>
+                  :
+                    <Button>Next Question</Button>
+                  }
                 </>
               :
                 <Button onClick={this.handleStartClick}>Start</Button>
