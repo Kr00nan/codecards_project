@@ -149,6 +149,7 @@ class FlashCard extends React.Component {
 
             <Button onClick={this.navButton}>Prev. Card</Button>
             <Button onClick={this.navButton}>Next Card</Button>
+            <Button onClick={this.randomCard}>Random Card</Button>
 
             {showForm ?
               (
