@@ -15,10 +15,10 @@ class Study extends React.Component {
   handleDeckClick = (id, title) => {
     this.setState({ activeDeck: title, started: false, showFront: true, cardIndex: 0, })
     if (id === 0) {
-      axios.get('/api/review_cards')
+      axios.get('/api/focus')
         .then( res => this.setState({ cards: res.data, }) )
     } else {
-      axios.get(`/api/decks/${id}/cards`)
+      axios.get(`/api/decks/${id}/shuffled_cards`)
         .then( res => this.setState({ cards: res.data, }) )
     }
   }

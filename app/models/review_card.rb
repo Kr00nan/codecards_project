@@ -9,6 +9,7 @@ class ReviewCard < ApplicationRecord
       INNER JOIN cards
         ON review_cards.card_id = cards.id
       WHERE user_id = #{user}
+      ORDER BY rc_id
     "])
   end
 end
