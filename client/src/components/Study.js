@@ -3,7 +3,15 @@ import { Menu, Card, Button, } from 'semantic-ui-react'
 import axios from 'axios'
 
 class Study extends React.Component {
-  state = { decks: [], activeDeck: '', cards: [], started: false, cardIndex: 0, showFront: true, }
+  state = { 
+    decks: [], 
+    activeDeck: '', 
+    cards: [], 
+    started: false, 
+    cardIndex: 0, 
+    showFront: true, 
+    done: false,
+  }
 
   componentDidMount() {
     axios.get('/api/decks')
@@ -13,7 +21,7 @@ class Study extends React.Component {
   }
 
   handleDeckClick = (id, title) => {
-    this.setState({ activeDeck: title, started: false, showFront: true, cardIndex: 0, })
+    this.setState({ activeDeck: title, started: false, showFront: true, cardIndex: 0, done: false, })
     if (id === 0) {
       axios.get('/api/focus')
         .then( res => this.setState({ cards: res.data, }) )
@@ -25,15 +33,24 @@ class Study extends React.Component {
 
   handleStartClick = () => this.setState({ started: !this.state.started, })
 
-  handleNextClick = () => {
+  handleYesClick = () => {
     const { cardIndex, cards, } = this.state 
     if (cardIndex + 1 !== cards.length) {
       this.setState({ showFront: true, cardIndex: cardIndex + 1, })
+    } else {
+      this.setState({ done: true, })
     }
   }
 
+  handleNoClick = () => {
+    const { cardIndex, cards, } = this.state 
+    var removed = cards.splice(cardIndex, 1)
+    cards.push(removed[0])
+    this.setState({ cards: cards, showFront: true, })
+  }
+
   render() {
-    const { decks, activeDeck, cards, started, showFront, cardIndex, } = this.state
+    const { decks, activeDeck, cards, started, showFront, cardIndex, done } = this.state
     return (
       <div style={styles.container}>
         <Menu as='div' vertical style={styles.side}>
@@ -80,27 +97,38 @@ class Study extends React.Component {
               <h1>{activeDeck}</h1>
               { started ?
                 <>
-                  <p>Card: {cardIndex + 1} of {cards.length}</p>
-                  <Card style={styles.card}>
-                    {showFront ? 
-                      <>
-                        Q: {cards[cardIndex].question}
-                      </>
-                    : 
-                      <>
-                        A: {cards[cardIndex].answer}
-                        <pre>{cards[cardIndex].extra}</pre>
-                      </>
-                    }
-                  </Card>
-                  { showFront ? 
-                    <Button onClick={() => this.setState({ showFront: false, })} style={{width: '525px'}}>
-                      Reveal Answer
-                    </Button>
+                  { done ?
+                    <h2>You completed this deck!</h2>
                   :
-                    <Button onClick={this.handleNextClick} style={{width: '525px'}}>
-                      Next Question
-                    </Button>
+                    <>
+                      <p>Cards: {cardIndex} of {cards.length}</p>
+                      <Card style={styles.card}>
+                        {showFront ? 
+                          <>
+                            Q: {cards[cardIndex].question}
+                          </>
+                        : 
+                          <>
+                            A: {cards[cardIndex].answer}
+                            <pre>{cards[cardIndex].extra}</pre>
+                          </>
+                        }
+                      </Card>
+                      {showFront ? 
+                        <Button onClick={() => this.setState({ showFront: false, })} style={{width: '525px'}}>
+                          Reveal Answer
+                        </Button>
+                      :
+                        <Button.Group>
+                          <Button onClick={this.handleNoClick} style={{width: '262.5px'}}>
+                            Didn't Get It
+                          </Button>
+                          <Button onClick={this.handleYesClick} style={{width: '262.5px'}}>
+                            Got It!
+                          </Button>
+                        </Button.Group>
+                      }
+                    </>
                   }
                 </>
               :
