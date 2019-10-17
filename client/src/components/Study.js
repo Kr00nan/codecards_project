@@ -35,7 +35,7 @@ class Study extends React.Component {
   render() {
     const { decks, activeDeck, cards, started, showFront, cardIndex, } = this.state
     return (
-      <div style={{display: 'flex', flexDirection: 'horizontal'}}>
+      <div style={styles.container}>
         <Menu as='div' vertical style={styles.side}>
           <Menu.Header as="h1" content="Decks" />
           <Menu.Item
@@ -72,7 +72,7 @@ class Study extends React.Component {
             />
           )}
         </Menu>
-        <div>
+        <div style={{padding: '15px 200px'}}>
           { cards.length === 0 ?
             <p>Choose a deck</p>
           :
@@ -80,7 +80,7 @@ class Study extends React.Component {
               <h1>{activeDeck}</h1>
               { started ?
                 <>
-                  <h4>Card: {cardIndex + 1} of {cards.length}</h4>
+                  <p>Card: {cardIndex + 1} of {cards.length}</p>
                   <Card style={styles.card}>
                     {showFront ? 
                       <>
@@ -94,9 +94,13 @@ class Study extends React.Component {
                     }
                   </Card>
                   { showFront ? 
-                    <Button onClick={() => this.setState({ showFront: false, })}>Reveal Answer</Button>
+                    <Button onClick={() => this.setState({ showFront: false, })} style={{width: '525px'}}>
+                      Reveal Answer
+                    </Button>
                   :
-                    <Button onClick={this.handleNextClick}>Next Question</Button>
+                    <Button onClick={this.handleNextClick} style={{width: '525px'}}>
+                      Next Question
+                    </Button>
                   }
                 </>
               :
@@ -111,18 +115,22 @@ class Study extends React.Component {
 }
 
 const styles = {
-  side: {
-    backgroundColor: '#f0f0f0',
+  container: {
+    display: 'flex', 
+    flexDirection: 'horizontal',
     position: 'relative',
     right: '77px',
+    width: '1280px'
+  },
+  side: {
+    backgroundColor: '#f0f0f0',
     width: '335px',
     height: '552px',
     borderRadius: '0',
     margin: '0px'
   },
   card: {
-    margin: '6.5px',
-    padding: '25px',
+    padding: '37.5px',
     borderRadius: '18px',
     height: '375px',
     width: '525px',
