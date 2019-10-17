@@ -19,6 +19,7 @@ class Navbar extends React.Component {
               id='my_decks'
               name='my decks'
               active={this.props.location.pathname === '/my_decks'}
+              style={styles.links}
             />
           </Link>
           <Link to='/browse'>
@@ -28,6 +29,7 @@ class Navbar extends React.Component {
               id='browse'
               name='browse'
               active={this.props.location.pathname === '/browse'}
+              style={styles.links}
             />
           </Link>
           <Link to='/study'>
@@ -37,10 +39,11 @@ class Navbar extends React.Component {
               id='study'
               name='study'
               active={this.props.location.pathname === '/study'}
+              style={styles.links}
             />
           </Link>
           <Menu.Item>
-            <Dropdown text={user.email}>
+            <Dropdown style={styles.links} text={user.email}>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to='/my_profile'>Profile</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleLogout(this.props.history)} >
