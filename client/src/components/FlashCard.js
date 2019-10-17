@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import { Link } from 'react-router-dom';
-import { Button, Form, Card } from 'semantic-ui-react';
+import { Button, Form, Card, Icon } from 'semantic-ui-react';
 import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
@@ -83,18 +83,16 @@ class FlashCard extends React.Component {
     const { card: { id, deck_id }, cards } = this.state;
     let index = cards.findIndex(element => element.id === id);
     let pointer;
-    switch (e.target.innerHTML) {
-      case 'Prev. Card':
-        index === 0 ? index = cards.length - 1 : index--;
-        pointer = cards[index];
-        break;
-      case 'Next Card':
-        index === cards.length - 1 ? index = 0 : index++;
-        pointer = cards[index];
-        break;
-      default:
-        pointer = cards[index];
+
+    if (e.target.className.includes('left')) {
+      index === 0 ? index = cards.length - 1 : index--;
+      pointer = cards[index];
+    } else {
+      index === cards.length - 1 ? index = 0 : index++;
+      pointer = cards[index];
+
     }
+    pointer = cards[index];
     this.props.history.push(`/decks/${deck_id}/cards/${pointer.id}`);
   }
 
@@ -149,16 +147,23 @@ class FlashCard extends React.Component {
                     <>
                       <Button onClick={this.toggleShowForm} style={styles.firstBtn}>{showForm ? 'Cancel' : 'Edit'}</Button>
                       <Button onClick={this.handleDelete} color='red'>Delete</Button>
-                      <Button onClick={() => this.makeFocusCard(id)} color='yellow' style={styles.lastBtn}>Focus</Button>
                     </>
                   }
+                  <Button onClick={() => this.makeFocusCard(id)} color='yellow' style={styles.lastBtn}>Focus</Button>
                 </div>
               </Card.Content>
             </Card>
+            <div className='ui three buttons'>
+              <Button className='ui labeled icon button' onClick={this.navButton}>
+              <Icon name='angle left' size='large' />Previous</Button>
+                
+              <Button onClick={this.randomCard}>Random</Button>
 
-            <Button onClick={this.navButton}>Prev. Card</Button>
-            <Button onClick={this.navButton}>Next Card</Button>
-            <Button onClick={this.randomCard}>Random Card</Button>
+              <Button className='ui right labeled icon button' onClick={this.navButton}>
+              <Icon name='angle right' size='large' />Next</Button>
+            </div>
+            {/* <Button onClick={this.navButton}>Prev. Card</Button> */}
+            {/* <Button onClick={this.navButton}>Next Card</Button> */}
 
             {showForm ?
               (
