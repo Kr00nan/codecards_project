@@ -130,7 +130,7 @@ const styles = {
     margin: '0px'
   },
   card: {
-    padding: '25px',
+    padding: '37.5px',
     borderRadius: '18px',
     height: '375px',
     width: '525px',
