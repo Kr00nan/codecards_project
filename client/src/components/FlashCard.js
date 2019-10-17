@@ -84,14 +84,17 @@ class FlashCard extends React.Component {
     let index = cards.findIndex(element => element.id === id);
     let pointer;
 
-    if (e.target.className.includes('left')) {
-      index === 0 ? index = cards.length - 1 : index--;
-      pointer = cards[index];
-    } else {
-      index === cards.length - 1 ? index = 0 : index++;
-      pointer = cards[index];
-
+    switch (e.target.className.includes('left')) {
+      case true:
+        index === 0 ? index = cards.length - 1 : index--;
+        pointer = cards[index];
+        break;
+      default:
+        index === cards.length - 1 ? index = 0 : index++;
+        pointer = cards[index];
+        break;
     }
+
     pointer = cards[index];
     this.props.history.push(`/decks/${deck_id}/cards/${pointer.id}`);
   }
@@ -153,17 +156,11 @@ class FlashCard extends React.Component {
                 </div>
               </Card.Content>
             </Card>
-            <div className='ui three buttons'>
-              <Button className='ui labeled icon button' onClick={this.navButton}>
-              <Icon name='angle left' size='large' />Previous</Button>
-                
+            <div style={styles.bottomBtns}>
+              <Icon link name='angle left' size='huge' onClick={this.navButton} />
               <Button onClick={this.randomCard}>Random</Button>
-
-              <Button className='ui right labeled icon button' onClick={this.navButton}>
-              <Icon name='angle right' size='large' />Next</Button>
+              <Icon link name='angle right' size='huge' onClick={this.navButton} />
             </div>
-            {/* <Button onClick={this.navButton}>Prev. Card</Button> */}
-            {/* <Button onClick={this.navButton}>Next Card</Button> */}
 
             {showForm ?
               (
@@ -251,6 +248,11 @@ const styles = {
   },
   lastBtn: {
     borderRadius: '0px 0px 27px 0px'
+  },
+  bottomBtns: {
+    width: '375px',
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 }
 
