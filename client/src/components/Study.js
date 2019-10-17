@@ -72,7 +72,7 @@ class Study extends React.Component {
             />
           )}
         </Menu>
-        <div style={{padding: '25px 200px'}}>
+        <div style={{padding: '15px 200px'}}>
           { cards.length === 0 ?
             <p>Choose a deck</p>
           :
