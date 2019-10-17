@@ -94,9 +94,13 @@ class Study extends React.Component {
                     }
                   </Card>
                   { showFront ? 
-                    <Button onClick={() => this.setState({ showFront: false, })}>Reveal Answer</Button>
+                    <Button onClick={() => this.setState({ showFront: false, })} style={{width: '525px'}}>
+                      Reveal Answer
+                    </Button>
                   :
-                    <Button onClick={this.handleNextClick}>Next Question</Button>
+                    <Button onClick={this.handleNextClick} style={{width: '525px'}}>
+                      Next Question
+                    </Button>
                   }
                 </>
               :
@@ -126,7 +130,6 @@ const styles = {
     margin: '0px'
   },
   card: {
-    margin: '6.5px',
     padding: '25px',
     borderRadius: '18px',
     height: '375px',
