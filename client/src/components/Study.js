@@ -110,7 +110,9 @@ class Study extends React.Component {
                         : 
                           <>
                             A: {cards[cardIndex].answer}
-                            <pre>{cards[cardIndex].extra}</pre>
+                            <pre style={{fontSize: '12px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+                              {cards[cardIndex].extra}
+                            </pre>
                           </>
                         }
                       </Card>

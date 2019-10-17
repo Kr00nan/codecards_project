@@ -64,9 +64,9 @@ class Browse extends React.Component {
                 <BackSide style={styles.card}>
                   <div style={styles.qna}>A</div>
                   {card.answer}
-                  <br />
-                  <br />
-                  <pre style={{ fontSize: '12px', whiteSpace: 'pre-wrap'}}>{card.extra}</pre>
+                  <pre style={{ fontSize: '12px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+                    {card.extra}
+                  </pre>
                   <a href={`/decks/${card.deck_id}`} style={styles.title}>{card.title}</a>
                 </BackSide>
               </Card>
