@@ -6,6 +6,10 @@ class Api::CardsController < ApplicationController
     render json: @deck.cards.order(:id)
   end
 
+  def shuffled_index
+    render json: @deck.cards.shuffle
+  end
+
   def show
     render json: @card
   end

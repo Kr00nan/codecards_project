@@ -5,6 +5,10 @@ class Api::ReviewCardsController < ApplicationController
     render json: ReviewCard.all_cards(current_user.id)
   end
 
+  def shuffled_index
+    render json: ReviewCard.all_cards(current_user.id).shuffle
+  end
+
   def create
     if ReviewCard.where({ user_id: current_user.id, card_id: params[:card_id], }).length === 0
       review_card = current_user.review_cards.new(review_card_params)
