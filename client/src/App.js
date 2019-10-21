@@ -16,6 +16,7 @@ import FocusDeck from './components/FocusDeck';
 import Study from './components/Study';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from 'semantic-ui-react';
+import './index.css';
 
 const App = () => (
   <>
