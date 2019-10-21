@@ -41,8 +41,7 @@ class MyDecks extends React.Component {
     const { decks, showForm, newDeck } = this.state
     return(
       <>
-        <br />
-        <Header as="h1" textAlign="center">My Decks</Header>
+        <Header as="h1" textAlign="center" style={{margin: '20px 0 10px'}}>My Decks</Header>
         <Card.Group itemsPerRow={4}>
           {decks.map( deck => 
             <Card 
