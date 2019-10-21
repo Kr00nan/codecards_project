@@ -1,6 +1,6 @@
 import React from 'react';
 import dpl_logo from '../images/dpl_logo.jpg';
-import { Container, Grid, Header, Image, } from 'semantic-ui-react';
+import { Container, Grid, Header, Image, Segment, } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => (
@@ -57,6 +57,12 @@ const Home = () => (
         </Grid>
       </Grid>
     </Container>
+    <br />
+    <br />
+    <br />
+    <Segment fluid>
+
+    </Segment>
   </>
 );
 
