@@ -11,7 +11,7 @@ class Navbar extends React.Component {
 
     if (user) {
       return (
-        <Menu.Menu position='right'>
+        <Menu.Menu position='right' divided='vertically'>
           <Link to='/my_decks'>
             <Menu.Item
               position='right'
