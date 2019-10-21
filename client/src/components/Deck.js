@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios'
 import { Header, Card, Button, Form, } from 'semantic-ui-react'
-import { Link, } from 'react-router-dom'
 import { AuthConsumer, } from '../providers/AuthProvider'
+import DeckCard from './DeckCard'
 
 class Deck extends React.Component {
   state = {
@@ -165,15 +165,12 @@ class Deck extends React.Component {
             :
             <>
               {cards.map(card =>
-                <Card
+                <DeckCard
                   key={card.id}
-                  as={Link}
-                  to={`/decks/${deck.id}/cards/${card.id}`}
-                  style={styles.card}
-                >
-                  <div style={styles.qna}>Q</div>
-                  {card.question}
-                </Card>
+                  {...card}
+                  title={deck.title}
+                  push={this.props.history.push}
+                />
               )}
             </>
           }
@@ -198,17 +195,12 @@ const ConnectedDeck = (props) => (
 
 const styles = {
   card: {
+    margin: '6.5px',
     padding: '25px',
     borderRadius: '18px',
     height: '335px',
     width: '250px',
     fontSize: '18px',
-  },
-  qna: {
-    position: 'absolute',
-    left: '12px',
-    top: '8px',
-    fontSize: '14px',
   }
 }
 

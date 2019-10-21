@@ -140,7 +140,9 @@ class FlashCard extends React.Component {
               <BackSide style={styles.card}>
                 <div style={styles.qna}>A</div>
                 {answer}
-                <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}>{extra}</pre>
+                <pre style={{fontSize: '18px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+                  {extra}
+                </pre>
               </BackSide>
             </Flippy>
             <Card style={styles.btnSection}>

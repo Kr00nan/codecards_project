@@ -1,6 +1,7 @@
 import React from 'react'
 import { Menu, Card, Button, } from 'semantic-ui-react'
 import axios from 'axios'
+import { Link, } from 'react-router-dom'
 
 class Study extends React.Component {
   state = { 
@@ -11,6 +12,7 @@ class Study extends React.Component {
     cardIndex: 0, 
     showFront: true, 
     done: false,
+    deckLink: '/',
   }
 
   componentDidMount() {
@@ -23,9 +25,11 @@ class Study extends React.Component {
   handleDeckClick = (id, title) => {
     this.setState({ activeDeck: title, started: false, showFront: true, cardIndex: 0, done: false, })
     if (id === 0) {
+      this.setState({ deckLink: 'focus_deck', })
       axios.get('/api/focus')
         .then( res => this.setState({ cards: res.data, }) )
     } else {
+      this.setState({ deckLink: `decks/${id}`, })
       axios.get(`/api/decks/${id}/shuffled_cards`)
         .then( res => this.setState({ cards: res.data, }) )
     }
@@ -50,7 +54,7 @@ class Study extends React.Component {
   }
 
   render() {
-    const { decks, activeDeck, cards, started, showFront, cardIndex, done } = this.state
+    const { decks, activeDeck, cards, started, showFront, cardIndex, done, deckLink } = this.state
     return (
       <div style={styles.container}>
         <Menu as='div' vertical style={styles.side}>
@@ -91,10 +95,10 @@ class Study extends React.Component {
         </Menu>
         <div style={{padding: '15px 200px'}}>
           { cards.length === 0 ?
-            <p>Choose a deck</p>
+            <h2>Choose a deck that has cards</h2>
           :
             <>
-              <h1>{activeDeck}</h1>
+              <h1><Link to={deckLink}>{activeDeck}</Link></h1>
               { started ?
                 <>
                   { done ?
@@ -110,7 +114,9 @@ class Study extends React.Component {
                         : 
                           <>
                             A: {cards[cardIndex].answer}
-                            <pre>{cards[cardIndex].extra}</pre>
+                            <pre style={{fontSize: '12px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+                              {cards[cardIndex].extra}
+                            </pre>
                           </>
                         }
                       </Card>
