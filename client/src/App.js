@@ -21,22 +21,24 @@ const App = () => (
   <>
     <Navbar />
     <FetchUser>
-      <Container>
-        <Switch>
-          <ProtectedRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <ProtectedRoute exact path="/browse" component={Browse} />
-          <ProtectedRoute exact path="/decks/:id" component={Deck} />
-          <ProtectedRoute exact path="/decks/:deck_id/cards/:id" component={FlashCard} />
-          <ProtectedRoute exact path="/focus_deck" component={FocusDeck} />
-          <ProtectedRoute exact path="/my_profile" component={Profile} />
-          <ProtectedRoute exact path="/my_decks" component={MyDecks} />
-          <ProtectedRoute exact path="/study" component={Study} />
-          <ProtectedRoute exact path="/users/:id" component={User} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Container>
+      <div className='login_page'>
+        <Container>
+          <Switch>
+            <ProtectedRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <ProtectedRoute exact path="/browse" component={Browse} />
+            <ProtectedRoute exact path="/decks/:id" component={Deck} />
+            <ProtectedRoute exact path="/decks/:deck_id/cards/:id" component={FlashCard} />
+            <ProtectedRoute exact path="/focus_deck" component={FocusDeck} />
+            <ProtectedRoute exact path="/my_profile" component={Profile} />
+            <ProtectedRoute exact path="/my_decks" component={MyDecks} />
+            <ProtectedRoute exact path="/study" component={Study} />
+            <ProtectedRoute exact path="/users/:id" component={User} />
+            <Route component={NoMatch} />
+          </Switch>
+        </Container>
+      </div>
     </FetchUser>
   </>
 )

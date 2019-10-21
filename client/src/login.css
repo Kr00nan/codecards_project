@@ -1,0 +1,6 @@
+.login_page {
+  background-image: url('./images/bg_logo.png');
+  margin-top: 14px;
+  background-size: 100%;
+  height: 100vh;
+}
