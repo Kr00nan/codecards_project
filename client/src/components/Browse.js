@@ -36,7 +36,7 @@ class Browse extends React.Component {
       <>
         <br />
         <Input type="text"
-          placeholder="search..."
+          placeholder="search ..."
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
         />
