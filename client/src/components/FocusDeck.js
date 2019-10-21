@@ -28,22 +28,20 @@ class FocusDeck extends React.Component {
         <Header as="h1" textAlign="center">Focus Deck</Header>
         <br />
         <hr />
-        <Card.Group itemsPerRow={4}>
-          {cards.length === 0 ?
-            <div>This deck has no cards yet</div>
-            :
-            <>
-              {cards.map(card =>
-                <DeckCard
-                  key={card.rc_id}
-                  {...card}
-                  removeReviewCard={this.removeReviewCard}
-                  push={this.props.history.push}
-                />
-              )}
-            </>
-          }
-        </Card.Group>
+        {cards.length === 0 ?
+          <Header as='h3' textAlign='center'>You haven't saved any cards to your focus deck yet</Header>
+          :
+          <Card.Group itemsPerRow={4}>
+            {cards.map(card =>
+              <DeckCard
+                key={card.rc_id}
+                {...card}
+                removeReviewCard={this.removeReviewCard}
+                push={this.props.history.push}
+              />
+            )}
+          </Card.Group>
+        }
       </>
     )
   }
