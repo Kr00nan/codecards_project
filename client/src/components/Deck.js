@@ -84,10 +84,12 @@ class Deck extends React.Component {
         <Form.Input
           width={4}
           label="Deck Name"
-          placeholder="Deck Name"
+          placeholder="10 char limit..."
           name="title"
           value={editDeck.title}
           onChange={this.handleTitleChange}
+          maxLength="10"
+          required
         />
         <Form.Checkbox
           label="Public"

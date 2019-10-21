@@ -73,10 +73,12 @@ class MyDecks extends React.Component {
             <Form.Input 
               width={4}
               label="Deck Name"
-              placeholder="Deck Name"
+              placeholder="10 char limit..."
               name="title"
               value={newDeck.title}
               onChange={this.handleChange}
+              maxLength="10"
+              required
             />
             <Form.Button>Submit</Form.Button>
           </Form>
