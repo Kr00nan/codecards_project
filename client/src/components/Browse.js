@@ -2,8 +2,8 @@ import React from 'react'
 import { Menu, Card, Grid} from 'semantic-ui-react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
-import Flippy, { FrontSide, BackSide, } from 'react-flippy'
 import _ from 'lodash';
+import DeckCard from './DeckCard'
 
 class Browse extends React.Component {
   state = { activeItem: 'decks', decks: [], cards: [], isLoading: false, value: "", results: [], search: "", }
@@ -100,26 +100,11 @@ class Browse extends React.Component {
           }
           {(activeItem === 'cards') &&
             filteredCards.map( card =>
-              <Card 
-                key={card.id}
-                style={{margin: '12px'}}
-                as={Flippy}
-                flipOnClick={true}
-              >
-                <FrontSide style={styles.card}>
-                  <div style={styles.qna}>Q</div>
-                  {card.question}
-                  <a href={`/decks/${card.deck_id}`} style={styles.title}>{card.title}</a>
-                </FrontSide>
-                <BackSide style={styles.card}>
-                  <div style={styles.qna}>A</div>
-                  {card.answer}
-                  <pre style={{ fontSize: '12px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
-                    {card.extra}
-                  </pre>
-                  <a href={`/decks/${card.deck_id}`} style={styles.title}>{card.title}</a>
-                </BackSide>
-              </Card>
+              <DeckCard 
+                key={card.id} 
+                {...card}
+                push={this.props.history.push}
+              />
             )
           }
         </Card.Group>
@@ -138,26 +123,6 @@ const styles = {
     justifyContent: 'center',
     fontWeight: 'bold',
   },
-  card: {
-    margin: '6.5px',
-    padding: '25px',
-    borderRadius: '18px',
-    height: '335px',
-    width: '250px',
-    fontSize: '18px',
-  },
-  title: {
-    position: 'absolute',
-    bottom: '18px',
-    right: '18px',
-    fontSize: '14px',
-  },
-  qna: {
-    position: 'absolute',
-    left: '12px',
-    top: '8px',
-    fontSize: '14px',
-  }
 }
 
 export default Browse
