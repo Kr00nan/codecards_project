@@ -2,7 +2,6 @@ import React from 'react'
 import { Menu, Card, Input, } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
-import _ from 'lodash';
 import DeckCard from './DeckCard'
 
 class Browse extends React.Component {
