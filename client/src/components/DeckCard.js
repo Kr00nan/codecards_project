@@ -32,7 +32,7 @@ class DeckCard extends React.Component {
         <BackSide style={styles.card}>
           <div style={styles.qna}>A</div>
           {answer}
-          <pre style={{ fontSize: '12px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+          <pre style={styles.pre}>
             {extra}
           </pre>
           <div style={styles.title}>
@@ -54,6 +54,7 @@ const styles = {
     height: '335px',
     width: '250px',
     fontSize: '18px',
+    overflowWrap: 'break-word',
   },
   title: {
     position: 'absolute',
@@ -66,6 +67,11 @@ const styles = {
     left: '12px',
     top: '8px',
     fontSize: '14px',
+  },
+  pre: { 
+    fontSize: '12px', 
+    whiteSpace: 'pre-wrap', 
+    overflow: 'hidden'
   }
 }
 

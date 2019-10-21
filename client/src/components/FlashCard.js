@@ -186,6 +186,7 @@ class FlashCard extends React.Component {
                     name="extra"
                     value={this.state.extra}
                     onChange={this.handleChange}
+                    maxlength="350"
                   />
 
                   <Form.Button>Submit</Form.Button>
