@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Form, Button, Header, Grid } from 'semantic-ui-react';
+import { Form, Button, Header, Grid, Container } from 'semantic-ui-react';
 
 class Login extends React.Component {
   state = { email: '', password: '' }
@@ -20,37 +20,39 @@ class Login extends React.Component {
     const { email, password, } = this.state;
 
     return (
-      <>
-        <Grid>
-          <Grid.Column width={5}>
-            <Header as='h1' style={{ marginTop: '300px', color: '#fff' }}>Login</Header>
-            <Form onSubmit={this.handleSubmit} inverted>
-              <Form.Input
-                label="Email"
-                autofocus
-                required
-                name='email'
-                value={email}
-                placeholder='Email'
-                onChange={this.handleChange}
-              />
-              <Form.Input
-                label="Password"
-                required
-                name='password'
-                value={password}
-                placeholder='Password'
-                type='password'
-                onChange={this.handleChange}
-              />
-              <Button primary type='submit'>Submit</Button>
-            </Form>
-          </Grid.Column>
-          <Grid.Column>
-            {/* // reserved for? */}
-          </Grid.Column>
-        </Grid>
-      </>
+      <div className='login_page'>
+        <Container>
+          <Grid>
+            <Grid.Column width={5}>
+              <Header as='h1' style={{ marginTop: '300px', color: '#fff' }}>Login</Header>
+              <Form onSubmit={this.handleSubmit} inverted>
+                <Form.Input
+                  label="Email"
+                  autofocus
+                  required
+                  name='email'
+                  value={email}
+                  placeholder='Email'
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  label="Password"
+                  required
+                  name='password'
+                  value={password}
+                  placeholder='Password'
+                  type='password'
+                  onChange={this.handleChange}
+                />
+                <Button primary type='submit'>Submit</Button>
+              </Form>
+            </Grid.Column>
+            <Grid.Column>
+              {/* // reserved for? */}
+            </Grid.Column>
+          </Grid>
+        </Container>
+      </div>
     )
   }
 }
