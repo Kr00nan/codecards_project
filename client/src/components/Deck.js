@@ -96,7 +96,7 @@ class Deck extends React.Component {
           checked={editDeck.public}
           onChange={this.handlePublicChange}
         />
-        <Form.Button>Save Changes</Form.Button>
+        <Form.Button color ="blue">Save Changes</Form.Button>
       </Form>
     )
   }
@@ -105,7 +105,7 @@ class Deck extends React.Component {
     const { showForm, question, answer, extra } = this.state
     return (
       <Card style={styles.card}>
-        <Button onClick={this.toggleForm}>{showForm ? 'Nevermind' : 'Add Card'}</Button>
+        <Button color="blue" onClick={this.toggleForm}>{showForm ? 'Nevermind' : 'Add Card'}</Button>
         {showForm &&
           <Form onSubmit={this.handleAddCard}>
             <Form.Input
@@ -131,7 +131,7 @@ class Deck extends React.Component {
               value={extra}
               onChange={this.handleChange}
             />
-            <Form.Button>Add Card</Form.Button>
+            <Form.Button color="blue">Add Card</Form.Button>
           </Form>
         }
       </Card>
@@ -154,8 +154,9 @@ class Deck extends React.Component {
           <Header as="h1" textAlign="center">{deck.title}</Header>
         }
         <br />
+        <br />
         {(auth.user.id === deck.user_id || admin_authenticated) &&
-          <Button onClick={this.toggleEditDeck}>
+          <Button color ="blue" onClick={this.toggleEditDeck}>
             {showEdit ? "Close Edit" : "Edit Deck"}
           </Button>
 

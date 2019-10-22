@@ -65,9 +65,7 @@ const Home = () => (
     <br />
     <br />
     <br />
-    <Segment fluid>
-
-    </Segment>
+    
   </>
 );
 

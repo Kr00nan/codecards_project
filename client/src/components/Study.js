@@ -57,7 +57,6 @@ class Study extends React.Component {
     const { decks, activeDeck, cards, started, showFront, cardIndex, done, deckLink } = this.state
     return (
       <Container>
-
         <div style={styles.container}>
           <Menu as='div' vertical style={styles.side}>
             <Menu.Header as="h1" content="Decks" />

@@ -35,32 +35,36 @@ class Browse extends React.Component {
     return (
       <Container>
         <br />
-        <Input type="text"
+        <Input 
+          type="text"
+          color="teal"
           placeholder="search ..."
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
         />
         <br />
-        <Menu fluid widths={2}>
+        <Menu inverted fluid widths={2}>
           <Menu.Item
             name='decks'
+            color="grey"
             active={activeItem === 'decks'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name='cards'
+            color="grey"
             active={activeItem === 'cards'}
             onClick={this.handleItemClick}
           />
         </Menu>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group color="white" itemsPerRow={4}>
           {(activeItem === 'decks') &&
             decks.map( deck =>
               <Card 
                 key={deck.id}
                 as={Link} 
                 to={`/decks/${deck.id}`}
-                color="grey"
+                color="white"
                 style={styles.deck}
               >
                 {deck.title}
@@ -87,6 +91,7 @@ const styles = {
     borderRadius: '18px', 
     height: '335px',
     fontSize: '30px',
+    color:'#000000',
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
