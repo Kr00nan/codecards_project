@@ -41,23 +41,19 @@ class MyDecks extends React.Component {
     const { decks, showForm, newDeck } = this.state
     return(
       <>
-        <Header as="h1">My Decks</Header>
+        <Header as="h1" textAlign="center" style={{margin: '20px 0 10px'}}>My Decks</Header>
         <Card.Group itemsPerRow={4}>
-          { decks.length === 0 ? 
-            <div>You have no decks yet</div> 
-          :
-            decks.map( deck => 
-              <Card 
-                key={deck.id}
-                as={Link} 
-                to={`/decks/${deck.id}`}
-                color="grey"
-                style={styles.card}
-              >
-                <Card.Header>{deck.title}</Card.Header>
-              </Card>
-            )
-          }
+          {decks.map( deck => 
+            <Card 
+              key={deck.id}
+              as={Link} 
+              to={`/decks/${deck.id}`}
+              color="grey"
+              style={styles.card}
+            >
+              <Card.Header>{deck.title}</Card.Header>
+            </Card>
+          )}
           <Card 
             as={Link}
             to={`/focus_deck`}
@@ -66,23 +62,24 @@ class MyDecks extends React.Component {
           >
             <Card.Header>Focus Deck</Card.Header>
           </Card>
+          <Card style={styles.card} color="grey">
+            <Button onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
+            { showForm &&
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Input 
+                  label="Deck Name"
+                  placeholder="10 char limit..."
+                  name="title"
+                  value={newDeck.title}
+                  onChange={this.handleChange}
+                  maxLength="10"
+                  required
+                />
+                <Form.Button>Submit</Form.Button>
+              </Form>
+            }
+          </Card>
         </Card.Group>
-        <Button onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
-        { showForm &&
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Input 
-              width={4}
-              label="Deck Name"
-              placeholder="10 char limit..."
-              name="title"
-              value={newDeck.title}
-              onChange={this.handleChange}
-              maxLength="10"
-              required
-            />
-            <Form.Button>Submit</Form.Button>
-          </Form>
-        }
       </>
     )
   }
@@ -93,7 +90,7 @@ const styles = {
     padding: '16.625px', 
     borderRadius: '16.625px', 
     height: '332.5px',
-    fontSize: '30px',
+    fontSize: '28px',
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
