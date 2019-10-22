@@ -67,7 +67,8 @@ class MyDecks extends React.Component {
             <Card.Header>Focus Deck</Card.Header>
           </Card>
         </Card.Group>
-        <Button onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
+        <br />
+        <Button onClick={this.toggleForm} color="blue">{ showForm ? "Close" : "Create New Deck"}</Button>
         { showForm &&
           <Form onSubmit={this.handleSubmit}>
             <Form.Input 
