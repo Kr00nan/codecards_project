@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
 import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
-import beaker from '../images/Beaker-white.png';
+import beaker from '../images/beaker.png';
 
 class Navbar extends React.Component {
 
