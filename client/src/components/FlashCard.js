@@ -150,11 +150,21 @@ class FlashCard extends React.Component {
                 <div className='ui three buttons'>
                   {(auth.user.id === this.state.owner_id || admin_authenticated) &&
                     <>
-                      <Button onClick={this.toggleShowForm} style={styles.firstBtn}>{showForm ? 'Cancel' : 'Edit'}</Button>
+                      <Button onClick={this.toggleShowForm} style={styles.firstBtn}>
+                        {showForm ? 'Cancel' : 'Edit'}
+                      </Button>
                       <Button onClick={this.handleDelete} color='red'>Delete</Button>
                     </>
                   }
-                  <Button onClick={() => this.makeFocusCard(id)} color='yellow' style={styles.lastBtn}>Focus</Button>
+                  <Button 
+                    onClick={() => this.makeFocusCard(id)} 
+                    color='yellow' 
+                    style={styles.lastBtn} 
+                    className='tool'
+                  >
+                    Focus
+                    <div className='tooltip'>Add to Focus Deck</div>
+                  </Button>
                 </div>
               </Card.Content>
             </Card>
