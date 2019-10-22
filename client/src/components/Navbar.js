@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
 import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
-import beaker32 from '../images/beaker32.png';
+import beaker from '../images/Beaker-white.png';
 
 class Navbar extends React.Component {
 
@@ -83,7 +83,7 @@ class Navbar extends React.Component {
       <nav>
         <Menu pointing secondary style={styles.navBar}>
             <Image
-              src={beaker32}
+              src={beaker}
               as='a'
               // size='medium'
               href={this.props.location.pathname && '/'}

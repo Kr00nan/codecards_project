@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { Button, Form, Header, Grid, } from 'semantic-ui-react';
 
 class Register extends React.Component {
   state = { email: '', password: '', passwordConfirmation: '', };
@@ -25,41 +25,44 @@ class Register extends React.Component {
     const { email, password, passwordConfirmation, } = this.state;
 
     return (
-      <Segment basic>
-        <Header as='h1' textAlign='center'>Register</Header>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Input
-            label="Email"
-            required
-            autoFocus
-            name='email'
-            value={email}
-            placeholder='Email'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Password"
-            required
-            name='password'
-            value={password}
-            placeholder='Password'
-            type='password'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Password Confirmation"
-            required
-            name='passwordConfirmation'
-            value={passwordConfirmation}
-            placeholder='Password Confirmation'
-            type='password'
-            onChange={this.handleChange}
-          />
-          <Segment textAlign='center' basic>
+      <Grid>
+        <Grid.Column width={5}>
+          <Header as='h1' style={{ marginTop: '300px', color: '#fff' }}>Register</Header>
+          <Form onSubmit={this.handleSubmit} inverted>
+            <Form.Input
+              label="Email"
+              required
+              autoFocus
+              name='email'
+              value={email}
+              placeholder='Email'
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Password"
+              required
+              name='password'
+              value={password}
+              placeholder='Password'
+              type='password'
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Password Confirmation"
+              required
+              name='passwordConfirmation'
+              value={passwordConfirmation}
+              placeholder='Password Confirmation'
+              type='password'
+              onChange={this.handleChange}
+            />
             <Button primary type='submit'>Submit</Button>
-          </Segment>
-        </Form>
-      </Segment>
+          </Form>
+        </Grid.Column>
+        <Grid.Column>
+
+        </Grid.Column>
+      </Grid>
     )
   }
 }
@@ -68,7 +71,7 @@ export default class ConnectedRegister extends React.Component {
   render() {
     return (
       <AuthConsumer>
-        { auth => <Register {...this.props} auth={auth} /> }
+        {auth => <Register {...this.props} auth={auth} />}
       </AuthConsumer>
     )
   }
