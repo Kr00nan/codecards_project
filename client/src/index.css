@@ -12,3 +12,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.tool {
+  position: relative;
+  display: inline-block;
+}
+
+.tool .tooltip {
+  visibility: hidden;
+  width: 90px;
+  background-color: rgba(20, 20, 20, 0.75);
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  /* position */
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -45px;
+  z-index: 1;
+}
+
+.tool .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(20, 20, 20, 0.75) transparent transparent transparent;
+}
+
+.tool:hover .tooltip{
+  visibility: visible;
+}

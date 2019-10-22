@@ -164,7 +164,7 @@ class Deck extends React.Component {
         <hr />
         <Card.Group itemsPerRow={4}>
           {cards.length === 0 ?
-            <div>This deck has no cards yet</div>
+            <div style={{width: '264px', fontSize: '18px', padding: '25px'}}>This deck has no cards yet...</div>
             :
             <>
               {cards.map(card =>
@@ -198,7 +198,7 @@ const ConnectedDeck = (props) => (
 
 const styles = {
   card: {
-    margin: '6.5px',
+    margin: '6.5px !important',
     padding: '25px',
     borderRadius: '18px',
     height: '335px',
