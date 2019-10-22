@@ -8,9 +8,39 @@ class DeckCard extends React.Component {
 
   flip = () => this.setState({ isFlipped: !this.state.isFlipped, })
 
+  bottomRight = () => {
+    const { id, deck_id, title, push, } = this.props
+    return (
+      <div style={styles.options}>
+        <Icon className='tool' name='sync' link onClick={this.flip}>
+          <div className='tooltip'>Flip Card</div>
+        </Icon>
+        { this.props.rc_id && 
+          <Icon 
+            name='remove circle' 
+            link 
+            onClick={() => this.props.removeReviewCard(this.props.rc_id)}
+            className='tool'
+          >
+            <div className='tooltip'>Remove From Deck</div>
+          </Icon> 
+        }
+        <Icon 
+          name='external square alternate' 
+          link 
+          onClick={() => push(`/decks/${deck_id}/cards/${id}`)}
+          className='tool'
+        >
+          <div className='tooltip'>Go To Card</div>
+        </Icon>
+        {title}
+      </div>
+    )
+  }
+
   render() {
     const { isFlipped, } = this.state
-    const { id, question, answer, extra, deck_id, title, push, } = this.props
+    const { question, answer, extra, } = this.props
     return (
       <Card 
         style={{margin: '12px'}}
@@ -20,14 +50,7 @@ class DeckCard extends React.Component {
         <FrontSide style={styles.card}>
           <div style={styles.qna}>Q</div>
           {question}
-          <div style={styles.title}>
-            <Icon name='sync' link onClick={this.flip}/>
-            { this.props.rc_id && 
-              <Icon name='remove circle' link onClick={() => this.props.removeReviewCard(this.props.rc_id)}/> 
-            }
-            <Icon name='external square alternate' link onClick={() => push(`/decks/${deck_id}/cards/${id}`)}/>
-            <Link to={`/decks/${deck_id}`}>{title}</Link>
-          </div>
+          {this.bottomRight()}
         </FrontSide>
         <BackSide style={styles.card}>
           <div style={styles.qna}>A</div>
@@ -35,11 +58,7 @@ class DeckCard extends React.Component {
           <pre style={styles.pre}>
             {extra}
           </pre>
-          <div style={styles.title}>
-            <Icon name='sync' link onClick={this.flip}/>
-            <Icon name='external square alternate' link onClick={() => push(`/decks/${deck_id}/cards/${id}`)}/>
-            <Link to={`/decks/${deck_id}`}>{title}</Link>
-          </div>
+          {this.bottomRight()}
         </BackSide>
       </Card>
     )
@@ -55,11 +74,12 @@ const styles = {
     width: '250px',
     fontSize: '18px',
     overflowWrap: 'break-word',
+    backgroundColor: 'white',
   },
-  title: {
+  options: {
     position: 'absolute',
-    bottom: '18px',
-    right: '18px',
+    bottom: '15px',
+    right: '20px',
     fontSize: '14px',
   },
   qna: {
