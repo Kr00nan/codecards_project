@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Form, Header, Grid, Input } from 'semantic-ui-react';
+import { Form, Header, Grid } from 'semantic-ui-react';
 
 class Login extends React.Component {
   state = { email: '', password: '' }
@@ -25,11 +24,11 @@ class Login extends React.Component {
         <Grid>
           <Grid.Column width={5}>
 
-            <Header as='h1'style={{marginTop: '350px', color: '#fff'}}>Login</Header>
-            <Form onSubmit={this.handleSubmit}>
+            <Header as='h1' style={{ marginTop: '350px', color: '#fff' }}>Login</Header>
+            <Form onSubmit={this.handleSubmit} inverted>
               <Form.Input
                 label="Email"
-                autoFocus
+                autofocus
                 required
                 name='email'
                 value={email}
@@ -57,10 +56,6 @@ class Login extends React.Component {
     )
   }
 }
-
-const styledInput = styled(Input)`
-    color: white;
-  `
 
 export default class ConnectedLogin extends React.Component {
   render() {
