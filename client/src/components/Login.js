@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Form, Header, Grid } from 'semantic-ui-react';
+import { Form, Button, Header, Grid } from 'semantic-ui-react';
 
 class Login extends React.Component {
   state = { email: '', password: '' }
@@ -23,8 +23,7 @@ class Login extends React.Component {
       <>
         <Grid>
           <Grid.Column width={5}>
-
-            <Header as='h1' style={{ marginTop: '350px', color: '#fff' }}>Login</Header>
+            <Header as='h1' style={{ marginTop: '300px', color: '#fff' }}>Login</Header>
             <Form onSubmit={this.handleSubmit} inverted>
               <Form.Input
                 label="Email"
@@ -44,8 +43,7 @@ class Login extends React.Component {
                 type='password'
                 onChange={this.handleChange}
               />
-              <br />
-              <Form.Button>Submit</Form.Button>
+              <Button primary type='submit'>Submit</Button>
             </Form>
           </Grid.Column>
           <Grid.Column>
