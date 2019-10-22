@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import { Link } from 'react-router-dom';
-import { Button, Form, Card, Icon } from 'semantic-ui-react';
+import { Button, Form, Card, Icon, Container } from 'semantic-ui-react';
 import { AuthConsumer, } from '../providers/AuthProvider';
 
 class FlashCard extends React.Component {
@@ -122,7 +122,7 @@ class FlashCard extends React.Component {
     const { auth, admin_authenticated, } = this.props;
 
     return (
-      <>
+      <Container>
         <Link to={`/decks/${deck_id}`}>Back to deck</Link>
         <br />
         <br />
@@ -207,7 +207,7 @@ class FlashCard extends React.Component {
             }
           </div>
         </div>
-      </>
+      </Container>
     );
   };
 };

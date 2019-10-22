@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Card, Input, } from 'semantic-ui-react'
+import { Menu, Card, Input, Container, } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
 import DeckCard from './DeckCard'
@@ -33,7 +33,7 @@ class Browse extends React.Component {
     );
     const { activeItem, decks, } = this.state
     return (
-      <>
+      <Container>
         <br />
         <Input type="text"
           placeholder="search ..."
@@ -77,7 +77,7 @@ class Browse extends React.Component {
             )
           }
         </Card.Group>
-      </>
+      </Container>
     )
   }
 }

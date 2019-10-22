@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import { Header, Card, Button, Form, } from 'semantic-ui-react'
+import { Header, Card, Button, Form, Container, } from 'semantic-ui-react'
 import { AuthConsumer, } from '../providers/AuthProvider'
 import DeckCard from './DeckCard'
 
@@ -142,7 +142,7 @@ class Deck extends React.Component {
     const { deck, cards, showEdit, } = this.state
     const { auth, admin_authenticated, } = this.props
     return (
-      <>
+      <Container>
         <br />
         {showEdit ?
           <>
@@ -178,7 +178,7 @@ class Deck extends React.Component {
           }
           {(auth.user.id === deck.user_id || admin_authenticated) && this.addCardForm()}
         </Card.Group>
-      </>
+      </Container>
     )
   }
 }

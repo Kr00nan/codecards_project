@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, Icon, } from 'semantic-ui-react'
 import Flippy, { FrontSide, BackSide, } from 'react-flippy'
-import { Link, } from 'react-router-dom'
 
 class DeckCard extends React.Component {
   state = { isFlipped: false, }
