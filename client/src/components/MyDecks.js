@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Card, Header, Button, Form, } from 'semantic-ui-react'
+import { Card, Header, Button, Form, Container, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 
 class MyDecks extends React.Component {
@@ -40,7 +40,7 @@ class MyDecks extends React.Component {
   render() {
     const { decks, showForm, newDeck } = this.state
     return(
-      <>
+      <Container>
         <Header as="h1" textAlign="center" style={{margin: '20px 0 10px'}}>My Decks</Header>
         <Card.Group itemsPerRow={4}>
           {decks.map( deck => 
@@ -80,24 +80,7 @@ class MyDecks extends React.Component {
             }
           </Card>
         </Card.Group>
-        <br />
-        <Button onClick={this.toggleForm} color="blue">{ showForm ? "Close" : "Create New Deck"}</Button>
-        { showForm &&
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Input 
-              width={4}
-              label="Deck Name"
-              placeholder="10 char limit..."
-              name="title"
-              value={newDeck.title}
-              onChange={this.handleChange}
-              maxLength="10"
-              required
-            />
-            <Form.Button>Submit</Form.Button>
-          </Form>
-        }
-      </>
+      </Container>
     )
   }
 }
