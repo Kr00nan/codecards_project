@@ -1,6 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Form, Header, Grid } from 'semantic-ui-react';
+import { Form, Header, Grid, Input } from 'semantic-ui-react';
 
 class Login extends React.Component {
   state = { email: '', password: '' }
@@ -44,7 +45,8 @@ class Login extends React.Component {
                 type='password'
                 onChange={this.handleChange}
               />
-              <Form.Button primary color='purple'>Submit</Form.Button>
+              <br />
+              <Form.Button>Submit</Form.Button>
             </Form>
           </Grid.Column>
           <Grid.Column>
@@ -55,6 +57,10 @@ class Login extends React.Component {
     )
   }
 }
+
+const styledInput = styled(Input)`
+    color: white;
+  `
 
 export default class ConnectedLogin extends React.Component {
   render() {
