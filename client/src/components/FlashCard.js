@@ -123,88 +123,92 @@ class FlashCard extends React.Component {
 
     return (
       <Container>
-        <Link to={`/decks/${deck_id}`}>Back to deck</Link>
+        <Link to={`/decks/${deck_id}`} color="blue">Back to deck</Link>
         <br />
         <br />
-        <div style={{ width: '375px' }}>
-          <div>
-            <Flippy
-              flipOnClick={true}
-              flipDirection="vertical"
-              ref={(r) => this.flippy = r}
-            >
-              <FrontSide style={styles.card}>
-                <div style={styles.qna}>Q</div>
-                {question}
-              </FrontSide>
-              <BackSide style={styles.card}>
-                <div style={styles.qna}>A</div>
-                {answer}
-                <pre style={{fontSize: '18px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
-                  {extra}
-                </pre>
-              </BackSide>
-            </Flippy>
-            <Card style={styles.btnSection}>
-              <Card.Content>
-                <div className='ui three buttons'>
-                  {(auth.user.id === this.state.owner_id || admin_authenticated) &&
-                    <>
-                      <Button onClick={this.toggleShowForm} style={styles.firstBtn}>
-                        {showForm ? 'Cancel' : 'Edit'}
-                      </Button>
-                      <Button onClick={this.handleDelete} color='red'>Delete</Button>
-                    </>
-                  }
-                  <Button 
-                    onClick={() => this.makeFocusCard(id)} 
-                    color='yellow' 
-                    style={styles.lastBtn} 
-                    className='tool'
-                  >
-                    Focus
+        <div style={styles.container}>
+          <div style={styles.item}>
+            <Icon link name='angle left' size='massive' onClick={this.navButton} />
+          </div>
+          <div style={{ width: '375px' }}>
+            <div>
+              <Flippy
+                flipOnClick={true}
+                flipDirection="vertical"
+                ref={(r) => this.flippy = r}
+              >
+                <FrontSide style={styles.card}>
+                  <div style={styles.qna}>Q</div>
+                  {question}
+                </FrontSide>
+                <BackSide style={styles.card}>
+                  <div style={styles.qna}>A</div>
+                  {answer}
+                  <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}>
+                    {extra}
+                  </pre>
+                </BackSide>
+              </Flippy>
+              <Card style={styles.btnSection}>
+                <Card.Content>
+                  {/* edit, delete, focus buttons */}
+                  <div className='ui three buttons'>
+                    {(auth.user.id === this.state.owner_id || admin_authenticated) &&
+                      <>
+                        <Button onClick={this.toggleShowForm}>
+                          {showForm ? 'Cancel' : 'Edit'}
+                        </Button>
+                        <Button onClick={this.handleDelete} color='red'>Delete</Button>
+                      </>
+                    }
+                    <Button
+                      onClick={() => this.makeFocusCard(id)}
+                      color='yellow'
+                      className='tool'
+                    >
+                      Focus
                     <div className='tooltip'>Add to Focus Deck</div>
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
-            <div style={styles.bottomBtns}>
-              <Icon link name='angle left' size='huge' onClick={this.navButton} />
-              <Button onClick={this.randomCard}>Random</Button>
-              <Icon link name='angle right' size='huge' onClick={this.navButton} />
+                    </Button>
+                  </div>
+                </Card.Content>
+              </Card>
+              
+              <Button onClick={this.randomCard} className='ui fluid'>Random</Button>
+              {showForm ?
+                (
+                  <Form onSubmit={this.handleSubmit}>
+                    <Form.Input
+                      label="Question"
+                      name="question"
+                      value={this.state.question}
+                      onChange={this.handleChange}
+                    />
+
+                    <Form.Input
+                      label="Answer"
+                      name="answer"
+                      value={this.state.answer}
+                      onChange={this.handleChange}
+                    />
+
+                    <Form.TextArea
+                      label="Extra"
+                      name="extra"
+                      value={this.state.extra}
+                      onChange={this.handleChange}
+                      maxlength="350"
+                    />
+
+                    <Form.Button color="blue">Submit</Form.Button>
+                  </Form>
+                )
+                :
+                ""
+              }
             </div>
-
-            {showForm ?
-              (
-                <Form onSubmit={this.handleSubmit}>
-                  <Form.Input
-                    label="Question"
-                    name="question"
-                    value={this.state.question}
-                    onChange={this.handleChange}
-                  />
-
-                  <Form.Input
-                    label="Answer"
-                    name="answer"
-                    value={this.state.answer}
-                    onChange={this.handleChange}
-                  />
-
-                  <Form.TextArea
-                    label="Extra"
-                    name="extra"
-                    value={this.state.extra}
-                    onChange={this.handleChange}
-                    maxlength="350"
-                  />
-
-                  <Form.Button>Submit</Form.Button>
-                </Form>
-              )
-              :
-              ""
-            }
+          </div>
+          <div style={styles.item}>
+            <Icon link name='angle right' size='massive' onClick={this.navButton} />
           </div>
         </div>
       </Container>
@@ -237,11 +241,12 @@ const styles = {
   },
   card: {
     padding: '37.5px',
-    borderRadius: '27px 27px 0px 0px',
+    borderRadius: '5px 5px 0px 0px',
     width: '375px',
     height: '425px',
     fontSize: '27px',
     lineHeight: 'normal',
+    backgroundColor: '#ebeced'
   },
   qna: {
     position: 'absolute',
@@ -252,20 +257,22 @@ const styles = {
   btnSection: {
     width: '375px',
     height: '60px',
-    borderRadius: '0px 0px 27px 27px',
+    borderRadius: '0px 0px 5px 5px',
     boxShadow: '0px 4px 7px lightgrey',
-    marginTop: '0px'
-  },
-  firstBtn: {
-    borderRadius: '0px 0px 0px 27px',
-  },
-  lastBtn: {
-    borderRadius: '0px 0px 27px 0px'
+    marginTop: '0px',
   },
   bottomBtns: {
     width: '375px',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'stretch'
+  },
+  container: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  item: {
+    paddingTop: '15rem'
   }
 }
 

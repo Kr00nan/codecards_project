@@ -204,6 +204,7 @@ const styles = {
     height: '335px',
     width: '250px',
     fontSize: '18px',
+    backgroundColor: '#ebeced'
   }
 }
 

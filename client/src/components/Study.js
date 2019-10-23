@@ -67,21 +67,25 @@ class Study extends React.Component {
             />
             <Menu.Item
               name='CSS'
+              color="blue"
               active={activeDeck === 'CSS'}
               onClick={() => this.handleDeckClick(2, 'CSS')}
             />
             <Menu.Item
               name='RUBY'
+              color="red"
               active={activeDeck === 'RUBY'}
               onClick={() => this.handleDeckClick(3, 'RUBY')}
             />
             <Menu.Item
               name='JS'
+              color="yellow"
               active={activeDeck === 'JS'}
               onClick={() => this.handleDeckClick(4, 'JS')}
             />
             <Menu.Item
               name='Focus Deck'
+              color="green"
               active={activeDeck === 'Focus Deck'}
               onClick={() => this.handleDeckClick(0, 'Focus Deck')}
             />
@@ -122,15 +126,15 @@ class Study extends React.Component {
                           }
                         </Card>
                         {showFront ?
-                          <Button onClick={() => this.setState({ showFront: false, })} style={{ width: '525px' }}>
+                          <Button color="blue" onClick={() => this.setState({ showFront: false, })} style={{ width: '525px' }}>
                             Reveal Answer
                         </Button>
                           :
                           <Button.Group>
-                            <Button onClick={this.handleNoClick} style={{ width: '262.5px' }}>
+                            <Button color="yellow" onClick={this.handleNoClick} style={{ width: '262.5px' }}>
                               Didn't Get It
                           </Button>
-                            <Button onClick={this.handleYesClick} style={{ width: '262.5px' }}>
+                            <Button color="green" onClick={this.handleYesClick} style={{ width: '262.5px' }}>
                               Got It!
                           </Button>
                           </Button.Group>
@@ -139,7 +143,7 @@ class Study extends React.Component {
                     }
                   </>
                   :
-                  <Button onClick={this.handleStartClick}>Start</Button>
+                  <Button color="blue" onClick={this.handleStartClick}>Start</Button>
                 }
               </>
             }
@@ -171,6 +175,7 @@ const styles = {
     height: '375px',
     width: '525px',
     fontSize: '18px',
+    backgroundColor: '#ebeced',
   },
 }
 

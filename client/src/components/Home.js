@@ -5,7 +5,7 @@ import css from '../images/css.jpg';
 import javascript from '../images/javascript-logo.jpeg';
 import ruby from '../images/ruby.jpg';
 import '../index.css';
-import { Container, Grid, Header, Image, Segment, } from 'semantic-ui-react';
+import { Container, Grid, Header, Image, } from 'semantic-ui-react';
 
 const Home = () => (
   <>

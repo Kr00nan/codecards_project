@@ -63,7 +63,7 @@ class MyDecks extends React.Component {
             <Card.Header>Focus Deck</Card.Header>
           </Card>
           <Card style={styles.card} color="grey">
-            <Button onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
+            <Button color="blue" onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
             { showForm &&
               <Form onSubmit={this.handleSubmit}>
                 <Form.Input 
@@ -75,7 +75,7 @@ class MyDecks extends React.Component {
                   maxLength="10"
                   required
                 />
-                <Form.Button>Submit</Form.Button>
+                <Form.Button color="blue">Submit</Form.Button>
               </Form>
             }
           </Card>
@@ -95,6 +95,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     fontWeight: 'bold',
+    backgroundColor: '#ebeced'
   },
 }
 

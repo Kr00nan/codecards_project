@@ -46,25 +46,24 @@ class Browse extends React.Component {
         <Menu inverted fluid widths={2}>
           <Menu.Item
             name='decks'
-            color="grey"
+            color="violet"
             active={activeItem === 'decks'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name='cards'
-            color="grey"
+            color="violet"
             active={activeItem === 'cards'}
             onClick={this.handleItemClick}
           />
         </Menu>
-        <Card.Group color="white" itemsPerRow={4}>
+        <Card.Group itemsPerRow={4}>
           {(activeItem === 'decks') &&
             decks.map( deck =>
               <Card 
                 key={deck.id}
                 as={Link} 
                 to={`/decks/${deck.id}`}
-                color="white"
                 style={styles.deck}
               >
                 {deck.title}
@@ -96,6 +95,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     fontWeight: 'bold',
+    backgroundColor: '#ebeced',
   },
 }
 
