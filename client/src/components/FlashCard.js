@@ -123,7 +123,7 @@ class FlashCard extends React.Component {
 
     return (
       <Container>
-        <Link to={`/decks/${deck_id}`}>Back to deck</Link>
+        <Link to={`/decks/${deck_id}`} color="blue">Back to deck</Link>
         <br />
         <br />
         <div style={{ width: '375px' }}>
@@ -163,14 +163,14 @@ class FlashCard extends React.Component {
                     className='tool'
                   >
                     Focus
-                    <div className='tooltip'>Add to Focus Deck</div>
+                    <div className='tooltip' color="green">Add to Focus Deck</div>
                   </Button>
                 </div>
               </Card.Content>
             </Card>
             <div style={styles.bottomBtns}>
               <Icon link name='angle left' size='huge' onClick={this.navButton} />
-              <Button onClick={this.randomCard}>Random</Button>
+              <Button color="blue" onClick={this.randomCard}>Random</Button>
               <Icon link name='angle right' size='huge' onClick={this.navButton} />
             </div>
 
@@ -199,7 +199,7 @@ class FlashCard extends React.Component {
                     maxlength="350"
                   />
 
-                  <Form.Button>Submit</Form.Button>
+                  <Form.Button color="blue">Submit</Form.Button>
                 </Form>
               )
               :
@@ -242,6 +242,7 @@ const styles = {
     height: '425px',
     fontSize: '27px',
     lineHeight: 'normal',
+    backgroundColor: '#ebeced'
   },
   qna: {
     position: 'absolute',
