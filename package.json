@@ -1,14 +1,29 @@
 {
   "name": "codecards_project",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "repository": "git@github.com:Kr00nan/codecards_project.git",
-  "author": "Audrey Garcia <audrey.marcella9@gmail.com>",
-  "license": "MIT",
-  "proxy": "http://localhost:3001",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
-    "build": "cd client && yarn install && yarn build && cd ..",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
-  }
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kr00nan/codecards_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kr00nan/codecards_project/issues"
+  },
+  "homepage": "https://github.com/Kr00nan/codecards_project#readme"
 }
