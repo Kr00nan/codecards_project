@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
 class Profile extends React.Component {
-  state = { editing: false, formValues: { email: '', file: '', }, };
+  state = { editing: false, formValues: { email: '', file: '', name: ''}, };
 
   onDrop = (files) => {
     this.setState({ formValues: { ...this.state.formValues, file: files[0], } });
@@ -34,9 +34,9 @@ class Profile extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { formValues: { email, file, }, } = this.state;
+    const { formValues: { email, file, name,}, } = this.state;
     const { auth: { user, updateUser, }, } = this.props;
-    updateUser(user.id, { email, file, });
+    updateUser(user.id, { email, file, name,});
     // after the form has been submitted, reset form values.
     this.setState({
       editing: false,
@@ -55,7 +55,7 @@ class Profile extends React.Component {
           <Image src={user.image || defaultImage} />
         </Grid.Column>
         <Grid.Column width={8}>
-          <Header as="h1">DevPoint Labs Student</Header>
+          <Header as="h1">{user.name}</Header>
           <Header as="h1">{user.email}</Header>
         </Grid.Column>
       </Fragment>
@@ -63,7 +63,7 @@ class Profile extends React.Component {
   }
 
   editView = () => {
-    const { formValues: { email, password, } } = this.state;
+    const { formValues: {name, email, password, } } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
@@ -92,6 +92,14 @@ class Profile extends React.Component {
         {/* </Form> */}
         {/* <Grid.Column width={8}> */}
           {/* <Form onSubmit={this.handleSubmit}> */}
+          <Form.Input
+              label="Name"
+              autoFocus
+              name='name'
+              value={name}
+              placeholder='User Name'
+              onChange={this.handleChange}
+            />
             <Form.Input
               label="Email"
               autoFocus

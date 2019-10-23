@@ -126,54 +126,54 @@ class FlashCard extends React.Component {
         <Link to={`/decks/${deck_id}`} color="blue">Back to deck</Link>
         <br />
         <br />
-        <div style={styles.container}>
-          <div style={styles.item}>
-            <Icon link name='angle left' size='massive' onClick={this.navButton} />
-          </div>
-          <div style={{ width: '375px' }}>
-            <div>
-              <Flippy
-                flipOnClick={true}
-                flipDirection="vertical"
-                ref={(r) => this.flippy = r}
-              >
-                <FrontSide style={styles.card}>
-                  <div style={styles.qna}>Q</div>
-                  {question}
-                </FrontSide>
-                <BackSide style={styles.card}>
-                  <div style={styles.qna}>A</div>
-                  {answer}
-                  <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}>
-                    {extra}
-                  </pre>
-                </BackSide>
-              </Flippy>
-              <Card style={styles.btnSection}>
-                <Card.Content>
-                  {/* edit, delete, focus buttons */}
-                  <div className='ui three buttons'>
-                    {(auth.user.id === this.state.owner_id || admin_authenticated) &&
-                      <>
-                        <Button onClick={this.toggleShowForm}>
-                          {showForm ? 'Cancel' : 'Edit'}
-                        </Button>
-                        <Button onClick={this.handleDelete} color='red'>Delete</Button>
-                      </>
-                    }
-                    <Button
-                      onClick={() => this.makeFocusCard(id)}
-                      color='yellow'
-                      className='tool'
-                    >
-                      Focus
-                    <div className='tooltip'>Add to Focus Deck</div>
-                    </Button>
-                  </div>
-                </Card.Content>
-              </Card>
-              
-              <Button onClick={this.randomCard} className='ui fluid'>Random</Button>
+        <div style={{ width: '375px' }}>
+          <div>
+            <Flippy
+              flipOnClick={true}
+              flipDirection="vertical"
+              ref={(r) => this.flippy = r}
+            >
+              <FrontSide style={styles.card}>
+                <div style={styles.qna}>Q</div>
+                {question}
+              </FrontSide>
+              <BackSide style={styles.card}>
+                <div style={styles.qna}>A</div>
+                {answer}
+                <pre style={{fontSize: '18px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+                  {extra}
+                </pre>
+              </BackSide>
+            </Flippy>
+            <Card style={styles.btnSection}>
+              <Card.Content>
+                <div className='ui three buttons'>
+                  {(auth.user.id === this.state.owner_id || admin_authenticated) &&
+                    <>
+                      <Button onClick={this.toggleShowForm} style={styles.firstBtn}>
+                        {showForm ? 'Cancel' : 'Edit'}
+                      </Button>
+                      <Button onClick={this.handleDelete} color='red'>Delete</Button>
+                    </>
+                  }
+                  <Button 
+                    onClick={() => this.makeFocusCard(id)} 
+                    color='yellow' 
+                    style={styles.lastBtn} 
+                    className='tool'
+                  >
+                    Focus
+                    <div className='tooltip' color="green">Add to Focus Deck</div>
+                  </Button>
+                </div>
+              </Card.Content>
+            </Card>
+            <div style={styles.bottomBtns}>
+              <Icon link name='angle left' size='huge' onClick={this.navButton} />
+              <Button color="blue" onClick={this.randomCard}>Random</Button>
+              <Icon link name='angle right' size='huge' onClick={this.navButton} />
+            </div>
+
               {showForm ?
                 (
                   <Form onSubmit={this.handleSubmit}>
@@ -199,14 +199,14 @@ class FlashCard extends React.Component {
                       maxlength="350"
                     />
 
-                    <Form.Button color="blue">Submit</Form.Button>
-                  </Form>
-                )
-                :
-                ""
+                  <Form.Button color="blue">Submit</Form.Button>
+                </Form>
+              )
+              :
+              ""
+            }
               }
             </div>
-          </div>
           <div style={styles.item}>
             <Icon link name='angle right' size='massive' onClick={this.navButton} />
           </div>
