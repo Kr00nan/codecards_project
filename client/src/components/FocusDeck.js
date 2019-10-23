@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import { Header, Card, } from 'semantic-ui-react'
+import { Header, Card, Container, } from 'semantic-ui-react'
 import DeckCard from './DeckCard'
 
 class FocusDeck extends React.Component {
@@ -23,7 +23,7 @@ class FocusDeck extends React.Component {
   render() {
     const { cards, } = this.state
     return (
-      <>
+      <Container>
         <br />
         <Header as="h1" textAlign="center">Focus Deck</Header>
         <br />
@@ -42,7 +42,7 @@ class FocusDeck extends React.Component {
             )}
           </Card.Group>
         }
-      </>
+      </Container>
     )
   }
 }
