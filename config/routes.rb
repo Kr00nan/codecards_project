@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     get 'decks/:deck_id/shuffled_cards', to: 'cards#shuffled_index'
     get 'focus', to: 'review_cards#shuffled_index'
   end
+
+  get '*other', to: 'static#index'
 end

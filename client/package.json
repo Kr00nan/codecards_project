@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "audrey",
+  "version": "1.17.3",
   "private": true,
   "dependencies": {
     "axios": "^0.18.1",
@@ -20,9 +20,11 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,5 +34,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "main": "index.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "Kr00nan",
+  "license": "ISC",
+  "description": "i don't know what's happening rn",
+  "repository": "git@github.com:Kr00nan/codecards_project.git"
 }
