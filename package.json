@@ -1,0 +1,8 @@
+{
+  "name": "codecards_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Kr00nan/codecards_project.git",
+  "author": "Audrey Garcia <audrey.marcella9@gmail.com>",
+  "license": "MIT"
+}
