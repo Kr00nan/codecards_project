@@ -242,6 +242,7 @@ const styles = {
     height: '425px',
     fontSize: '27px',
     lineHeight: 'normal',
+    left: '375px',
   },
   qna: {
     position: 'absolute',
@@ -254,7 +255,8 @@ const styles = {
     height: '60px',
     borderRadius: '0px 0px 27px 27px',
     boxShadow: '0px 4px 7px lightgrey',
-    marginTop: '0px'
+    marginTop: '0px',
+    left: '375px',
   },
   firstBtn: {
     borderRadius: '0px 0px 0px 27px',
@@ -265,7 +267,9 @@ const styles = {
   bottomBtns: {
     width: '375px',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+   
+
   }
 }
 
