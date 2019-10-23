@@ -123,7 +123,7 @@ class FlashCard extends React.Component {
 
     return (
       <Container>
-        <Link to={`/decks/${deck_id}`}>Back to deck</Link>
+        <Link to={`/decks/${deck_id}`} color="blue">Back to deck</Link>
         <br />
         <br />
         <div style={styles.container}>
@@ -174,7 +174,6 @@ class FlashCard extends React.Component {
               </Card>
               
               <Button onClick={this.randomCard} className='ui fluid'>Random</Button>
-
               {showForm ?
                 (
                   <Form onSubmit={this.handleSubmit}>
@@ -200,7 +199,7 @@ class FlashCard extends React.Component {
                       maxlength="350"
                     />
 
-                    <Form.Button>Submit</Form.Button>
+                    <Form.Button color="blue">Submit</Form.Button>
                   </Form>
                 )
                 :
@@ -247,6 +246,7 @@ const styles = {
     height: '425px',
     fontSize: '27px',
     lineHeight: 'normal',
+    backgroundColor: '#ebeced'
   },
   qna: {
     position: 'absolute',

@@ -73,7 +73,7 @@ const styles = {
     width: '250px',
     fontSize: '18px',
     overflowWrap: 'break-word',
-    backgroundColor: 'white',
+    backgroundColor: '#ebeced',
   },
   options: {
     position: 'absolute',
