@@ -112,7 +112,7 @@ class FlashCard extends React.Component {
     axios.post('/api/review_cards', { card_id })
       .then(res => {
         if (res.data.message) {
-          console.log(res.data.message)
+          alert(res.data.message)
         }
       })
   }
