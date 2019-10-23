@@ -1,7 +1,8 @@
 import React from 'react'
-import { Menu, Card, Button, Container, } from 'semantic-ui-react'
+import { Menu, Card, Button, Image, } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
+
 
 class Study extends React.Component {
   state = {
@@ -56,47 +57,52 @@ class Study extends React.Component {
   render() {
     const { decks, activeDeck, cards, started, showFront, cardIndex, done, deckLink } = this.state
     return (
-      <Container>
-        <div style={styles.container}>
+      <div style={styles.container}>
           <Menu as='div' vertical style={styles.side}>
-            <Menu.Header as="h1" content="Decks" />
+            <Menu.Header as="h1" content="Decks" inverted/>
             <Menu.Item
               name='HTML'
               active={activeDeck === 'HTML'}
               onClick={() => this.handleDeckClick(1, 'HTML')}
-            />
+              style={styles.links}
+              />
             <Menu.Item
               name='CSS'
               color="blue"
               active={activeDeck === 'CSS'}
               onClick={() => this.handleDeckClick(2, 'CSS')}
-            />
+              style={styles.links}
+              />
             <Menu.Item
               name='RUBY'
               color="red"
               active={activeDeck === 'RUBY'}
               onClick={() => this.handleDeckClick(3, 'RUBY')}
-            />
+              style={styles.links}
+              />
             <Menu.Item
               name='JS'
               color="yellow"
               active={activeDeck === 'JS'}
               onClick={() => this.handleDeckClick(4, 'JS')}
-            />
+              style={styles.links}
+              />
             <Menu.Item
               name='Focus Deck'
               color="green"
               active={activeDeck === 'Focus Deck'}
               onClick={() => this.handleDeckClick(0, 'Focus Deck')}
-            />
+              style={styles.links}
+              />
             {decks.map(deck =>
               <Menu.Item
-                key={deck.id}
-                name={deck.title}
-                active={activeDeck === deck.title}
-                onClick={() => this.handleDeckClick(deck.id, deck.title)}
+              key={deck.id}
+              name={deck.title}
+              active={activeDeck === deck.title}
+              onClick={() => this.handleDeckClick(deck.id, deck.title)}
+              style={styles.links}
               />
-            )}
+              )}
           </Menu>
           <div style={{ padding: '15px 200px' }}>
             {cards.length === 0 ?
@@ -126,7 +132,7 @@ class Study extends React.Component {
                           }
                         </Card>
                         {showFront ?
-                          <Button color="blue" onClick={() => this.setState({ showFront: false, })} style={{ width: '525px' }}>
+                          <Button color="teal" onClick={() => this.setState({ showFront: false, })} style={{ width: '525px' }}>
                             Reveal Answer
                         </Button>
                           :
@@ -149,10 +155,10 @@ class Study extends React.Component {
             }
           </div>
         </div>
-      </Container>
     )
   }
 }
+
 
 const styles = {
   container: {
@@ -163,11 +169,17 @@ const styles = {
     width: '1280px'
   },
   side: {
-    backgroundColor: '#f0f0f0',
+    paddingLeft: "100px",
+    backgroundColor: '#6E54A3',
     width: '335px',
     height: '552px',
     borderRadius: '0',
-    margin: '0px'
+    margin: '2px'
+  },
+  links: {
+    color: '#fff',
+    fontSize: '1.2rem',
+    letterSpacing: '3px'
   },
   card: {
     padding: '37.5px',
