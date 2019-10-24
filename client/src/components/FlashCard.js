@@ -155,7 +155,7 @@ class FlashCard extends React.Component {
                   <div className='ui three buttons'>
                     {(auth.user.id === this.state.owner_id || admin_authenticated) &&
                       <>
-                        <Button onClick={this.toggleShowForm}>
+                        <Button color ="blue" onClick={this.toggleShowForm}>
                           {showForm ? 'Cancel' : 'Edit'}
                         </Button>
                         <Button onClick={this.handleDelete} color='red'>Delete</Button>
@@ -173,7 +173,7 @@ class FlashCard extends React.Component {
                 </Card.Content>
               </Card>
 
-              <Button onClick={this.randomCard} className='ui fluid'>Random</Button>
+              <Button onClick={this.randomCard} className='ui fluid' color="blue">Random</Button>
               {showForm ?
                 (
                   <Form onSubmit={this.handleSubmit}>
