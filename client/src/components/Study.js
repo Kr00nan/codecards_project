@@ -171,6 +171,7 @@ class Study extends React.Component {
 const styles = {
   container: {
     display: 'flex',
+    alignItems: 'stretch'
   },
   side: {
     paddingLeft: "2%",
