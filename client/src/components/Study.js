@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Card, Button, Image, } from 'semantic-ui-react'
+import { Menu, Card, Button } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
 import beaker64 from '../images/beaker64.png';

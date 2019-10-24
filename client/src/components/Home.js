@@ -8,65 +8,44 @@ import '../index.css';
 import { Container, Grid, Header, Image, } from 'semantic-ui-react';
 
 const Home = () => (
-  <>
-    <Container>
-      <br />
-      <br />
-      <Image src={dpl_logo} size='small' centered />
-      <br />
-      <Header as="h2" color="violet" textAlign="center" size="huge">Dev Point Labs Code Card</Header>
-      <br />
-      <br />
-      <Header as="h3" color="black" textAlign="center" size="huge">Starter Decks</Header>
-      <br />
-      <br />
-      <br />
-      <Grid centered columns='4' >
-        <Grid divided='vertically'>
-          <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div className="ui card">
-            <Image 
-            src={html} 
-            as='a'
-            href='/decks/1'
-            size='huge' centered  />
-            </div>
-          <br />
-          <br />
-          <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div className="ui card">
-            <Image 
-            src={javascript} 
-            as="a"
-            href='/decks/4'
-            size='huge' centered  />
-          </div>
-          <br />
-          <br />
-          <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div className="ui card">
-            <Image src={css} 
-            as="a"
-            href='/decks/2'
-            size='huge' centered  />
-          </div>
-          <br />
-          <br />
-          <Grid.Column mobile={4} tablet={8} computer={6}></Grid.Column>
-          <div className="ui card">
-            <Image src={ruby} 
-            as="a"
-            href='/decks/3'
-            size='huge' centered  />
-          </div>
-        </Grid>
-      </Grid>
-    </Container>
+
+  <Container>
     <br />
+    <Image src={dpl_logo} size='small' centered />
+
+    <Header as="h2" color="violet" textAlign="center" size="huge">Dev Point Labs Code Card</Header>
+    <Header as="h3" color="black" textAlign="center" size="huge">Starter Decks</Header>
+
     <br />
-    <br />
-    
-  </>
+    <Grid>
+      <Grid.Column mobile={8} tablet={6} computer={4}>
+        <Image
+          src={html}
+          as='a'
+          href='/decks/1'
+          size='medium' />
+      </Grid.Column>
+      <Grid.Column mobile={8} tablet={6} computer={4}>
+        <Image src={css}
+          as="a"
+          href='/decks/2'
+          size='medium' />
+      </Grid.Column>
+      <Grid.Column mobile={8} tablet={6} computer={4}>
+        <Image src={ruby}
+          as="a"
+          href='/decks/3'
+          size='medium' />
+      </Grid.Column>
+      <Grid.Column mobile={8} tablet={6} computer={4}>
+        <Image
+          src={javascript}
+          as="a"
+          href='/decks/4'
+          size='medium' />
+      </Grid.Column>
+    </Grid>
+  </Container>
 );
 
 
