@@ -193,6 +193,7 @@ const styles = {
     width: '100%',
     color:'#27292b',
     fontSize: '18px',
+    letterSpacing: '3px',
     backgroundColor: '#ebeced',
   },
   font: {
