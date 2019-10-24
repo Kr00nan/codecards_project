@@ -42,49 +42,43 @@ class MyDecks extends React.Component {
     return(
       <Container>
         <Header as="h1" textAlign="center" style={{margin: '20px 0 10px'}}>My Decks</Header>
-        <Card.Group as={Grid}>
+        <Card.Group>
           {decks.map( deck => 
-            <Grid.Column mobile={8} tablet={6} computer={4}>
-              <Card 
-                key={deck.id}
-                as={Link} 
-                to={`/decks/${deck.id}`}
-                color="grey"
-                style={styles.card}
-              >
-                <Card.Header>{deck.title}</Card.Header>
-              </Card>
-            </Grid.Column>
-          )}
-          <Grid.Column mobile={8} tablet={5} computer={4}>
             <Card 
-              as={Link}
-              to={`/focus_deck`}
+              key={deck.id}
+              as={Link} 
+              to={`/decks/${deck.id}`}
               color="grey"
               style={styles.card}
             >
-              <Card.Header>Focus Deck</Card.Header>
+              <Card.Header>{deck.title}</Card.Header>
             </Card>
-          </Grid.Column>
-          <Grid.Column mobile={8} tablet={6} computer={4}>
-            <Card style={styles.card} color="grey">
-              <Button color="blue" onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
-              { showForm &&
-                <Form onSubmit={this.handleSubmit}>
-                  <Form.Input 
-                    label="Deck Name"
-                    placeholder="10 char limit..."
-                    name="title"
-                    value={newDeck.title}
-                    onChange={this.handleChange}
-                    maxLength="10"
-                    required
-                  />
-                  <Form.Button color="blue">Submit</Form.Button>
-                </Form>
-              }
-            </Card>
-          </Grid.Column>
+          )}
+          <Card 
+            as={Link}
+            to={`/focus_deck`}
+            color="grey"
+            style={styles.card}
+          >
+            <Card.Header>Focus Deck</Card.Header>
+          </Card>
+          <Card style={styles.card} color="grey">
+            <Button color="blue" onClick={this.toggleForm}>{ showForm ? "Close" : "Create New Deck"}</Button>
+            { showForm &&
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Input 
+                  label="Deck Name"
+                  placeholder="10 char limit..."
+                  name="title"
+                  value={newDeck.title}
+                  onChange={this.handleChange}
+                  maxLength="10"
+                  required
+                />
+                <Form.Button color="blue">Submit</Form.Button>
+              </Form>
+            }
+          </Card>
         </Card.Group>
       </Container>
     )
@@ -96,6 +90,7 @@ const styles = {
     padding: '16.625px', 
     borderRadius: '16.625px', 
     height: '335px',
+    width: '250px',
     fontSize: '28px',
     color:'#27292b',
     textAlign: 'center',
