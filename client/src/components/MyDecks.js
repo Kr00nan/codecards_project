@@ -97,6 +97,7 @@ const styles = {
     borderRadius: '16.625px', 
     height: '335px',
     fontSize: '28px',
+    color:'#27292b',
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
