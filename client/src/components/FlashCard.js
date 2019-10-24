@@ -123,7 +123,10 @@ class FlashCard extends React.Component {
 
     return (
       <Container>
-        <Button to={`/decks/${deck_id}`} color="blue">Back</Button>
+        <Button 
+         as={Link}
+         to={`/decks/${deck_id}`}
+         color="blue">Back</Button>
         <br />
         <br />
         <div style={styles.container}>
