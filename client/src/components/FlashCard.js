@@ -123,6 +123,7 @@ class FlashCard extends React.Component {
 
     return (
       <Container>
+        <br />
         <Button 
          as={Link}
          to={`/decks/${deck_id}`}
@@ -146,10 +147,15 @@ class FlashCard extends React.Component {
                 </FrontSide>
                 <BackSide style={styles.card}>
                   <div style={styles.qna}>A</div>
-                  {answer}
+                  <div style={{ overflowWrap: 'break-word' }}>
+                    {answer}
+                  </div>
+                  <br />
+                  <div style={{ maxHeight: '70%', overflowWrap: 'break-word', overflow: 'auto' }}>
                   <p style={{ fontSize: '18px', margin: '6px'}}>
                     {extra}
                   </p>
+                  </div>
                 </BackSide>
               </Flippy>
               <Card style={styles.btnSection}>
