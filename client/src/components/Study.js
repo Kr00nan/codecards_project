@@ -59,59 +59,59 @@ class Study extends React.Component {
     const { decks, activeDeck, cards, started, showFront, cardIndex, done, deckLink } = this.state
     return (
       <div style={styles.container}>
-          <Menu as='div' vertical style={styles.side}>
-            <Menu.Header as="h1" content="Decks" style={styles.links}/>
+        <Menu as='div' vertical style={styles.side}>
+          <Menu.Header as="h1" content="Decks" style={styles.links}/>
+          <Menu.Item
+            name='HTML'
+            color="green"
+            active={activeDeck === 'HTML'}
+            onClick={() => this.handleDeckClick(1, 'HTML')}
+            style={styles.links}
+            />
+          <Menu.Item
+            name='CSS'
+            color="blue"
+            active={activeDeck === 'CSS'}
+            onClick={() => this.handleDeckClick(2, 'CSS')}
+            style={styles.links}
+            />
+          <Menu.Item
+            name='RUBY'
+            color="red"
+            active={activeDeck === 'RUBY'}
+            onClick={() => this.handleDeckClick(3, 'RUBY')}
+            style={styles.links}
+            />
+          <Menu.Item
+            name='JS'
+            color="yellow"
+            active={activeDeck === 'JS'}
+            onClick={() => this.handleDeckClick(4, 'JS')}
+            style={styles.links}
+            />
+          <Menu.Item
+            name='Focus Deck'
+            active={activeDeck === 'Focus Deck'}
+            onClick={() => this.handleDeckClick(0, 'Focus Deck')}
+            style={styles.links}
+            />
+          {decks.map(deck =>
             <Menu.Item
-              name='HTML'
-              active={activeDeck === 'HTML'}
-              onClick={() => this.handleDeckClick(1, 'HTML')}
-              style={styles.links}
-              />
-            <Menu.Item
-              name='CSS'
-              color="blue"
-              active={activeDeck === 'CSS'}
-              onClick={() => this.handleDeckClick(2, 'CSS')}
-              style={styles.links}
-              />
-            <Menu.Item
-              name='RUBY'
-              color="red"
-              active={activeDeck === 'RUBY'}
-              onClick={() => this.handleDeckClick(3, 'RUBY')}
-              style={styles.links}
-              />
-            <Menu.Item
-              name='JS'
-              color="yellow"
-              active={activeDeck === 'JS'}
-              onClick={() => this.handleDeckClick(4, 'JS')}
-              style={styles.links}
-              />
-            <Menu.Item
-              name='Focus Deck'
-              color="green"
-              active={activeDeck === 'Focus Deck'}
-              onClick={() => this.handleDeckClick(0, 'Focus Deck')}
-              style={styles.links}
-              />
-            {decks.map(deck =>
-              <Menu.Item
-              key={deck.id}
-              name={deck.title}
-              active={activeDeck === deck.title}
-              onClick={() => this.handleDeckClick(deck.id, deck.title)}
-              style={styles.links}
-              />
-              )}
-              <br />
-              <br />
-              <Image 
-              src ={beaker64} 
-              as='a'
-              size='huge'/>
-          </Menu>
-          <div style={{ padding: '15px 200px', color: '#232a36' }}>
+            key={deck.id}
+            name={deck.title}
+            active={activeDeck === deck.title}
+            onClick={() => this.handleDeckClick(deck.id, deck.title)}
+            style={styles.links}
+            />
+            )}
+            <br />
+            <Image 
+            src ={beaker64} 
+            as='a'
+            size='huge'/>
+        </Menu>
+        <div style={{ width: '80%', display: 'flex', justifyContent: 'center', }}>
+          <div style={{ color: '#27292b', width: '80%', maxWidth: '550px'}}>
             {cards.length === 0 ?
               <h2 style={styles.font}>Choose a deck that has cards</h2>
               :
@@ -139,15 +139,15 @@ class Study extends React.Component {
                           }
                         </Card>
                         {showFront ?
-                          <Button color="teal" onClick={() => this.setState({ showFront: false, })} style={{ width: '525px' }}>
+                          <Button color="teal" onClick={() => this.setState({ showFront: false, })} style={{ width: '100%' }}>
                             Reveal Answer
                         </Button>
                           :
-                          <Button.Group>
-                            <Button color="yellow" onClick={this.handleNoClick} style={{ width: '262.5px' }}>
+                          <Button.Group style={{ width: '100%', }}>
+                            <Button color="yellow" onClick={this.handleNoClick}>
                               Didn't Get It
                           </Button>
-                            <Button color="green" onClick={this.handleYesClick} style={{ width: '262.5px' }}>
+                            <Button color="green" onClick={this.handleYesClick}>
                               Got It!
                           </Button>
                           </Button.Group>
@@ -162,6 +162,7 @@ class Study extends React.Component {
             }
           </div>
         </div>
+      </div>
     )
   }
 }
@@ -170,18 +171,14 @@ class Study extends React.Component {
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'horizontal',
-    position: 'relative',
-    right: '77px',
-    width: '1280px'
+    alignItems: 'stretch'
   },
   side: {
-    paddingLeft: "100px",
+    paddingLeft: "2%",
     backgroundColor: '#6E54A3',
-    width: '335px',
-    height: '552px',
+    width: '20%',
     borderRadius: '0',
-    margin: '2px'
+    margin: '0px'
   },
   links: {
     color: '#fff',
@@ -193,7 +190,7 @@ const styles = {
     padding: '37.5px',
     borderRadius: '18px',
     height: '375px',
-    width: '525px',
+    width: '100%',
     color:'#27292b',
     fontSize: '18px',
     backgroundColor: '#ebeced',

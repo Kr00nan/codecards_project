@@ -123,7 +123,10 @@ class FlashCard extends React.Component {
 
     return (
       <Container>
-        <Button to={`/decks/${deck_id}`} color="blue">Back</Button>
+        <Button 
+         as={Link}
+         to={`/decks/${deck_id}`}
+         color="blue">Back</Button>
         <br />
         <br />
         <div style={styles.container}>
@@ -134,7 +137,7 @@ class FlashCard extends React.Component {
             <div>
               <Flippy
                 flipOnClick={true}
-                flipDirection="vertical"
+                flipDirection="horizontal"
                 ref={(r) => this.flippy = r}
               >
                 <FrontSide style={styles.card}>
@@ -144,9 +147,9 @@ class FlashCard extends React.Component {
                 <BackSide style={styles.card}>
                   <div style={styles.qna}>A</div>
                   {answer}
-                  <pre style={{ fontSize: '18px', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}>
+                  <p style={{ fontSize: '18px', margin: '6px'}}>
                     {extra}
-                  </pre>
+                  </p>
                 </BackSide>
               </Flippy>
               <Card style={styles.btnSection}>
@@ -155,7 +158,7 @@ class FlashCard extends React.Component {
                   <div className='ui three buttons'>
                     {(auth.user.id === this.state.owner_id || admin_authenticated) &&
                       <>
-                        <Button onClick={this.toggleShowForm}>
+                        <Button color ="blue" onClick={this.toggleShowForm}>
                           {showForm ? 'Cancel' : 'Edit'}
                         </Button>
                         <Button onClick={this.handleDelete} color='red'>Delete</Button>
@@ -173,7 +176,7 @@ class FlashCard extends React.Component {
                 </Card.Content>
               </Card>
 
-              <Button onClick={this.randomCard} className='ui fluid'>Random</Button>
+              <Button onClick={this.randomCard} className='ui fluid' color="blue">Random</Button>
               {showForm ?
                 (
                   <Form onSubmit={this.handleSubmit}>
@@ -183,22 +186,19 @@ class FlashCard extends React.Component {
                       value={this.state.question}
                       onChange={this.handleChange}
                     />
-
                     <Form.Input
                       label="Answer"
                       name="answer"
                       value={this.state.answer}
                       onChange={this.handleChange}
                     />
-
                     <Form.TextArea
                       label="Extra"
                       name="extra"
                       value={this.state.extra}
                       onChange={this.handleChange}
-                      maxlength="350"
+                      maxlength='450'
                     />
-
                     <Form.Button color="blue">Submit</Form.Button>
                   </Form>
                 )
@@ -229,16 +229,6 @@ const ConnectedFlashCard = (props) => (
 )
 
 const styles = {
-  left: {
-    position: "fixed",
-    left: "0",
-    top: "50%",
-  },
-  right: {
-    position: 'fixed',
-    right: '0',
-    top: '50%'
-  },
   card: {
     padding: '37.5px',
     borderRadius: '5px 5px 0px 0px',
@@ -260,6 +250,7 @@ const styles = {
     borderRadius: '0px 0px 5px 5px',
     boxShadow: '0px 4px 7px lightgrey',
     marginTop: '0px',
+    backgroundColor: '#ebeced'
   },
   bottomBtns: {
     width: '375px',
