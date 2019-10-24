@@ -14,19 +14,19 @@ class DeckCard extends React.Component {
         <Icon className='tool' name='sync' link onClick={this.flip}>
           <div className='tooltip'>Flip Card</div>
         </Icon>
-        { this.props.rc_id && 
-          <Icon 
-            name='remove circle' 
-            link 
+        {this.props.rc_id &&
+          <Icon
+            name='remove circle'
+            link
             onClick={() => this.props.removeReviewCard(this.props.rc_id)}
             className='tool'
           >
             <div className='tooltip'>Remove From Deck</div>
-          </Icon> 
+          </Icon>
         }
-        <Icon 
-          name='external square alternate' 
-          link 
+        <Icon
+          name='external square alternate'
+          link
           onClick={() => push(`/decks/${deck_id}/cards/${id}`)}
           className='tool'
         >
@@ -41,8 +41,8 @@ class DeckCard extends React.Component {
     const { isFlipped, } = this.state
     const { question, answer, extra, } = this.props
     return (
-      <Card 
-        style={{margin: '12px'}}
+      <Card
+        style={{ margin: '12px' }}
         as={Flippy}
         isFlipped={isFlipped}
       >
@@ -53,10 +53,15 @@ class DeckCard extends React.Component {
         </FrontSide>
         <BackSide style={styles.card}>
           <div style={styles.qna}>A</div>
-          {answer}
-          <pre style={styles.pre}>
-            {extra}
-          </pre>
+          <div style={{ overflowWrap: 'break-word' }}>
+            {answer}
+          </div>
+          <br />
+          <div style={{ maxHeight: '70%', overflowWrap: 'break-word', overflow: 'auto' }}>
+            <pre style={styles.pre}>
+              {extra}
+            </pre>
+          </div>
           {this.bottomRight()}
         </BackSide>
       </Card>
@@ -87,9 +92,9 @@ const styles = {
     top: '8px',
     fontSize: '14px',
   },
-  pre: { 
-    fontSize: '12px', 
-    whiteSpace: 'pre-wrap', 
+  pre: {
+    fontSize: '12px',
+    whiteSpace: 'pre-wrap',
     overflow: 'hidden'
   }
 }
