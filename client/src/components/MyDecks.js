@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Card, Header, Button, Form, Container, } from 'semantic-ui-react'
+import { Card, Header, Button, Form, Container, Grid, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 
 class MyDecks extends React.Component {
@@ -42,7 +42,7 @@ class MyDecks extends React.Component {
     return(
       <Container>
         <Header as="h1" textAlign="center" style={{margin: '20px 0 10px'}}>My Decks</Header>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group>
           {decks.map( deck => 
             <Card 
               key={deck.id}
@@ -89,7 +89,8 @@ const styles = {
   card: {
     padding: '16.625px', 
     borderRadius: '16.625px', 
-    height: '332.5px',
+    height: '335px',
+    width: '250px',
     fontSize: '28px',
     color:'#27292b',
     textAlign: 'center',
