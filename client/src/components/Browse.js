@@ -87,8 +87,10 @@ class Browse extends React.Component {
 
 const styles = {
   deck: {
+    margin: '18px',
     borderRadius: '18px', 
     height: '335px',
+    width: '250px',
     fontSize: '30px',
     color:'#000000',
     textAlign: 'center',
