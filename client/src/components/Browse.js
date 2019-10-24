@@ -38,6 +38,7 @@ class Browse extends React.Component {
         <Input 
           type="text"
           style={styles.search}
+          style={styles.font}
           placeholder="search cards..."
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
@@ -47,17 +48,19 @@ class Browse extends React.Component {
           <Menu.Item
             name='decks'
             color="violet"
+            style={styles.font}
             active={activeItem === 'decks'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             name='cards'
             color="violet"
+            style={styles.font}
             active={activeItem === 'cards'}
             onClick={this.handleItemClick}
           />
         </Menu>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={4} style={styles.font}>
           {(activeItem === 'decks') &&
             decks.map( deck =>
               <Card 
@@ -105,6 +108,11 @@ const styles = {
     fontSize: '15px',
     backgroundColor: '#ebeced',
     fontWeight: 'bold',
+  },
+  font: {
+    color: '#232a36',
+    fontSize: '1.2rem',
+    letterSpacing: '3px'
   },
 }
 
