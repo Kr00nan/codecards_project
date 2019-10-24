@@ -37,8 +37,8 @@ class Browse extends React.Component {
         <br />
         <Input 
           type="text"
-          color="teal"
-          placeholder="search ..."
+          style={styles.search}
+          placeholder="search cards..."
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
         />
@@ -90,12 +90,19 @@ const styles = {
     borderRadius: '18px', 
     height: '335px',
     fontSize: '30px',
-    color:'#000000',
+    color:'#27292b',
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
     fontWeight: 'bold',
     backgroundColor: '#ebeced',
+  },
+  search: {
+    borderRadius: '25px',
+    height: '25px',
+    fontSize: '15px',
+    backgroundColor: '#ebeced',
+    fontWeight: 'bold',
   },
 }
 

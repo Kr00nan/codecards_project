@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Card, Button, Image, } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom'
+import beaker64 from '../images/beaker64.png';
 
 
 class Study extends React.Component {
@@ -59,7 +60,7 @@ class Study extends React.Component {
     return (
       <div style={styles.container}>
           <Menu as='div' vertical style={styles.side}>
-            <Menu.Header as="h1" content="Decks" inverted/>
+            <Menu.Header as="h1" content="Decks" style={styles.links}/>
             <Menu.Item
               name='HTML'
               active={activeDeck === 'HTML'}
@@ -103,13 +104,19 @@ class Study extends React.Component {
               style={styles.links}
               />
               )}
+              <br />
+              <br />
+              <Image 
+              src ={beaker64} 
+              as='a'
+              size='huge'/>
           </Menu>
-          <div style={{ padding: '15px 200px' }}>
+          <div style={{ padding: '15px 200px', color: '#27292b' }}>
             {cards.length === 0 ?
               <h2>Choose a deck that has cards</h2>
               :
               <>
-                <h1><Link to={deckLink}>{activeDeck}</Link></h1>
+                <h1><Link to={deckLink}>{activeDeck} </Link></h1>
                 {started ?
                   <>
                     {done ?
@@ -179,13 +186,15 @@ const styles = {
   links: {
     color: '#fff',
     fontSize: '1.2rem',
-    letterSpacing: '3px'
+    letterSpacing: '3px',
+    paddingLeft: '1px',
   },
   card: {
     padding: '37.5px',
     borderRadius: '18px',
     height: '375px',
     width: '525px',
+    color:'#27292b',
     fontSize: '18px',
     backgroundColor: '#ebeced',
   },
