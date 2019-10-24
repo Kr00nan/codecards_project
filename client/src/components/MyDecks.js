@@ -41,7 +41,7 @@ class MyDecks extends React.Component {
     const { decks, showForm, newDeck } = this.state
     return(
       <Container>
-        <Header as="h1" textAlign="center" style={{margin: '20px 0 10px'}}>My Decks</Header>
+        <Header as="h1" textAlign="center" style={{margin: '30px 0 20px'}} style={styles.font}></Header>
         <Card.Group>
           {decks.map( deck => 
             <Card 
@@ -91,13 +91,19 @@ const styles = {
     borderRadius: '16.625px', 
     height: '335px',
     width: '250px',
-    fontSize: '28px',
+    fontSize: '2rem',
+    letterSpacing: '3px',
     color:'#27292b',
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
     fontWeight: 'bold',
     backgroundColor: '#ebeced'
+  },
+  font: {
+    color: '#232a36',
+    fontSize: '1.2rem',
+    letterSpacing: '3px'
   },
 }
 

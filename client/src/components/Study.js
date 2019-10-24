@@ -111,19 +111,19 @@ class Study extends React.Component {
               as='a'
               size='huge'/>
           </Menu>
-          <div style={{ padding: '15px 200px', color: '#27292b' }}>
+          <div style={{ padding: '15px 200px', color: '#232a36' }}>
             {cards.length === 0 ?
-              <h2>Choose a deck that has cards</h2>
+              <h2 style={styles.font}>Choose a deck that has cards</h2>
               :
               <>
-                <h1><Link to={deckLink}>{activeDeck} </Link></h1>
+                <h1 style={styles.font}><Link to={deckLink}>{activeDeck} </Link></h1>
                 {started ?
                   <>
                     {done ?
-                      <h2>You completed this deck!</h2>
+                      <h2 style={styles.font}>You completed this deck!</h2>
                       :
                       <>
-                        <p>Cards: {cardIndex} of {cards.length}</p>
+                        <p style={styles.font}>Cards: {cardIndex} of {cards.length}</p>
                         <Card style={styles.card}>
                           {showFront ?
                             <>
@@ -197,6 +197,11 @@ const styles = {
     color:'#27292b',
     fontSize: '18px',
     backgroundColor: '#ebeced',
+  },
+  font: {
+    color: '#232a36',
+    fontSize: '1.2rem',
+    letterSpacing: '3px'
   },
 }
 
