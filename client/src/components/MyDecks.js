@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Card, Header, Button, Form, Container, Grid, } from 'semantic-ui-react'
+import { Card, Header, Button, Form, Container, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 
 class MyDecks extends React.Component {
