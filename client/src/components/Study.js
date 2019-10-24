@@ -143,11 +143,11 @@ class Study extends React.Component {
                             Reveal Answer
                         </Button>
                           :
-                          <Button.Group>
-                            <Button color="yellow" onClick={this.handleNoClick} style={{ width: '50%' }}>
+                          <Button.Group style={{ width: '100%', }}>
+                            <Button color="yellow" onClick={this.handleNoClick}>
                               Didn't Get It
                           </Button>
-                            <Button color="green" onClick={this.handleYesClick} style={{ width: '50%' }}>
+                            <Button color="green" onClick={this.handleYesClick}>
                               Got It!
                           </Button>
                           </Button.Group>
